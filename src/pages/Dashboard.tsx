@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { FileUploader } from '../components/FileUploader';
 import { ResultCard } from '../components/ResultCard';
+import { Captcha } from '../components/Captcha';
 import { SEO } from '../components/SEO';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
 import { isAuthenticated } from '../utils/auth';
@@ -15,11 +16,19 @@ export const Dashboard = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [showCaptcha, setShowCaptcha] = useState(false);
   const isLoggedIn = isAuthenticated();
 
   const handleAnalyze = async () => {
     if (!selectedFile) {
       alert(t('dashboard.selectFile'));
+      return;
+    }
+
+    // Check if user needs to verify CAPTCHA
+    if (!isLoggedIn && !captchaVerified) {
+      setShowCaptcha(true);
       return;
     }
 
@@ -40,6 +49,21 @@ export const Dashboard = () => {
     } finally {
       setIsAnalyzing(false);
     }
+  };
+
+  const handleCaptchaVerify = (isValid: boolean) => {
+    setCaptchaVerified(isValid);
+    if (isValid) {
+      setShowCaptcha(false);
+      // Auto-analyze after CAPTCHA verification
+      setTimeout(() => {
+        handleAnalyze();
+      }, 500);
+    }
+  };
+
+  const handleCaptchaReset = () => {
+    setCaptchaVerified(false);
   };
 
   return (
@@ -123,9 +147,9 @@ export const Dashboard = () => {
             </h2>
             <motion.button
               onClick={handleAnalyze}
-              disabled={!selectedFile || isAnalyzing}
-              whileHover={{ scale: selectedFile && !isAnalyzing ? 1.02 : 1 }}
-              whileTap={{ scale: selectedFile && !isAnalyzing ? 0.98 : 1 }}
+              disabled={!selectedFile || isAnalyzing || (!isLoggedIn && !captchaVerified)}
+              whileHover={{ scale: selectedFile && !isAnalyzing && (isLoggedIn || captchaVerified) ? 1.02 : 1 }}
+              whileTap={{ scale: selectedFile && !isAnalyzing && (isLoggedIn || captchaVerified) ? 0.98 : 1 }}
               className="relative w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl overflow-hidden group"
             >
               {isAnalyzing ? (
@@ -154,6 +178,13 @@ export const Dashboard = () => {
                   </motion.svg>
                   <span className="text-sm sm:text-base">{t('dashboard.analyzing')}</span>
                 </>
+              ) : !isLoggedIn && !captchaVerified ? (
+                <>
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span className="text-sm sm:text-base">{t('dashboard.verifyCaptcha')}</span>
+                </>
               ) : (
                 <>
                   <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
@@ -173,11 +204,33 @@ export const Dashboard = () => {
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={{ x: '-100%' }}
-                animate={!isAnalyzing && selectedFile ? { x: '100%' } : {}}
+                animate={!isAnalyzing && selectedFile && (isLoggedIn || captchaVerified) ? { x: '100%' } : {}}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
               />
             </motion.button>
           </motion.section>
+
+          {/* CAPTCHA Section - Only show for non-logged in users */}
+          {showCaptcha && !isLoggedIn && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 p-5 sm:p-6 md:p-8"
+            >
+              <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 flex items-center gap-2 sm:gap-3">
+                <motion.span
+                  className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xs sm:text-sm shadow-md"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  🔒
+                </motion.span>
+                {t('dashboard.captchaTitle')}
+              </h2>
+              <Captcha onVerify={handleCaptchaVerify} onReset={handleCaptchaReset} />
+            </motion.section>
+          )}
 
           {/* Results Section */}
           {analysisResult && (

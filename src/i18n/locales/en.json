@@ -112,7 +112,9 @@
     "notLoggedIn": "You are not logged in",
     "fileSaved": "File saved!",
     "fileSavedDesc": "Your analysis file has been saved to history.",
-    "viewFiles": "View Files"
+    "viewFiles": "View Files",
+    "verifyCaptcha": "Verify CAPTCHA",
+    "captchaTitle": "Security Verification"
   },
   "results": {
     "transcript": "Transcript",
@@ -177,6 +179,18 @@
     "save": "Save Changes",
     "saving": "Saving...",
     "saveSuccess": "Profile updated successfully!"
+  },
+  "captcha": {
+    "title": "Security Verification",
+    "description": "Please enter the verification code below to continue file analysis",
+    "enterCode": "Enter verification code",
+    "placeholder": "Enter 6 characters",
+    "verify": "Verify",
+    "refresh": "Refresh",
+    "success": "Verification successful!",
+    "error": "Incorrect verification code",
+    "tooManyAttempts": "Too many failed attempts. Please try again.",
+    "tryAgain": "Try Again"
   }
 }
 

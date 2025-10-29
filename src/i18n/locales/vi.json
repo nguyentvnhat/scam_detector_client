@@ -112,7 +112,9 @@
     "notLoggedIn": "Bạn chưa đăng nhập",
     "fileSaved": "File đã được lưu!",
     "fileSavedDesc": "File phân tích của bạn đã được lưu vào lịch sử.",
-    "viewFiles": "Xem Files"
+    "viewFiles": "Xem Files",
+    "verifyCaptcha": "Xác minh CAPTCHA",
+    "captchaTitle": "Xác minh bảo mật"
   },
   "results": {
     "transcript": "Bản ghi",
@@ -177,6 +179,18 @@
     "save": "Lưu thay đổi",
     "saving": "Đang lưu...",
     "saveSuccess": "Đã lưu thông tin thành công!"
+  },
+  "captcha": {
+    "title": "Xác minh bảo mật",
+    "description": "Vui lòng nhập mã xác minh bên dưới để tiếp tục phân tích file",
+    "enterCode": "Nhập mã xác minh",
+    "placeholder": "Nhập 6 ký tự",
+    "verify": "Xác minh",
+    "refresh": "Làm mới",
+    "success": "Xác minh thành công!",
+    "error": "Mã xác minh không đúng",
+    "tooManyAttempts": "Quá nhiều lần thử sai. Vui lòng thử lại.",
+    "tryAgain": "Thử lại"
   }
 }
 
