@@ -7,7 +7,7 @@ export interface AnalysisResult {
   }>;
 }
 
-export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
+export const analyzeAudio = async (_file: File): Promise<AnalysisResult> => {
   // Simulate API call delay
   await new Promise((res) => setTimeout(res, 2000));
 
