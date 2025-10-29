@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "ChongLuaDao.AI",
+    "appName": "NgheLaBiet.AI",
     "tagline": "AI phát hiện lừa đảo qua giọng nói",
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
@@ -9,15 +9,15 @@
   },
   "hero": {
     "badge": "🛡️ Bảo vệ bạn khỏi lừa đảo qua giọng nói",
-    "title": "ChongLuaDao.AI",
+    "title": "NgheLaBiet.AI",
     "subtitle": "Phát hiện cuộc gọi lừa đảo với",
     "highlight": "Công nghệ Trí tuệ Nhân tạo",
     "ctaPrimary": "Bắt đầu kiểm tra ngay",
     "ctaSecondary": "Tìm hiểu thêm"
   },
   "about": {
-    "title": "Về ChongLuaDao.AI",
-    "paragraph1": "ChongLuaDao.AI là nền tảng công nghệ tiên tiến sử dụng trí tuệ nhân tạo để bảo vệ người dùng khỏi các cuộc gọi lừa đảo. Chúng tôi hiểu rằng lừa đảo qua điện thoại đang trở thành mối đe dọa lớn tại Việt Nam, với hàng nghìn người bị mất tiền mỗi năm.",
+    "title": "Về NgheLaBiet.AI",
+    "paragraph1": "NgheLaBiet.AI là nền tảng công nghệ tiên tiến sử dụng trí tuệ nhân tạo để bảo vệ người dùng khỏi các cuộc gọi lừa đảo. Chúng tôi hiểu rằng lừa đảo qua điện thoại đang trở thành mối đe dọa lớn tại Việt Nam, với hàng nghìn người bị mất tiền mỗi năm.",
     "paragraph2": "Với công nghệ nhận diện giọng nói AI và machine learning, chúng tôi phân tích nội dung cuộc gọi, phát hiện các mẫu lừa đảo phổ biến và đánh giá mức độ rủi ro để giúp bạn đưa ra quyết định an toàn. Mục tiêu của chúng tôi là tạo ra một lá chắn bảo vệ cho mọi người dùng Việt Nam."
   },
   "stats": {
@@ -55,20 +55,39 @@
   },
   "cta": {
     "title": "Bảo vệ bản thân ngay hôm nay",
-    "description": "Không cần đăng ký phức tạp. Chỉ cần email để bắt đầu kiểm tra ngay",
+    "description": "Bắt đầu kiểm tra ngay lập tức. Đăng nhập chỉ khi bạn muốn lưu lại lịch sử phân tích.",
     "button": "Kiểm tra miễn phí ngay"
   },
   "nav": {
     "features": "Tính năng",
     "howItWorks": "Cách hoạt động",
-    "about": "Về chúng tôi"
+    "about": "Về chúng tôi",
+    "dashboard": "Bắt đầu"
   },
   "login": {
     "title": "Đăng nhập",
     "email": "Email",
     "emailPlaceholder": "your.email@example.com",
     "submit": "Đăng nhập",
-    "error": "Vui lòng nhập địa chỉ email hợp lệ"
+    "error": "Vui lòng nhập địa chỉ email hợp lệ",
+    "noAccount": "Chưa có tài khoản?"
+  },
+  "register": {
+    "title": "Đăng ký",
+    "fullName": "Họ tên",
+    "fullNamePlaceholder": "Nhập họ và tên của bạn",
+    "fullNameError": "Vui lòng nhập họ tên (ít nhất 2 ký tự)",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Tối thiểu 6 ký tự",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+    "submit": "Đăng ký",
+    "error": "Vui lòng nhập địa chỉ email hợp lệ",
+    "passwordError": "Mật khẩu phải có ít nhất 6 ký tự",
+    "passwordMatchError": "Mật khẩu không khớp",
+    "haveAccount": "Đã có tài khoản?"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -83,7 +102,11 @@
     "fileSelected": "Đã chọn",
     "uploadHint": "Kéo thả file vào đây hoặc",
     "uploadHint2": "chọn file",
-    "uploadSupport": "Hỗ trợ audio và video"
+    "uploadSupport": "Hỗ trợ audio và video",
+    "saveHistory": "Lưu lịch sử",
+    "saveHistoryDesc": "Đăng nhập để lưu lại lịch sử phân tích của bạn",
+    "loginToSave": "Đăng nhập để lưu",
+    "notLoggedIn": "Bạn chưa đăng nhập"
   },
   "results": {
     "transcript": "Bản ghi",
@@ -104,8 +127,8 @@
     "contact": "Liên hệ",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản",
-    "copyright": "© 2025 ChongLuaDao.AI. All rights reserved.",
-    "communityNote": "© 2025 ChongLuaDao.AI — Được xây dựng với ❤️ bởi nhóm cộng đồng.",
+    "copyright": "© 2025 NgheLaBiet.AI. All rights reserved.",
+    "communityNote": "© 2025 NgheLaBiet.AI — Được xây dựng với ❤️ bởi nhóm cộng đồng.",
     "team": {
       "title": "Nhóm phát triển dự án",
       "description": "Dự án cộng đồng được phát triển bởi Pop Trinh và nhóm để phát hiện nội dung lừa đảo thông qua phân tích âm thanh AI.",

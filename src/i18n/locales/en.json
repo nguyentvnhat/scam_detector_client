@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "ChongLuaDao.AI",
+    "appName": "NgheLaBiet.AI",
     "tagline": "AI-powered scam voice detection",
     "login": "Login",
     "logout": "Logout",
@@ -9,15 +9,15 @@
   },
   "hero": {
     "badge": "🛡️ Protect yourself from voice scams",
-    "title": "ChongLuaDao.AI",
+    "title": "NgheLaBiet.AI",
     "subtitle": "Detect scam calls with",
     "highlight": "Artificial Intelligence Technology",
     "ctaPrimary": "Start checking now",
     "ctaSecondary": "Learn more"
   },
   "about": {
-    "title": "About ChongLuaDao.AI",
-    "paragraph1": "ChongLuaDao.AI is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
+    "title": "About NgheLaBiet.AI",
+    "paragraph1": "NgheLaBiet.AI is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
     "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
   },
   "stats": {
@@ -55,20 +55,39 @@
   },
   "cta": {
     "title": "Protect yourself today",
-    "description": "No complex registration required. Just an email to start checking right away",
+    "description": "Start checking immediately. Login only when you want to save your analysis history.",
     "button": "Check for free now"
   },
   "nav": {
     "features": "Features",
     "howItWorks": "How it works",
-    "about": "About us"
+    "about": "About us",
+    "dashboard": "Get Started"
   },
   "login": {
     "title": "Login",
     "email": "Email",
     "emailPlaceholder": "your.email@example.com",
     "submit": "Login",
-    "error": "Please enter a valid email address"
+    "error": "Please enter a valid email address",
+    "noAccount": "Don't have an account?"
+  },
+  "register": {
+    "title": "Register",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "fullNameError": "Please enter your full name (at least 2 characters)",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Minimum 6 characters",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter password",
+    "submit": "Register",
+    "error": "Please enter a valid email address",
+    "passwordError": "Password must be at least 6 characters",
+    "passwordMatchError": "Passwords do not match",
+    "haveAccount": "Already have an account?"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -83,7 +102,11 @@
     "fileSelected": "Selected",
     "uploadHint": "Drag and drop file here or",
     "uploadHint2": "select file",
-    "uploadSupport": "Audio and video supported"
+    "uploadSupport": "Audio and video supported",
+    "saveHistory": "Save History",
+    "saveHistoryDesc": "Login to save your analysis history",
+    "loginToSave": "Login to Save",
+    "notLoggedIn": "You are not logged in"
   },
   "results": {
     "transcript": "Transcript",
@@ -104,8 +127,8 @@
     "contact": "Contact",
     "privacy": "Privacy Policy",
     "terms": "Terms",
-    "copyright": "© 2025 ChongLuaDao.AI. All rights reserved.",
-    "communityNote": "© 2025 ChongLuaDao.AI — Built with ❤️ by the community team.",
+    "copyright": "© 2025 NgheLaBiet.AI. All rights reserved.",
+    "communityNote": "© 2025 NgheLaBiet.AI — Built with ❤️ by the community team.",
     "team": {
       "title": "Project Team",
       "description": "A community-driven project developed by Pop Trinh and team to detect scam content through AI audio analysis.",

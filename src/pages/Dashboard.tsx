@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
@@ -6,12 +7,14 @@ import { FileUploader } from '../components/FileUploader';
 import { ResultCard } from '../components/ResultCard';
 import { SEO } from '../components/SEO';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
+import { isAuthenticated } from '../utils/auth';
 
 export const Dashboard = () => {
   const { t } = useTranslation();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const isLoggedIn = isAuthenticated();
 
   const handleAnalyze = async () => {
     if (!selectedFile) {
@@ -36,7 +39,7 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO title={`${t('dashboard.title')} - ${t('common.appName')}`} />
-      <Navbar showAuth={true} />
+      <Navbar showAuth={isLoggedIn} />
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,9 +53,24 @@ export const Dashboard = () => {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 md:mb-3">{t('dashboard.title')}</h1>
-            <p className="text-sm sm:text-base text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600 mb-3">
               {t('dashboard.description')}
             </p>
+            {!isLoggedIn && (
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2"
+              >
+                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{t('dashboard.notLoggedIn')}</span>
+                <Link to="/login" className="ml-auto text-blue-600 hover:text-blue-700 font-medium underline">
+                  {t('dashboard.loginToSave')}
+                </Link>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* File Upload Section */}
@@ -175,6 +193,39 @@ export const Dashboard = () => {
                 {t('dashboard.resultsTitle')}
               </h2>
               <ResultCard result={analysisResult} />
+              
+              {/* Save History Section - Only show if not logged in */}
+              {!isLoggedIn && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-6 pt-6 border-t border-gray-200"
+                >
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-200 rounded-xl p-4 sm:p-5">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('dashboard.saveHistory')}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('dashboard.saveHistoryDesc')}</p>
+                        <Link
+                          to="/login"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          {t('dashboard.loginToSave')}
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
             </motion.section>
           )}
         </motion.div>
