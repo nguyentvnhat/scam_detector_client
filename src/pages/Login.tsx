@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { setUserEmail } from '../utils/auth';
+import { saveProfile, getProfile, updateProfile } from '../utils/storage';
 import { Navbar } from '../components/Navbar';
 import { SEO } from '../components/SEO';
 
@@ -43,6 +44,21 @@ export const Login = () => {
 
     // For now, just save email (password would be handled by backend)
     setUserEmail(email);
+    
+    // If registering, save profile
+    if (isRegister && fullName) {
+      saveProfile({
+        fullName: fullName.trim(),
+        email: email.trim(),
+      });
+    } else if (!isRegister) {
+      // If logging in, try to load profile but don't override if exists
+      const existingProfile = getProfile();
+      if (!existingProfile) {
+        updateProfile({ email: email.trim() });
+      }
+    }
+    
     navigate('/dashboard');
   };
 

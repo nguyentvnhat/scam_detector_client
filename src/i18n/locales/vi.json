@@ -62,7 +62,10 @@
     "features": "Tính năng",
     "howItWorks": "Cách hoạt động",
     "about": "Về chúng tôi",
-    "dashboard": "Bắt đầu"
+    "dashboard": "Bắt đầu",
+    "files": "Files",
+    "profile": "Hồ sơ",
+    "loggedInAs": "Đang đăng nhập với"
   },
   "login": {
     "title": "Đăng nhập",
@@ -106,7 +109,10 @@
     "saveHistory": "Lưu lịch sử",
     "saveHistoryDesc": "Đăng nhập để lưu lại lịch sử phân tích của bạn",
     "loginToSave": "Đăng nhập để lưu",
-    "notLoggedIn": "Bạn chưa đăng nhập"
+    "notLoggedIn": "Bạn chưa đăng nhập",
+    "fileSaved": "File đã được lưu!",
+    "fileSavedDesc": "File phân tích của bạn đã được lưu vào lịch sử.",
+    "viewFiles": "Xem Files"
   },
   "results": {
     "transcript": "Bản ghi",
@@ -137,6 +143,40 @@
       "aiResearch": "AI Research",
       "uiuxDesigner": "UI/UX Designer"
     }
+  },
+  "files": {
+    "title": "Quản lý Files",
+    "description": "Xem và quản lý tất cả các file phân tích của bạn",
+    "files": "files",
+    "listTitle": "Danh sách Files",
+    "empty": "Chưa có file nào. Hãy bắt đầu phân tích file đầu tiên!",
+    "selectFile": "Chọn file để xem chi tiết",
+    "selectFileHint": "Nhấp vào một file từ danh sách bên trái",
+    "delete": "Xóa",
+    "confirmDelete": "Xác nhận xóa",
+    "cancel": "Hủy",
+    "deleteWarning": "Bạn có chắc chắn muốn xóa file này? Hành động này không thể hoàn tác.",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "daysAgo": "ngày trước",
+    "risk": "Rủi ro",
+    "riskScore": "Điểm rủi ro",
+    "showList": "Danh sách",
+    "showDetail": "Chi tiết",
+    "goToDashboard": "Đến Dashboard"
+  },
+  "profile": {
+    "title": "Hồ sơ cá nhân",
+    "description": "Quản lý thông tin cá nhân của bạn",
+    "fullName": "Họ tên",
+    "fullNamePlaceholder": "Nhập họ và tên của bạn",
+    "fullNameError": "Vui lòng nhập họ tên (ít nhất 2 ký tự)",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "emailError": "Vui lòng nhập địa chỉ email hợp lệ",
+    "save": "Lưu thay đổi",
+    "saving": "Đang lưu...",
+    "saveSuccess": "Đã lưu thông tin thành công!"
   }
 }
 

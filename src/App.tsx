@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, type ReactNode } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { isAuthenticated } from './utils/auth';
 
@@ -6,6 +6,8 @@ import { isAuthenticated } from './utils/auth';
 const Landing = lazy(() => import('./pages/Landing').then(module => ({ default: module.Landing })));
 const Login = lazy(() => import('./pages/Login').then(module => ({ default: module.Login })));
 const Dashboard = lazy(() => import('./pages/Dashboard').then(module => ({ default: module.Dashboard })));
+const Files = lazy(() => import('./pages/Files').then(module => ({ default: module.Files })));
+const Profile = lazy(() => import('./pages/Profile').then(module => ({ default: module.Profile })));
 
 // Loading fallback component
 const LoadingSpinner = () => (
@@ -17,6 +19,17 @@ const LoadingSpinner = () => (
   </div>
 );
 
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+};
+
 function App() {
   return (
     <Suspense fallback={<LoadingSpinner />}>
@@ -24,6 +37,22 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/files"
+          element={
+            <ProtectedRoute>
+              <Files />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Suspense>
   );
