@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface FileUploaderProps {
   onFileSelect: (file: File) => void;
@@ -6,6 +8,7 @@ interface FileUploaderProps {
 }
 
 export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) => {
+  const { t } = useTranslation();
   const [dragActive, setDragActive] = useState(false);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -36,18 +39,20 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
   };
 
   return (
-    <div
-      className={`border-2 border-dashed rounded-lg p-8 transition-colors ${
+    <motion.div
+      className={`border-2 border-dashed rounded-xl p-6 md:p-8 transition-all duration-300 ${
         dragActive
-          ? 'border-blue-500 bg-blue-50'
+          ? 'border-blue-500 bg-blue-50 shadow-lg scale-105'
           : selectedFile
-          ? 'border-green-500 bg-green-50'
-          : 'border-gray-300 bg-gray-50 hover:border-gray-400'
+          ? 'border-green-500 bg-green-50 shadow-md'
+          : 'border-gray-300 bg-gray-50 hover:border-gray-400 hover:shadow-md'
       }`}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
       onDragOver={handleDrag}
       onDrop={handleDrop}
+      whileHover={{ scale: selectedFile ? 1 : 1.02 }}
+      transition={{ duration: 0.2 }}
     >
       <input
         type="file"
@@ -72,28 +77,41 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
             />
           </svg>
           {selectedFile ? (
-            <div className="text-center">
-              <p className="text-sm font-medium text-green-700">
-                Đã chọn: {selectedFile.name}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="text-center"
+            >
+              <div className="flex items-center justify-center mb-2">
+                <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <p className="text-sm sm:text-base font-semibold text-green-700">
+                  {t('dashboard.fileSelected')}
+                </p>
+              </div>
+              <p className="text-xs sm:text-sm text-green-600 font-medium mb-1 break-all px-2">
+                {selectedFile.name}
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-green-500">
                 {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
               </p>
-            </div>
+            </motion.div>
           ) : (
             <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Kéo thả file vào đây hoặc{' '}
-                <span className="text-blue-600 hover:text-blue-700">chọn file</span>
+              <p className="text-sm sm:text-base text-gray-700 font-medium mb-2">
+                {t('dashboard.uploadHint')}{' '}
+                <span className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">{t('dashboard.uploadHint2')}</span>
               </p>
-              <p className="text-xs text-gray-500 mt-1">
-                Hỗ trợ audio và video
+              <p className="text-xs sm:text-sm text-gray-500">
+                {t('dashboard.uploadSupport')}
               </p>
             </div>
           )}
         </div>
       </label>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { getUserEmail, removeUserEmail } from '../utils/auth';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface NavbarProps {
   showAuth?: boolean;
 }
 
 export const Navbar = ({ showAuth = false }: NavbarProps) => {
+  const { t } = useTranslation();
   const userEmail = getUserEmail();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,59 +39,110 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
     <nav className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <Link to="/" className="flex items-center space-x-2 group">
-            <span className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors">
+          <Link 
+            to="/" 
+            className="flex items-center space-x-2 group"
+          >
+            <motion.span
+              className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-gray-800 group-hover:to-gray-600 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               ChongLuaDao.AI
-            </span>
+            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}
           {isLandingPage && !showAuth && (
             <div className="hidden md:flex items-center space-x-6">
-              <button
+              <motion.button
                 onClick={() => handleScrollTo('features')}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors relative"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Tính năng
-              </button>
-              <button
+                {t('nav.features')}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900"
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <motion.button
                 onClick={() => handleScrollTo('how-it-works')}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors relative"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Cách hoạt động
-              </button>
-              <button
+                {t('nav.howItWorks')}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900"
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <motion.button
                 onClick={() => handleScrollTo('about')}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors relative"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Về chúng tôi
-              </button>
-              <Link
-                to="/login"
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all"
+                {t('nav.about')}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900"
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <LanguageSwitcher />
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Đăng nhập
-              </Link>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"
+                >
+                  {t('common.login')}
+                </Link>
+              </motion.div>
             </div>
           )}
 
           {/* Mobile Menu Button */}
           {isLandingPage && !showAuth && (
-            <button
+            <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors"
+              className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100"
               aria-label="Toggle menu"
+              whileTap={{ scale: 0.9 }}
             >
               {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <motion.svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 90 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                </motion.svg>
               ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <motion.svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                </motion.svg>
               )}
-            </button>
+            </motion.button>
           )}
 
           {/* Auth Buttons */}
@@ -98,7 +153,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                 onClick={handleLogout}
                 className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all"
               >
-                Đăng xuất
+                {t('common.logout')}
               </button>
             </div>
           ) : !showAuth && !isLandingPage && (
@@ -113,35 +168,55 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && isLandingPage && !showAuth && (
-          <div className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-3">
-              <button
-                onClick={() => handleScrollTo('features')}
-                className="text-left px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm"
+          >
+            <div className="py-4 flex flex-col space-y-2 px-4">
+              {[
+                { key: 'features', label: t('nav.features') },
+                { key: 'how-it-works', label: t('nav.howItWorks') },
+                { key: 'about', label: t('nav.about') },
+              ].map((item, index) => (
+                <motion.button
+                  key={item.key}
+                  onClick={() => handleScrollTo(item.key)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  whileHover={{ x: 5, backgroundColor: '#f9fafb' }}
+                  whileTap={{ scale: 0.98 }}
+                  className="text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all"
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="px-4 py-2"
               >
-                Tính năng
-              </button>
-              <button
-                onClick={() => handleScrollTo('how-it-works')}
-                className="text-left px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                <LanguageSwitcher />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
               >
-                Cách hoạt động
-              </button>
-              <button
-                onClick={() => handleScrollTo('about')}
-                className="text-left px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                Về chúng tôi
-              </button>
-              <Link
-                to="/login"
-                className="text-left px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Đăng nhập
-              </Link>
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-center px-4 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md"
+                >
+                  {t('common.login')}
+                </Link>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </nav>

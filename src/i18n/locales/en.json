@@ -1,0 +1,119 @@
+{
+  "common": {
+    "appName": "ChongLuaDao.AI",
+    "tagline": "AI-powered scam voice detection",
+    "login": "Login",
+    "logout": "Logout",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "hero": {
+    "badge": "🛡️ Protect yourself from voice scams",
+    "title": "ChongLuaDao.AI",
+    "subtitle": "Detect scam calls with",
+    "highlight": "Artificial Intelligence Technology",
+    "ctaPrimary": "Start checking now",
+    "ctaSecondary": "Learn more"
+  },
+  "about": {
+    "title": "About ChongLuaDao.AI",
+    "paragraph1": "ChongLuaDao.AI is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
+    "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
+  },
+  "stats": {
+    "accuracy": "Detection Accuracy",
+    "speed": "Analysis Time",
+    "samples": "Scam Samples Recorded",
+    "uptime": "24/7 Operation"
+  },
+  "risks": {
+    "title": "Are you at risk?",
+    "description": "Phone scams are becoming a major threat in Vietnam. Every year, thousands of people lose money by believing in fake bank calls, prize notifications, or other tricks.",
+    "risk1": "Fake calls from \"banks\" requesting identity verification",
+    "risk2": "Prize notifications requiring transfer fees",
+    "risk3": "Requests for OTP codes or account passwords"
+  },
+  "features": {
+    "title": "Technology that protects you",
+    "description": "Using artificial intelligence and machine learning to automatically analyze and detect scam patterns",
+    "feature1Title": "Smart voice conversion",
+    "feature1Desc": "Advanced AI voice recognition technology converts calls to text with high accuracy, supporting multiple languages and Vietnamese dialects",
+    "feature2Title": "Scam pattern detection",
+    "feature2Desc": "Deep analysis system identifies common scam tactics: bank impersonation, prize notification calls, requests for sensitive information",
+    "feature3Title": "Instant risk assessment",
+    "feature3Desc": "ML algorithm calculates risk score from 0-100%, providing detailed warnings of suspicious signs to help you make safe decisions and protect your assets"
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "description": "Just 3 simple steps to protect you from scams",
+    "step1Title": "Upload audio/video file",
+    "step1Desc": "Upload call recordings or videos containing voice to be analyzed",
+    "step2Title": "AI automatic analysis",
+    "step2Desc": "System converts voice to text and scans for scam indicators",
+    "step3Title": "Receive detailed report",
+    "step3Desc": "View transcript, risk score and warning list with specific explanations"
+  },
+  "cta": {
+    "title": "Protect yourself today",
+    "description": "No complex registration required. Just an email to start checking right away",
+    "button": "Check for free now"
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "about": "About us"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "submit": "Login",
+    "error": "Please enter a valid email address"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Upload audio or video files to analyze and detect scams",
+    "uploadTitle": "Upload file",
+    "analyzeTitle": "Analyze",
+    "resultsTitle": "Analysis Results",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing...",
+    "selectFile": "Please select an audio or video file",
+    "analyzeError": "An error occurred while analyzing the file",
+    "fileSelected": "Selected",
+    "uploadHint": "Drag and drop file here or",
+    "uploadHint2": "select file",
+    "uploadSupport": "Audio and video supported"
+  },
+  "results": {
+    "transcript": "Transcript",
+    "riskScore": "Risk Score",
+    "warnings": "Warnings"
+  },
+  "footer": {
+    "description": "Protect yourself from voice scams with advanced AI technology",
+    "products": "Products",
+    "features": "Features",
+    "pricing": "Pricing",
+    "api": "API",
+    "resources": "Resources",
+    "documentation": "Documentation",
+    "guides": "Guides",
+    "blog": "Blog",
+    "support": "Support",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "copyright": "© 2025 ChongLuaDao.AI. All rights reserved.",
+    "communityNote": "© 2025 ChongLuaDao.AI — Built with ❤️ by the community team.",
+    "team": {
+      "title": "Project Team",
+      "description": "A community-driven project developed by Pop Trinh and team to detect scam content through AI audio analysis.",
+      "teamLead": "Team Lead",
+      "developer": "Developer",
+      "aiResearch": "AI Research",
+      "uiuxDesigner": "UI/UX Designer"
+    }
+  }
+}
+
