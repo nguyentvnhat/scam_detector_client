@@ -71,7 +71,7 @@ export const Login = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-md w-full bg-white rounded-xl shadow-xl p-6 sm:p-8"
+          className="max-w-md w-full bg-white rounded-xl shadow-xl p-6 sm:p-8 mx-4"
         >
           {/* Toggle Tabs */}
           <div className="flex gap-2 mb-6 bg-gray-100 rounded-lg p-1">

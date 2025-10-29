@@ -74,6 +74,14 @@ export const Dashboard = () => {
     }
   };
 
+  // Reset CAPTCHA when new file is selected
+  const handleFileSelect = (file: File) => {
+    setSelectedFile(file);
+    setAnalysisResult(null);
+    setCaptchaVerified(false);
+    setShowCaptcha(false);
+  };
+
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -131,7 +139,7 @@ export const Dashboard = () => {
               {t('dashboard.uploadTitle')}
             </h2>
             <FileUploader
-              onFileSelect={setSelectedFile}
+              onFileSelect={handleFileSelect}
               selectedFile={selectedFile}
             />
           </motion.section>
@@ -162,7 +170,7 @@ export const Dashboard = () => {
               disabled={!selectedFile || isAnalyzing}
               whileHover={{ scale: selectedFile && !isAnalyzing ? 1.02 : 1 }}
               whileTap={{ scale: selectedFile && !isAnalyzing ? 0.98 : 1 }}
-              className="relative w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl overflow-hidden group"
+              className="relative w-full sm:w-auto px-6 sm:px-8 md:px-10 py-4 md:py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl overflow-hidden group min-h-[48px]"
             >
               {isAnalyzing ? (
                 <>
@@ -253,8 +261,8 @@ export const Dashboard = () => {
             </motion.section>
           )}
 
-          {/* CAPTCHA Verified Success Message */}
-          {captchaVerified && !isLoggedIn && (
+          {/* CAPTCHA Verified Success Message - Only show briefly after verification */}
+          {captchaVerified && !isLoggedIn && !analysisResult && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}

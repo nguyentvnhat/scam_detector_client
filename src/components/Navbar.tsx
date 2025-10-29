@@ -122,40 +122,48 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
             </div>
           )}
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Controls */}
           {((isLandingPage && !showAuth) || (showAuth && userEmail)) && (
-            <motion.button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100"
-              aria-label="Toggle menu"
-              whileTap={{ scale: 0.9 }}
-            >
-              {mobileMenuOpen ? (
-                <motion.svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 90 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </motion.svg>
-              ) : (
-                <motion.svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </motion.svg>
-              )}
-            </motion.button>
+            <div className="md:hidden flex items-center gap-2">
+              {/* Language Switcher for Mobile */}
+              <div className="block min-h-[44px] flex items-center">
+                <LanguageSwitcher />
+              </div>
+              
+              {/* Mobile Menu Button */}
+              <motion.button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-3 text-gray-700 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Toggle menu"
+                whileTap={{ scale: 0.9 }}
+              >
+                {mobileMenuOpen ? (
+                  <motion.svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 90 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </motion.svg>
+                ) : (
+                  <motion.svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </motion.svg>
+                )}
+              </motion.button>
+            </div>
           )}
 
           {/* Auth Buttons */}
@@ -230,14 +238,6 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="px-4 py-2"
-                  >
-                    <LanguageSwitcher />
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
                     className="flex flex-col gap-2"
                   >
@@ -295,14 +295,6 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                     </svg>
                     {t('nav.profile')}
                   </Link>
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="px-4 py-2"
-                  >
-                    <LanguageSwitcher />
-                  </motion.div>
                   <button
                     onClick={() => {
                       handleLogout();
