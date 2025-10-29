@@ -32,6 +32,14 @@ export const Dashboard = () => {
       return;
     }
 
+    // If CAPTCHA is verified but user is not logged in, reset CAPTCHA after analysis
+    if (!isLoggedIn && captchaVerified) {
+      // Reset CAPTCHA after successful analysis for non-logged users
+      setTimeout(() => {
+        setCaptchaVerified(false);
+      }, 5000);
+    }
+
     setIsAnalyzing(true);
     setAnalysisResult(null);
 
@@ -58,12 +66,13 @@ export const Dashboard = () => {
       // Auto-analyze after CAPTCHA verification
       setTimeout(() => {
         handleAnalyze();
-      }, 500);
+      }, 300);
     }
   };
 
   const handleCaptchaReset = () => {
     setCaptchaVerified(false);
+    setShowCaptcha(false);
   };
 
   return (
@@ -147,9 +156,9 @@ export const Dashboard = () => {
             </h2>
             <motion.button
               onClick={handleAnalyze}
-              disabled={!selectedFile || isAnalyzing || (!isLoggedIn && !captchaVerified)}
-              whileHover={{ scale: selectedFile && !isAnalyzing && (isLoggedIn || captchaVerified) ? 1.02 : 1 }}
-              whileTap={{ scale: selectedFile && !isAnalyzing && (isLoggedIn || captchaVerified) ? 0.98 : 1 }}
+              disabled={!selectedFile || isAnalyzing}
+              whileHover={{ scale: selectedFile && !isAnalyzing ? 1.02 : 1 }}
+              whileTap={{ scale: selectedFile && !isAnalyzing ? 0.98 : 1 }}
               className="relative w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl overflow-hidden group"
             >
               {isAnalyzing ? (
@@ -185,6 +194,13 @@ export const Dashboard = () => {
                   </svg>
                   <span className="text-sm sm:text-base">{t('dashboard.verifyCaptcha')}</span>
                 </>
+              ) : !isLoggedIn && captchaVerified ? (
+                <>
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
+                </>
               ) : (
                 <>
                   <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
@@ -204,7 +220,7 @@ export const Dashboard = () => {
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={{ x: '-100%' }}
-                animate={!isAnalyzing && selectedFile && (isLoggedIn || captchaVerified) ? { x: '100%' } : {}}
+                animate={!isAnalyzing && selectedFile ? { x: '100%' } : {}}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
               />
             </motion.button>
