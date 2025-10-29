@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 interface CaptchaProps {
   onVerify: (isValid: boolean) => void;
-  onReset?: () => void;
 }
 
-export const Captcha = ({ onVerify, onReset }: CaptchaProps) => {
+export const Captcha = ({ onVerify }: CaptchaProps) => {
   const { t } = useTranslation();
   const [captchaText, setCaptchaText] = useState('');
   const [userInput, setUserInput] = useState('');
@@ -28,12 +27,6 @@ export const Captcha = ({ onVerify, onReset }: CaptchaProps) => {
   useEffect(() => {
     generateCaptcha();
   }, []);
-
-  useEffect(() => {
-    if (onReset) {
-      onReset();
-    }
-  }, [onReset]);
 
   const handleVerify = () => {
     const correct = userInput.toLowerCase() === captchaText.toLowerCase();

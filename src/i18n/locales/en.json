@@ -114,7 +114,8 @@
     "fileSavedDesc": "Your analysis file has been saved to history.",
     "viewFiles": "View Files",
     "verifyCaptcha": "Verify CAPTCHA",
-    "captchaTitle": "Security Verification"
+    "captchaTitle": "Security Verification",
+    "captchaVerifiedDesc": "Analyzing your file automatically..."
   },
   "results": {
     "transcript": "Transcript",

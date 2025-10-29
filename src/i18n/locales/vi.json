@@ -114,7 +114,8 @@
     "fileSavedDesc": "File phân tích của bạn đã được lưu vào lịch sử.",
     "viewFiles": "Xem Files",
     "verifyCaptcha": "Xác minh CAPTCHA",
-    "captchaTitle": "Xác minh bảo mật"
+    "captchaTitle": "Xác minh bảo mật",
+    "captchaVerifiedDesc": "Đang tự động phân tích file của bạn..."
   },
   "results": {
     "transcript": "Bản ghi",

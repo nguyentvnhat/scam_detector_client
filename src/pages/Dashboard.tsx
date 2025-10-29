@@ -29,15 +29,13 @@ export const Dashboard = () => {
     // Check if user needs to verify CAPTCHA
     if (!isLoggedIn && !captchaVerified) {
       setShowCaptcha(true);
-      return;
-    }
-
-    // If CAPTCHA is verified but user is not logged in, reset CAPTCHA after analysis
-    if (!isLoggedIn && captchaVerified) {
-      // Reset CAPTCHA after successful analysis for non-logged users
       setTimeout(() => {
-        setCaptchaVerified(false);
-      }, 5000);
+        const captchaSection = document.getElementById('captcha-section');
+        if (captchaSection) {
+          captchaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+      return;
     }
 
     setIsAnalyzing(true);
@@ -51,8 +49,14 @@ export const Dashboard = () => {
       if (isLoggedIn) {
         saveFile(selectedFile, result);
       }
+
+      // If CAPTCHA is verified but user is not logged in, reset CAPTCHA after analysis
+      if (!isLoggedIn && captchaVerified) {
+        setTimeout(() => {
+          setCaptchaVerified(false);
+        }, 5000);
+      }
     } catch (error) {
-      console.error('Analysis error:', error);
       alert(t('dashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);
@@ -66,14 +70,10 @@ export const Dashboard = () => {
       // Auto-analyze after CAPTCHA verification
       setTimeout(() => {
         handleAnalyze();
-      }, 300);
+      }, 500);
     }
   };
 
-  const handleCaptchaReset = () => {
-    setCaptchaVerified(false);
-    setShowCaptcha(false);
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -155,7 +155,10 @@ export const Dashboard = () => {
               {t('dashboard.analyzeTitle')}
             </h2>
             <motion.button
-              onClick={handleAnalyze}
+              onClick={(e) => {
+                e.preventDefault();
+                handleAnalyze();
+              }}
               disabled={!selectedFile || isAnalyzing}
               whileHover={{ scale: selectedFile && !isAnalyzing ? 1.02 : 1 }}
               whileTap={{ scale: selectedFile && !isAnalyzing ? 0.98 : 1 }}
@@ -226,13 +229,15 @@ export const Dashboard = () => {
             </motion.button>
           </motion.section>
 
-          {/* CAPTCHA Section - Only show for non-logged in users */}
+          {/* CAPTCHA Section */}
           {showCaptcha && !isLoggedIn && (
             <motion.section
+              id="captcha-section"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 p-5 sm:p-6 md:p-8"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-xl shadow-lg border-2 border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 p-5 sm:p-6 md:p-8"
             >
               <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 flex items-center gap-2 sm:gap-3">
                 <motion.span
@@ -244,8 +249,34 @@ export const Dashboard = () => {
                 </motion.span>
                 {t('dashboard.captchaTitle')}
               </h2>
-              <Captcha onVerify={handleCaptchaVerify} onReset={handleCaptchaReset} />
+              <Captcha onVerify={handleCaptchaVerify} />
             </motion.section>
+          )}
+
+          {/* CAPTCHA Verified Success Message */}
+          {captchaVerified && !isLoggedIn && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-green-50 border-2 border-green-200 rounded-xl p-4 sm:p-5"
+            >
+              <div className="flex items-center gap-3">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                >
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </motion.div>
+                <div className="flex-1">
+                  <p className="text-sm sm:text-base font-semibold text-green-900">{t('captcha.success')}</p>
+                  <p className="text-xs sm:text-sm text-green-700 mt-1">{t('dashboard.captchaVerifiedDesc')}</p>
+                </div>
+              </div>
+            </motion.div>
           )}
 
           {/* Results Section */}
