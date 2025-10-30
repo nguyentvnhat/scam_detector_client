@@ -3,10 +3,27 @@ import { useTranslation } from 'react-i18next';
 
 // Team members data - moved outside component for performance
 const teamMembers = [
-  { name: 'Pop Trinh', roleKey: 'teamLead', linkedin: null, github: null },
-  { name: 'Nhat Nguyen', roleKey: 'developer', linkedin: null, github: null },
-  { name: 'Hoang Viet', roleKey: 'aiResearch', linkedin: null, github: null },
-  { name: 'Son Pham', roleKey: 'uiuxDesigner', linkedin: null, github: null },
+  { 
+    name: 'Gianty', 
+    roleKey: 'teamLead', 
+    website: 'https://www.gianty.com',
+    linkedin: null, 
+    github: null 
+  },
+  { 
+    name: 'Uway', 
+    roleKey: 'teamLead', 
+    website: 'https://uway.asia',
+    linkedin: null, 
+    github: null 
+  },
+  { 
+    name: 'Techainer', 
+    roleKey: 'teamLead', 
+    website: 'https://techainer.com/',
+    linkedin: null, 
+    github: null 
+  }
 ];
 
 // Social icon component - memoized for performance
@@ -80,28 +97,25 @@ export const Footer = memo(() => {
             <p className="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">
               {t('footer.team.description')}
             </p>
-            <ul className="space-y-3 text-sm">
-              {teamMembers.map((member, index) => (
-                <li key={index} className="text-gray-300">
-                  <div className="flex items-center justify-between group">
-                    <div>
-                      <div className="font-medium text-white group-hover:text-gray-200 transition-colors">
-                        {member.name}
-                      </div>
-                      {/* <div className="text-xs text-gray-400 mt-0.5">
-                        {t(`footer.team.${member.roleKey}`)}
-                      </div> */}
-                    </div>
-                    {(member.linkedin || member.github) && (
-                      <div className="flex items-center gap-2 ml-3">
-                        {member.linkedin && <SocialIcon type="linkedin" href={member.linkedin} />}
-                        {member.github && <SocialIcon type="github" href={member.github} />}
-                      </div>
+            <div className="space-y-3 text-sm">
+              <div className="flex flex-wrap items-center gap-2">
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="flex items-center">
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-white hover:text-blue-400 transition-colors underline decoration-dotted underline-offset-4"
+                    >
+                      {member.name}
+                    </a>
+                    {index < teamMembers.length - 1 && (
+                      <span className="text-gray-500 mx-2">×</span>
                     )}
                   </div>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+            </div>
           </div>
           {/* ========== END: Project Team Section ========== */}
         </div>
