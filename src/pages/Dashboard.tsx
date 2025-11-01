@@ -28,7 +28,6 @@ export const Dashboard = () => {
 
     // Check if user needs to verify CAPTCHA
     if (!skipCaptchaCheck && !isLoggedIn && !captchaVerified) {
-      console.log('🔒 CAPTCHA required, showing CAPTCHA section');
       setShowCaptcha(true);
       setTimeout(() => {
         const captchaSection = document.getElementById('captcha-section');
@@ -39,13 +38,11 @@ export const Dashboard = () => {
       return;
     }
 
-    console.log('🚀 Starting API analysis...', { isLoggedIn, captchaVerified, skipCaptchaCheck });
     setIsAnalyzing(true);
     setAnalysisResult(null);
 
     try {
       const result = await analyzeAudio(selectedFile);
-      console.log('✅ API analysis complete:', result);
       setAnalysisResult(result);
       
       // Save to history if logged in
@@ -60,7 +57,6 @@ export const Dashboard = () => {
         }, 5000);
       }
     } catch (error) {
-      console.log(error);
       alert(t('dashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);
@@ -68,14 +64,11 @@ export const Dashboard = () => {
   };
 
   const handleCaptchaVerify = (isValid: boolean) => {
-    console.log('🔐 CAPTCHA verification:', isValid);
     if (isValid) {
       setCaptchaVerified(true);
       setShowCaptcha(false);
       // Auto-analyze after CAPTCHA verification
-      console.log('⏰ Scheduling auto-analyze in 500ms...');
       setTimeout(() => {
-        console.log('🎯 Auto-analyzing now...');
         handleAnalyze(true); // Skip CAPTCHA check since we just verified
       }, 500);
     }

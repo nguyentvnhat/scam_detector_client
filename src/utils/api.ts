@@ -10,7 +10,6 @@ import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
  */
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://scam-detect.techainer.com';
 
-// Log for debugging
 console.log('🔧 API Config:', {
   VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
   API_BASE_URL,
@@ -28,6 +27,9 @@ const API_VERSION = 'v1';
 const apiClient: AxiosInstance = axios.create({
   baseURL: `${API_BASE_URL}/api/${API_VERSION}`,
   timeout: 60000, // 60 seconds timeout for file uploads
+  headers: {
+    'Accept': 'application/json',
+  },
 });
 
 // ============================================================================
@@ -40,14 +42,13 @@ const apiClient: AxiosInstance = axios.create({
  */
 apiClient.interceptors.request.use(
   (config) => {
-    // Log request details for debugging
     console.log('🌐 API Request:', {
       method: config.method,
       url: config.url,
       baseURL: config.baseURL,
       fullURL: `${config.baseURL}${config.url}`,
-      headers: config.headers,
       dataType: config.data?.constructor?.name,
+      hasFormData: config.data instanceof FormData,
     });
     
     // For FormData, let browser set Content-Type automatically with boundary
@@ -152,13 +153,13 @@ interface ApiError {
  */
 export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
   try {
-    console.log('📤 Uploading file to API:', file.name, file.size, 'bytes');
+    console.log('📤 Uploading file:', file.name, file.size, 'bytes', file.type);
     const formData = new FormData();
     formData.append('audio', file);
 
     const response = await apiClient.post<ApiScamDetectionResponse>('/detect-scam', formData);
 
-    console.log('📥 API response received:', response.data);
+    console.log('📥 API response:', response.data);
 
     // Return reasoning only
     return {
@@ -167,7 +168,7 @@ export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
       flagged: [],
     };
   } catch (error) {
-    console.error('❌ API call failed:', error);
+    console.error('❌ API error:', error);
     if (axios.isAxiosError(error)) {
       const apiError: ApiError = {
         message: error.response?.data?.message || error.message || 'Failed to analyze audio',
