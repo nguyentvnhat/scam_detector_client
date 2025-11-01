@@ -40,6 +40,21 @@ const apiClient: AxiosInstance = axios.create({
  */
 apiClient.interceptors.request.use(
   (config) => {
+    // Log request details for debugging
+    console.log('🌐 API Request:', {
+      method: config.method,
+      url: config.url,
+      baseURL: config.baseURL,
+      fullURL: `${config.baseURL}${config.url}`,
+      headers: config.headers,
+      dataType: config.data?.constructor?.name,
+    });
+    
+    // For FormData, let browser set Content-Type automatically with boundary
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
+    }
+    
     // Add any auth tokens here if needed
     // const token = getAuthToken();
     // if (token) {
@@ -75,6 +90,9 @@ apiClient.interceptors.response.use(
           break;
         case 404:
           console.error('Not found: API endpoint does not exist');
+          break;
+        case 422:
+          console.error('Unprocessable Entity: Validation failed', error.response?.data);
           break;
         case 429:
           console.error('Too many requests: Rate limit exceeded');
@@ -128,7 +146,7 @@ export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
   try {
     console.log('📤 Uploading file to API:', file.name, file.size, 'bytes');
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('audio', file);
 
     const response = await apiClient.post<AnalysisResult>('/detect-scam', formData);
 
