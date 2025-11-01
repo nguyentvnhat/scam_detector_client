@@ -1,4 +1,4 @@
-# ChongLuaDao.AI
+# NgheLaBiet.AI
 
 A community AI platform to detect scam voices through audio analysis.
 
@@ -18,6 +18,16 @@ A community AI platform to detect scam voices through audio analysis.
 ```bash
 npm install
 ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_BASE_URL=https://scam-detect.techainer.com
+```
+
+**For Vercel deployment**, add environment variables in Vercel dashboard under Settings → Environment Variables.
 
 ### Run Development Server
 
@@ -53,7 +63,7 @@ src/
 │   ├── FileUploader.tsx # File upload component with drag & drop
 │   └── ResultCard.tsx   # Analysis result display component
 ├── utils/
-│   ├── api.ts          # Mock API for audio analysis
+│   ├── api.ts          # API client with axios interceptors
 │   └── auth.ts         # LocalStorage authentication utilities
 ├── App.tsx             # Main app with routing
 └── main.tsx            # Entry point
