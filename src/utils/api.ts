@@ -117,6 +117,14 @@ apiClient.interceptors.response.use(
 // TYPES & INTERFACES
 // ============================================================================
 
+// API Response from server
+interface ApiScamDetectionResponse {
+  reasoning: string;
+  is_scam: boolean;
+  confidence: number;
+}
+
+// Our frontend interface
 export interface AnalysisResult {
   transcript: string;
   riskScore: number;
@@ -148,15 +156,15 @@ export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
     const formData = new FormData();
     formData.append('audio', file);
 
-    const response = await apiClient.post<AnalysisResult>('/detect-scam', formData);
+    const response = await apiClient.post<ApiScamDetectionResponse>('/detect-scam', formData);
 
     console.log('📥 API response received:', response.data);
 
-    // Transform API response to match our interface if needed
+    // Return reasoning only
     return {
-      transcript: response.data.transcript || '',
-      riskScore: response.data.riskScore || 0,
-      flagged: response.data.flagged || [],
+      transcript: response.data.reasoning || '',
+      riskScore: 0,
+      flagged: [],
     };
   } catch (error) {
     console.error('❌ API call failed:', error);
