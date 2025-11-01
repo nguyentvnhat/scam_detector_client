@@ -14,7 +14,7 @@ export const SEO = ({
   description,
   keywords,
   image = '/og-image.jpg',
-  url = 'https://nghelabiet.ai',
+  url = 'https://blacklist.vn',
 }: SEOProps) => {
   const { t, i18n } = useTranslation();
   
@@ -35,7 +35,7 @@ export const SEO = ({
       <meta name="description" content={finalDescription} />
       <meta name="keywords" content={finalKeywords} />
       <meta name="language" content={i18n.language} />
-      <meta name="author" content="NgheLaBiet.AI" />
+      <meta name="author" content="blacklist.vn" />
       <meta name="robots" content="index, follow" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       

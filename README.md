@@ -1,4 +1,4 @@
-# NgheLaBiet.AI
+# blacklist.vn
 
 A community AI platform to detect scam voices through audio analysis.
 

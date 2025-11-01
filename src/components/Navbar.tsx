@@ -48,7 +48,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              NgheLaBiet.AI
+              Blacklist
             </motion.span>
           </Link>
 
@@ -101,7 +101,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    to="/dashboard"
+                    to="/scan"
                     className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm hover:shadow-md"
                   >
                     {t('nav.dashboard')}
@@ -111,12 +111,12 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
+                  {/* <Link
                     to="/login"
                     className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"
                   >
                     {t('common.login')}
-                  </Link>
+                  </Link> */}
                 </motion.div>
               </div>
             </div>
@@ -195,14 +195,16 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                 {t('common.logout')}
               </button>
             </div>
-          ) : !showAuth && !isLandingPage && (
+          ) : !showAuth && !isLandingPage && 
+          (
             <Link
               to="/login"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Đăng nhập
+              {/* Đăng nhập */}
             </Link>
-          )}
+          )
+          }
         </div>
 
         {/* Mobile Menu */}
@@ -242,19 +244,19 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                     className="flex flex-col gap-2"
                   >
                     <Link
-                      to="/dashboard"
+                      to="/scan"
                       onClick={() => setMobileMenuOpen(false)}
                       className="block text-center px-4 py-3 text-sm font-medium text-gray-900 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-all shadow-sm"
                     >
                       {t('nav.dashboard')}
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/login"
                       onClick={() => setMobileMenuOpen(false)}
                       className="block text-center px-4 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md"
                     >
                       {t('common.login')}
-                    </Link>
+                    </Link> */}
                   </motion.div>
                 </>
               ) : showAuth && userEmail ? (
@@ -269,7 +271,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
                     <p className="text-sm font-medium text-gray-900 truncate">{userEmail}</p>
                   </motion.div>
                   <Link
-                    to="/dashboard"
+                    to="/scan"
                     onClick={() => setMobileMenuOpen(false)}
                     className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all text-left"
                   >

@@ -36,7 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/scan" element={<Dashboard />} />
         <Route
           path="/files"
           element={

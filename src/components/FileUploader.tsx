@@ -11,6 +11,16 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
   const { t } = useTranslation();
   const [dragActive, setDragActive] = useState(false);
 
+  const MAX_FILE_SIZE = 24 * 1024 * 1024; // 24MB in bytes
+
+  const validateFile = (file: File): boolean => {
+    if (file.size > MAX_FILE_SIZE) {
+      alert(t('dashboard.fileTooLarge', { maxSize: '24MB' }));
+      return false;
+    }
+    return true;
+  };
+
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -27,14 +37,20 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
     setDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      onFileSelect(e.dataTransfer.files[0]);
+      const file = e.dataTransfer.files[0];
+      if (validateFile(file)) {
+        onFileSelect(file);
+      }
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
-      onFileSelect(e.target.files[0]);
+      const file = e.target.files[0];
+      if (validateFile(file)) {
+        onFileSelect(file);
+      }
     }
   };
 

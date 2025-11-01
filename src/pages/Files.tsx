@@ -164,7 +164,7 @@ export const Files = () => {
               </motion.div>
               <p className="text-sm sm:text-base text-gray-500 mb-4">{t('files.empty')}</p>
               <motion.a
-                href="/dashboard"
+                href="/scan"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block px-6 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"

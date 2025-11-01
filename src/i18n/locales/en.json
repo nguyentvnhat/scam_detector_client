@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "NgheLaBiet.AI",
+    "appName": "blacklist.vn",
     "tagline": "AI-powered scam voice detection",
     "login": "Login",
     "logout": "Logout",
@@ -9,15 +9,15 @@
   },
   "hero": {
     "badge": "🛡️ Protect yourself from voice scams",
-    "title": "NgheLaBiet.AI",
+    "title": "blacklist.vn",
     "subtitle": "Detect scam calls with",
     "highlight": "Artificial Intelligence Technology",
     "ctaPrimary": "Start checking now",
     "ctaSecondary": "Learn more"
   },
   "about": {
-    "title": "About NgheLaBiet.AI",
-    "paragraph1": "NgheLaBiet.AI is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
+    "title": "About blacklist.vn",
+    "paragraph1": "blacklist.vn is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
     "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
   },
   "stats": {
@@ -93,7 +93,7 @@
     "haveAccount": "Already have an account?"
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Scan",
     "description": "Upload audio or video files to analyze and detect scams",
     "uploadTitle": "Upload file",
     "analyzeTitle": "Analyze",
@@ -115,7 +115,8 @@
     "viewFiles": "View Files",
     "verifyCaptcha": "Verify CAPTCHA",
     "captchaTitle": "Security Verification",
-    "captchaVerifiedDesc": "Analyzing your file automatically..."
+    "captchaVerifiedDesc": "Analyzing your file automatically...",
+    "fileTooLarge": "File too large! Maximum size is {{maxSize}}"
   },
   "results": {
     "transcript": "Transcript",
@@ -136,8 +137,8 @@
     "contact": "Contact",
     "privacy": "Privacy Policy",
     "terms": "Terms",
-    "copyright": "© 2025 NgheLaBiet.AI. All rights reserved.",
-    "communityNote": "© 2025 NgheLaBiet.AI — Built with ❤️ by the community team.",
+    "copyright": "© 2025 blacklist.vn. All rights reserved.",
+    "communityNote": "© 2025 blacklist.vn — Built with ❤️ by the community team.",
     "team": {
       "title": "Project Team",
       "description": "A community-driven project developed by Pop Trinh and team to detect scam content through AI audio analysis.",

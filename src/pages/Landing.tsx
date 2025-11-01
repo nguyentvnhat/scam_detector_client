@@ -185,7 +185,7 @@ export const Landing = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Link
-                      to="/dashboard"
+                      to="/scan"
                       className="relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 font-semibold rounded-xl overflow-hidden shadow-xl text-base sm:text-lg text-center inline-block group"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
@@ -613,7 +613,7 @@ export const Landing = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/dashboard"
+                  to="/scan"
                   className="relative inline-block px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 font-semibold rounded-xl overflow-hidden shadow-2xl text-base sm:text-lg group"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">

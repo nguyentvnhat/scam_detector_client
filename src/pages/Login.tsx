@@ -59,7 +59,7 @@ export const Login = () => {
       }
     }
     
-    navigate('/dashboard');
+    navigate('/scan');
   };
 
   return (
@@ -109,7 +109,7 @@ export const Login = () => {
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={isRegister ? 'register' : 'login'}
+              key={isRegister ? 'register' : '...'}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
