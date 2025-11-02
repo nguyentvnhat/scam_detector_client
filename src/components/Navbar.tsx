@@ -53,7 +53,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
           </Link>
 
           {/* Desktop Navigation */}
-          {isLandingPage && !showAuth && (
+          {!showAuth && (
             <div className="hidden md:flex items-center space-x-6">
               <motion.button
                 onClick={() => handleScrollTo('features')}
@@ -123,7 +123,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
           )}
 
           {/* Mobile Controls */}
-          {((isLandingPage && !showAuth) || (showAuth && userEmail)) && (
+          {(!showAuth || (showAuth && userEmail)) && (
             <div className="md:hidden flex items-center gap-2">
               {/* Language Switcher for Mobile */}
               <div className="block min-h-[44px] flex items-center">
@@ -217,7 +217,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
             className="md:hidden overflow-hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm"
           >
             <div className="py-4 flex flex-col space-y-2 px-4">
-              {isLandingPage && !showAuth ? (
+              {!showAuth ? (
                 <>
                   {[
                     { key: 'features', label: t('nav.features') },

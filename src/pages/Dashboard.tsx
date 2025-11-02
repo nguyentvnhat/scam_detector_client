@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
 import { FileUploader } from '../components/FileUploader';
 import { ResultCard } from '../components/ResultCard';
 import { Captcha } from '../components/Captcha';
@@ -377,6 +378,7 @@ export const Dashboard = () => {
           )}
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 };

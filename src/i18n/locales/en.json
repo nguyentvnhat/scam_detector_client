@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "blacklist.vn",
+    "appName": "Blacklist",
     "tagline": "AI-powered scam voice detection",
     "login": "Login",
     "logout": "Logout",
@@ -9,15 +9,15 @@
   },
   "hero": {
     "badge": "🛡️ Protect yourself from voice scams",
-    "title": "blacklist.vn",
+    "title": "Blacklist",
     "subtitle": "Detect scam calls with",
     "highlight": "Artificial Intelligence Technology",
     "ctaPrimary": "Start checking now",
     "ctaSecondary": "Learn more"
   },
   "about": {
-    "title": "About blacklist.vn",
-    "paragraph1": "blacklist.vn is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
+    "title": "About us",
+    "paragraph1": "Blacklist is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
     "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
   },
   "stats": {
@@ -145,7 +145,7 @@
     "communityNote": "© 2025 blacklist.vn — Built with ❤️ by the community team.",
     "team": {
       "title": "Project Team",
-      "description": "A community-driven project developed by Pop Trinh and team to detect scam content through AI audio analysis.",
+      "description": "A community project developed by blacklist.vn team to detect scam content through AI audio analysis.",
       "teamLead": "Team Lead",
       "developer": "Developer",
       "aiResearch": "AI Research",
