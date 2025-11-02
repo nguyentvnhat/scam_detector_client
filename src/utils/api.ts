@@ -129,10 +129,7 @@ interface ApiScamDetectionResponse {
 export interface AnalysisResult {
   transcript: string;
   riskScore: number;
-  flagged: Array<{
-    text: string;
-    reason: string;
-  }>;
+  flagged: boolean;
 }
 
 interface ApiError {
@@ -161,11 +158,15 @@ export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
 
     // console.log('📥 API response:', response.data);
 
-    // Return reasoning only
+    // Confidence là giá trị từ 0 → 1 (tương ứng 0% → 100% độ tin cậy)
+    // Ví dụ: confidence = 0.95 nghĩa là hệ thống tin 95% rằng đoạn audio
+    // có đặc điểm giống với các mẫu lừa đảo đã được huấn luyện
+    const confidence = Math.max(0, Math.min(1, response.data.confidence || 0)); // Đảm bảo trong khoảng 0-1
+    
     return {
       transcript: response.data.reasoning || '',
-      riskScore: 0,
-      flagged: [],
+      riskScore: confidence, // Lưu confidence (0-1) để convert sang % ở UI
+      flagged: response.data.is_scam || false
     };
   } catch (error) {
     console.error('❌ API error:', error);

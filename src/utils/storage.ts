@@ -47,13 +47,8 @@ export const getSavedFiles = (): SavedFile[] => {
       uploadedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
       result: {
         transcript: "Xin chào, tôi gọi từ ngân hàng ABC. Chúng tôi có chương trình cho vay với lãi suất 0% đặc biệt dành cho bạn. Bạn chỉ cần cung cấp thông tin cá nhân và số thẻ tín dụng để xác minh...",
-        riskScore: 85,
-        flagged: [
-          { text: "ngân hàng ABC", reason: "Giả mạo tổ chức tài chính" },
-          { text: "lãi suất 0%", reason: "Lời hứa không thực tế" },
-          { text: "thông tin cá nhân", reason: "Yêu cầu thông tin nhạy cảm" },
-          { text: "số thẻ tín dụng", reason: "Thu thập thông tin tài chính" }
-        ]
+        riskScore: 0.85, // confidence 0-1
+        flagged: true
       }
     },
     {
@@ -63,12 +58,8 @@ export const getSavedFiles = (): SavedFile[] => {
       uploadedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
       result: {
         transcript: "Chúc mừng! Bạn đã trúng thưởng 1 tỷ đồng! Hãy gọi ngay số hotline 1900-xxx-xxx để nhận thưởng. Chỉ cần thanh toán phí xử lý 500.000 đồng...",
-        riskScore: 95,
-        flagged: [
-          { text: "trúng thưởng 1 tỷ đồng", reason: "Lừa đảo trúng thưởng" },
-          { text: "phí xử lý 500.000 đồng", reason: "Yêu cầu thanh toán trước" },
-          { text: "hotline 1900-xxx-xxx", reason: "Số điện thoại đáng nghi" }
-        ]
+        riskScore: 0.95, // confidence 0-1
+        flagged: true
       }
     },
     {
@@ -78,10 +69,8 @@ export const getSavedFiles = (): SavedFile[] => {
       uploadedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
       result: {
         transcript: "Xin chào, tôi là nhân viên từ công ty bảo hiểm XYZ. Chúng tôi muốn tư vấn cho bạn về gói bảo hiểm sức khỏe mới. Bạn có thể dành 10 phút để nghe tư vấn không?",
-        riskScore: 25,
-        flagged: [
-          { text: "công ty bảo hiểm XYZ", reason: "Tên công ty không rõ ràng" }
-        ]
+        riskScore: 0.30, // confidence 0-1 (30% tin rằng đây là bình thường)
+        flagged: false
       }
     },
     {
@@ -91,12 +80,8 @@ export const getSavedFiles = (): SavedFile[] => {
       uploadedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 1 week ago
       result: {
         transcript: "Thông báo từ ngân hàng: Tài khoản của bạn có giao dịch bất thường. Vui lòng truy cập link ngay để xác minh: bit.ly/verify-account-urgent",
-        riskScore: 78,
-        flagged: [
-          { text: "giao dịch bất thường", reason: "Tạo cảm giác khẩn cấp" },
-          { text: "bit.ly/verify-account-urgent", reason: "Link đáng nghi" },
-          { text: "xác minh ngay", reason: "Yêu cầu hành động khẩn cấp" }
-        ]
+        riskScore: 0.78, // confidence 0-1
+        flagged: true
       }
     },
     {
@@ -106,8 +91,8 @@ export const getSavedFiles = (): SavedFile[] => {
       uploadedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(), // 2 weeks ago
       result: {
         transcript: "Chào anh/chị, em là nhân viên bán hàng từ công ty ABC. Chúng tôi có chương trình khuyến mãi đặc biệt dành cho khách hàng VIP. Anh/chị có quan tâm không ạ?",
-        riskScore: 15,
-        flagged: []
+        riskScore: 0.85, // confidence 0-1 (85% tin rằng đây là bình thường)
+        flagged: false
       }
     }
   ];

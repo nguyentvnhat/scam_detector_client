@@ -120,8 +120,12 @@
   },
   "results": {
     "transcript": "Transcript",
-    "riskScore": "Risk Score",
-    "warnings": "Warnings"
+    "riskScore": "Confidence",
+    "warnings": "Warnings",
+    "isScam": "⚠️ This is a scam call",
+    "confidenceDescriptionScam": "The system is {{percent}}% confident that this audio is a scam.",
+    "confidenceDescriptionNotScam": "The system is {{percent}}% confident that this is normal audio.",
+    "confidenceDescriptionLow": "Low confidence level ({{percent}}%), needs further verification."
   },
   "footer": {
     "description": "Protect yourself from voice scams with advanced AI technology",
@@ -164,7 +168,7 @@
     "yesterday": "Yesterday",
     "daysAgo": "days ago",
     "risk": "Risk",
-    "riskScore": "Risk Score",
+    "riskScore": "Confidence",
     "showList": "List",
     "showDetail": "Detail",
     "goToDashboard": "Go to Dashboard"

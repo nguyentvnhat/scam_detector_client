@@ -11,11 +11,11 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
   const { t } = useTranslation();
   const [dragActive, setDragActive] = useState(false);
 
-  const MAX_FILE_SIZE = 24 * 1024 * 1024; // 24MB in bytes
+  const MAX_FILE_SIZE = 3.5 * 1024 * 1024; // 3.5MB in bytes
 
   const validateFile = (file: File): boolean => {
     if (file.size > MAX_FILE_SIZE) {
-      alert(t('dashboard.fileTooLarge', { maxSize: '24MB' }));
+      alert(t('dashboard.fileTooLarge', { maxSize: '3.5MB' }));
       return false;
     }
     return true;

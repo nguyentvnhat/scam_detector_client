@@ -55,8 +55,8 @@ const file = event.target.files[0];
 const result = await analyzeAudio(file);
 
 console.log(result.transcript);    // "Xin chào, tôi gọi từ..."
-console.log(result.riskScore);     // 82
-console.log(result.flagged);       // [{ text: "...", reason: "..." }]
+console.log(result.confidence);     // 82
+console.log(result.is_scam);       // [{ text: "...", reason: "..." }]
 ```
 
 **Response Interface**:

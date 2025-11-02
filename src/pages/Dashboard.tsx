@@ -309,7 +309,7 @@ export const Dashboard = () => {
               <ResultCard result={analysisResult} />
               
               {/* Save History Section - Only show if not logged in */}
-              {!isLoggedIn && (
+              {/* {!isLoggedIn && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -326,7 +326,7 @@ export const Dashboard = () => {
                       <div className="flex-1">
                         <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('dashboard.saveHistory')}</h3>
                         <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('dashboard.saveHistoryDesc')}</p>
-                        {/* <Link
+                         <Link
                           to="/login"
                           className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
                         >
@@ -334,12 +334,12 @@ export const Dashboard = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
                           {t('dashboard.loginToSave')}
-                        </Link> */}
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </motion.div>
-              )}
+              )} */}
               
               {/* Success Message - Show if logged in and file saved */}
               {isLoggedIn && analysisResult && (

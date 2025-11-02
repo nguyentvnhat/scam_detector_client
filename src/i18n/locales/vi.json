@@ -119,9 +119,13 @@
     "fileTooLarge": "File quá lớn! Kích thước tối đa là {{maxSize}}"
   },
   "results": {
-    "transcript": "Bản ghi",
-    "riskScore": "Điểm rủi ro",
-    "warnings": "Cảnh báo"
+    "transcript": "Lý do",
+    "riskScore": "Mức độ nghi ngờ lừa đảo",
+    "warnings": "Cảnh báo",
+    "isScam": "⚠️ Đây là cuộc gọi lừa đảo",
+    "confidenceDescriptionScam": "Hệ thống tin tưởng {{percent}}% rằng đoạn âm thanh này là lừa đảo.",
+    "confidenceDescriptionNotScam": "Hệ thống tin {{percent}}% rằng đây là âm thanh bình thường.",
+    "confidenceDescriptionLow": "Mức độ tin cậy thấp ({{percent}}%), cần kiểm tra thêm."
   },
   "footer": {
     "description": "Bảo vệ bạn khỏi lừa đảo qua giọng nói với công nghệ AI tiên tiến",
@@ -164,7 +168,7 @@
     "yesterday": "Hôm qua",
     "daysAgo": "ngày trước",
     "risk": "Rủi ro",
-    "riskScore": "Điểm rủi ro",
+    "riskScore": "Mức độ nghi ngờ lừa đảo",
     "showList": "Danh sách",
     "showDetail": "Chi tiết",
     "goToDashboard": "Đến Dashboard"
