@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getUserEmail, removeUserEmail } from '../utils/auth';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   showAuth?: boolean;
@@ -39,18 +40,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
     <nav className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 group"
-          >
-            <motion.span
-              className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-gray-800 group-hover:to-gray-600 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Blacklist
-            </motion.span>
-          </Link>
+          <Logo variant="header" showText={true} />
 
           {/* Desktop Navigation */}
           {!showAuth && (

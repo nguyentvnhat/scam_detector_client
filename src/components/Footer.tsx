@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Logo } from './Logo';
 
 // Team members data - moved outside component for performance
 const teamMembers = [
@@ -61,7 +62,9 @@ export const Footer = memo(() => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">{t('common.appName')}</h3>
+            <div className="mb-4">
+              <Logo variant="footer" showText={true} />
+            </div>
             <p className="text-gray-400 text-sm">
               {t('footer.description')}
             </p>
