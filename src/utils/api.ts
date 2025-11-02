@@ -10,11 +10,11 @@ import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
  */
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://scam-detect.techainer.com';
 
-console.log('🔧 API Config:', {
-  VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
-  API_BASE_URL,
-  fullURL: `${API_BASE_URL}/api/v1/detect-scam`,
-});
+// console.log('🔧 API Config:', {
+//   VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+//   API_BASE_URL,
+//   fullURL: `${API_BASE_URL}/api/v1/detect-scam`,
+// });
 
 /**
  * API version
@@ -42,14 +42,14 @@ const apiClient: AxiosInstance = axios.create({
  */
 apiClient.interceptors.request.use(
   (config) => {
-    console.log('🌐 API Request:', {
-      method: config.method,
-      url: config.url,
-      baseURL: config.baseURL,
-      fullURL: `${config.baseURL}${config.url}`,
-      dataType: config.data?.constructor?.name,
-      hasFormData: config.data instanceof FormData,
-    });
+    // console.log('🌐 API Request:', {
+    //   method: config.method,
+    //   url: config.url,
+    //   baseURL: config.baseURL,
+    //   fullURL: `${config.baseURL}${config.url}`,
+    //   dataType: config.data?.constructor?.name,
+    //   hasFormData: config.data instanceof FormData,
+    // });
     
     // For FormData, let browser set Content-Type automatically with boundary
     if (config.data instanceof FormData) {
@@ -153,13 +153,13 @@ interface ApiError {
  */
 export const analyzeAudio = async (file: File): Promise<AnalysisResult> => {
   try {
-    console.log('📤 Uploading file:', file.name, file.size, 'bytes', file.type);
+    // console.log('📤 Uploading file:', file.name, file.size, 'bytes', file.type);
     const formData = new FormData();
     formData.append('audio', file);
 
     const response = await apiClient.post<ApiScamDetectionResponse>('/detect-scam', formData);
 
-    console.log('📥 API response:', response.data);
+    // console.log('📥 API response:', response.data);
 
     // Return reasoning only
     return {
