@@ -10,7 +10,10 @@ export const Privacy = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <SEO />
+      <SEO 
+        title={`${t('privacy.title')} - ${t('common.appName')}`}
+        description={t('privacy.intro.content1')}
+      />
       <Navbar />
       <main className="flex-1 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">

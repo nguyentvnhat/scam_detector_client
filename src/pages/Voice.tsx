@@ -10,7 +10,10 @@ export const Voice = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <SEO />
+      <SEO 
+        title={`${t('voice.title')} - ${t('common.appName')}`}
+        description={t('voice.description')}
+      />
       <Navbar />
       <main className="flex-1 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">

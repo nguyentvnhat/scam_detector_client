@@ -64,7 +64,10 @@ export const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <SEO title={`${isRegister ? t('register.title') : t('login.title')} - ${t('common.appName')}`} />
+      <SEO 
+        title={`${isRegister ? t('register.title') : t('login.title')} - ${t('common.appName')}`}
+        description={isRegister ? t('register.description') : t('login.description')}
+      />
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
         <motion.div

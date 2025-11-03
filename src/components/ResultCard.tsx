@@ -63,14 +63,13 @@ export const ResultCard = ({ result }: ResultCardProps) => {
           </svg>
           {t('results.transcript')}
         </h3>
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm"
-        >
-          {result.transcript}
-        </motion.p>
+          className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm prose prose-sm max-w-none"
+          dangerouslySetInnerHTML={{ __html: result.transcript }}
+        />
       </motion.div>
 
       {/* Confidence Section */}

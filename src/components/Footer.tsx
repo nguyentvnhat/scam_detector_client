@@ -74,14 +74,14 @@ export const Footer = memo(() => {
             <h4 className="font-semibold mb-4">{t('footer.products')}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">{t('footer.features')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.pricing')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.api')}</a></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">{t('footer.pricing')}</Link></li>
+              <li><Link to="/faq" className="hover:text-white transition-colors">{t('footer.faq')}</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.contact')}</a></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">{t('footer.contact')}</Link></li>
               <li><Link to="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</Link></li>
               <li><Link to="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</Link></li>
             </ul>

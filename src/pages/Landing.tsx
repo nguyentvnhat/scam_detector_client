@@ -148,7 +148,10 @@ export const Landing = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <SEO />
+      <SEO 
+        title={`${t('common.appName')} - ${t('common.tagline')}`}
+        description={t('about.paragraph1')}
+      />
       <Navbar />
       <main className="flex-1">
         {/* Hero Section */}

@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { SEO } from '../components/SEO';
-import { getUserEmail, isAuthenticated } from '../utils/auth';
-import { getProfile, saveProfile, UserProfile } from '../utils/storage';
+import { getUserEmail, isAuthenticated, removeUserEmail } from '../utils/auth';
+import { getProfile, saveProfile, getSavedFiles, UserProfile } from '../utils/storage';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -14,6 +14,7 @@ export const Profile = () => {
   const [email, setEmail] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -63,6 +64,51 @@ export const Profile = () => {
 
     // Clear success message after 3 seconds
     setTimeout(() => setSuccessMessage(''), 3000);
+  };
+
+  const handleExportData = () => {
+    const profile = getProfile();
+    const files = getSavedFiles();
+    const userEmail = getUserEmail();
+
+    const exportData = {
+      exportedAt: new Date().toISOString(),
+      profile: profile || null,
+      email: userEmail || null,
+      files: files || [],
+    };
+
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `blacklist-data-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setSuccessMessage(t('profile.exportSuccess'));
+    setTimeout(() => setSuccessMessage(''), 3000);
+  };
+
+  const handleDeleteAllData = () => {
+    // Delete from localStorage
+    localStorage.removeItem('nghelabiet_user_files');
+    localStorage.removeItem('nghelabiet_user_profile');
+    localStorage.removeItem('chongluadao_user_email');
+
+    // Delete from cookies
+    removeUserEmail();
+
+    // Show success message
+    setSuccessMessage(t('profile.deleteSuccess'));
+    setShowDeleteConfirm(false);
+    setTimeout(() => {
+      setSuccessMessage('');
+      navigate('/login');
+    }, 2000);
   };
 
   if (!isAuthenticated()) {
@@ -190,6 +236,92 @@ export const Profile = () => {
                 />
               </motion.button>
             </form>
+          </motion.section>
+
+          {/* Data Management Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 p-6 sm:p-8"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              {t('profile.dataManagement.title')}
+            </h2>
+            <p className="text-sm text-gray-600 mb-6">
+              {t('profile.dataManagement.description')}
+            </p>
+
+            <div className="space-y-4">
+              {/* Export Data */}
+              <div className="border-2 border-gray-200 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">{t('profile.dataManagement.export.title')}</h3>
+                    <p className="text-xs text-gray-600">{t('profile.dataManagement.export.description')}</p>
+                  </div>
+                </div>
+                <motion.button
+                  onClick={handleExportData}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  {t('profile.dataManagement.export.button')}
+                </motion.button>
+              </div>
+
+              {/* Delete All Data */}
+              <div className="border-2 border-red-200 bg-red-50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h3 className="font-semibold text-red-900 mb-1">{t('profile.dataManagement.delete.title')}</h3>
+                    <p className="text-xs text-red-700">{t('profile.dataManagement.delete.description')}</p>
+                  </div>
+                </div>
+                {!showDeleteConfirm ? (
+                  <motion.button
+                    onClick={() => setShowDeleteConfirm(true)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    {t('profile.dataManagement.delete.button')}
+                  </motion.button>
+                ) : (
+                  <div className="space-y-2">
+                    <p className="text-sm text-red-800 font-medium">{t('profile.dataManagement.delete.confirm')}</p>
+                    <div className="flex gap-2">
+                      <motion.button
+                        onClick={handleDeleteAllData}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors"
+                      >
+                        {t('profile.dataManagement.delete.confirmYes')}
+                      </motion.button>
+                      <motion.button
+                        onClick={() => setShowDeleteConfirm(false)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium rounded-lg transition-colors"
+                      >
+                        {t('profile.dataManagement.delete.confirmNo')}
+                      </motion.button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </motion.section>
         </motion.div>
       </main>

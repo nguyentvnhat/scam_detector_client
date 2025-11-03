@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ReactNode } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { isAuthenticated } from './utils/auth';
+import { CookieConsent } from './components/CookieConsent';
 
 // Lazy load pages for better performance
 const Landing = lazy(() => import('./pages/Landing').then(module => ({ default: module.Landing })));
@@ -11,6 +12,10 @@ const Profile = lazy(() => import('./pages/Profile').then(module => ({ default: 
 const Voice = lazy(() => import('./pages/Voice').then(module => ({ default: module.Voice })));
 const Privacy = lazy(() => import('./pages/Privacy').then(module => ({ default: module.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then(module => ({ default: module.Terms })));
+const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const FAQ = lazy(() => import('./pages/FAQ').then(module => ({ default: module.FAQ })));
+const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
 
 // Loading fallback component
 const LoadingSpinner = () => (
@@ -35,32 +40,39 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
 function App() {
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/scan" element={<Dashboard />} />
-        <Route
-          path="/files"
-          element={
-            <ProtectedRoute>
-              <Files />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/voice" element={<Voice />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-      </Routes>
-    </Suspense>
+    <>
+      <CookieConsent />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/scan" element={<Dashboard />} />
+          <Route
+            path="/files"
+            element={
+              <ProtectedRoute>
+                <Files />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/voice" element={<Voice />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 

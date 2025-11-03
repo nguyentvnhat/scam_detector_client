@@ -69,6 +69,7 @@
   },
   "login": {
     "title": "Đăng nhập",
+    "description": "Đăng nhập hoặc đăng ký tài khoản để lưu trữ lịch sử phân tích và quản lý files của bạn",
     "email": "Email",
     "emailPlaceholder": "your.email@example.com",
     "submit": "Đăng nhập",
@@ -77,6 +78,7 @@
   },
   "register": {
     "title": "Đăng ký",
+    "description": "Tạo tài khoản mới để lưu trữ lịch sử phân tích và quản lý files của bạn",
     "fullName": "Họ tên",
     "fullNamePlaceholder": "Nhập họ và tên của bạn",
     "fullNameError": "Vui lòng nhập họ tên (ít nhất 2 ký tự)",
@@ -131,8 +133,8 @@
     "description": "Bảo vệ bạn khỏi lừa đảo qua giọng nói với công nghệ AI tiên tiến",
     "products": "Sản phẩm",
     "features": "Tính năng",
-    "pricing": "Bảng giá",
-    "api": "API",
+    "pricing": "Về chúng tôi",
+    "faq": "FAQs",
     "resources": "Tài nguyên",
     "documentation": "Tài liệu",
     "guides": "Hướng dẫn",
@@ -338,6 +340,172 @@
     "footer": {
       "title": "Lời kết",
       "content": "Cảm ơn bạn đã sử dụng Blacklist. Dự án này được xây dựng để phục vụ cộng đồng và bảo vệ người dùng Việt Nam khỏi lừa đảo. Chúng tôi cam kết duy trì một dịch vụ minh bạch, không thu thập dữ liệu và phục vụ lợi ích công cộng."
+    }
+  },
+  "cookieConsent": {
+    "title": "Cookie và Bảo mật",
+    "description": "Chúng tôi sử dụng cookie để lưu trữ thông tin đăng nhập của bạn trên trình duyệt. Dữ liệu chỉ được lưu cục bộ và không được gửi lên máy chủ.",
+    "learnMore": "Tìm hiểu thêm trong",
+    "privacyPolicy": "Chính sách bảo mật",
+    "accept": "Đồng ý",
+    "decline": "Từ chối"
+  },
+  "notFound": {
+    "title": "Trang không tìm thấy",
+    "description": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.",
+    "goHome": "Về trang chủ",
+    "goBack": "Quay lại",
+    "helpfulLinks": "Liên kết hữu ích",
+    "home": "Trang chủ",
+    "voiceTest": "Kiểm tra giọng nói",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "description": "Chúng tôi luôn sẵn sàng lắng nghe ý kiến, câu hỏi và phản hồi của bạn.",
+    "info": {
+      "title": "Thông tin liên hệ",
+      "email": "Email",
+      "responseTime": "Thời gian phản hồi",
+      "responseTimeDesc": "Chúng tôi sẽ phản hồi trong vòng 24-48 giờ",
+      "note": {
+        "title": "Lưu ý",
+        "content": "Vì đây là dự án cộng đồng, phản hồi có thể mất nhiều thời gian hơn. Chúng tôi sẽ cố gắng phản hồi sớm nhất có thể."
+      }
+    },
+    "form": {
+      "name": "Họ tên",
+      "namePlaceholder": "Nhập họ tên của bạn",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Chủ đề",
+      "subjectPlaceholder": "Chọn chủ đề",
+      "subjectOptions": {
+        "general": "Câu hỏi chung",
+        "support": "Hỗ trợ kỹ thuật",
+        "bug": "Báo lỗi",
+        "feedback": "Góp ý",
+        "other": "Khác"
+      },
+      "message": "Tin nhắn",
+      "messagePlaceholder": "Nhập tin nhắn của bạn...",
+      "submit": "Gửi tin nhắn",
+      "submitting": "Đang gửi...",
+      "success": "Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công."
+    }
+  },
+  "profile": {
+    "title": "Hồ sơ cá nhân",
+    "description": "Quản lý thông tin cá nhân của bạn",
+    "fullName": "Họ tên",
+    "fullNamePlaceholder": "Nhập họ tên của bạn",
+    "fullNameError": "Họ tên phải có ít nhất 2 ký tự",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "emailError": "Email không hợp lệ",
+    "save": "Lưu thay đổi",
+    "saving": "Đang lưu...",
+    "saveSuccess": "Lưu thành công!",
+    "exportSuccess": "Dữ liệu đã được xuất thành công!",
+    "deleteSuccess": "Tất cả dữ liệu đã được xóa. Bạn sẽ được chuyển về trang đăng nhập.",
+    "dataManagement": {
+      "title": "Quản lý dữ liệu",
+      "description": "Bạn có quyền xuất hoặc xóa toàn bộ dữ liệu của mình theo quy định GDPR.",
+      "export": {
+        "title": "Xuất dữ liệu",
+        "description": "Tải xuống file JSON chứa tất cả dữ liệu của bạn (profile, files, lịch sử)",
+        "button": "Xuất dữ liệu"
+      },
+      "delete": {
+        "title": "Xóa tất cả dữ liệu",
+        "description": "Xóa vĩnh viễn tất cả dữ liệu của bạn bao gồm profile, files và lịch sử. Hành động này không thể hoàn tác.",
+        "button": "Xóa tất cả dữ liệu",
+        "confirm": "Bạn có chắc chắn muốn xóa tất cả dữ liệu? Hành động này không thể hoàn tác.",
+        "confirmYes": "Có, xóa tất cả",
+        "confirmNo": "Hủy"
+      }
+    }
+  },
+  "about": {
+    "pageTitle": "Về chúng tôi",
+    "pageDescription": "Dự án cộng đồng hợp tác giữa 3 team để bảo vệ người dùng Việt Nam khỏi lừa đảo",
+    "mission": {
+      "title": "Sứ mệnh",
+      "content1": "Blacklist là dự án cộng đồng được phát triển bởi sự hợp tác của 3 team: Gianty, Uway và Techainer. Mục tiêu của chúng tôi là bảo vệ người dùng Việt Nam khỏi các cuộc gọi lừa đảo thông qua công nghệ AI tiên tiến.",
+      "content2": "Chúng tôi cam kết cung cấp một công cụ hoàn toàn phục vụ cộng đồng, không có mục đích thương mại, không thu thập dữ liệu người dùng và tuân thủ nghiêm ngặt các quy định pháp luật Việt Nam."
+    },
+    "partnership": {
+      "title": "Hợp tác",
+      "content1": "Dự án này là kết quả của sự hợp tác giữa 3 team phát triển:",
+      "note": "Lưu ý quan trọng",
+      "noteContent": "Blacklist không phải là một công ty hay tổ chức thương mại. Đây là dự án cộng đồng phi lợi nhuận được phát triển bởi sự hợp tác tự nguyện của các team."
+    },
+    "technology": {
+      "title": "Công nghệ",
+      "content1": "Chúng tôi sử dụng các công nghệ tiên tiến để phát hiện lừa đảo:",
+      "ai": {
+        "title": "Trí tuệ Nhân tạo",
+        "description": "Sử dụng AI và machine learning để phân tích audio và phát hiện các mẫu lừa đảo"
+      },
+      "security": {
+        "title": "Bảo mật",
+        "description": "Tất cả dữ liệu được xử lý cục bộ trên trình duyệt, không lưu trữ trên server"
+      }
+    },
+    "commitment": {
+      "title": "Cam kết",
+      "point1": "Phục vụ cộng đồng: Dự án hoàn toàn phi lợi nhuận, không có mục đích thương mại",
+      "point2": "Bảo mật dữ liệu: Cam kết tuyệt đối không lưu trữ bất kỳ thông tin cá nhân nào",
+      "point3": "Tuân thủ pháp luật: Nghiêm túc tuân thủ các quy định của pháp luật Việt Nam",
+      "point4": "Minh bạch: Công khai về cách thức hoạt động và các quy định sử dụng"
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "content1": "Nếu bạn có câu hỏi hoặc muốn đóng góp cho dự án, vui lòng liên hệ với chúng tôi:",
+      "button": "Liên hệ ngay"
+    },
+    "backToHome": "Quay về trang chủ"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "description": "Tìm câu trả lời cho những câu hỏi phổ biến về Blacklist",
+    "item1": {
+      "question": "Blacklist là gì?",
+      "answer": "Blacklist là một dự án cộng đồng sử dụng công nghệ AI để phát hiện các cuộc gọi lừa đảo. Dự án được phát triển bởi sự hợp tác của 3 team: Gianty, Uway và Techainer với mục tiêu bảo vệ người dùng Việt Nam."
+    },
+    "item2": {
+      "question": "Blacklist có miễn phí không?",
+      "answer": "Có, Blacklist hoàn toàn phục vụ cộng đồng và không tính phí. Đây là dự án phi lợi nhuận được phát triển bởi sự hợp tác tự nguyện của các team."
+    },
+    "item3": {
+      "question": "Dữ liệu của tôi có được lưu trữ không?",
+      "answer": "Không, chúng tôi cam kết tuyệt đối không lưu trữ bất kỳ dữ liệu nào của người dùng lên máy chủ hay cơ sở dữ liệu. Tất cả thông tin chỉ được lưu trữ tạm thời trên trình duyệt của bạn nếu bạn đăng nhập."
+    },
+    "item4": {
+      "question": "Độ chính xác của hệ thống là bao nhiêu?",
+      "answer": "Hệ thống sử dụng công nghệ AI để phân tích và đưa ra kết quả với độ tin cậy (confidence score). Tuy nhiên, kết quả chỉ mang tính chất tham khảo và không thay thế cho việc phán đoán của con người. Bạn nên cân nhắc kỹ trước khi đưa ra quyết định quan trọng."
+    },
+    "item5": {
+      "question": "Tôi có cần đăng nhập để sử dụng không?",
+      "answer": "Không, bạn có thể sử dụng dịch vụ phân tích ngay mà không cần đăng nhập. Tuy nhiên, nếu muốn lưu lại lịch sử phân tích để xem lại sau, bạn có thể đăng nhập bằng email."
+    },
+    "item6": {
+      "question": "Blacklist có phải là một công ty không?",
+      "answer": "Không, Blacklist không phải là một công ty hay tổ chức thương mại. Đây là dự án cộng đồng phi lợi nhuận được phát triển bởi sự hợp tác tự nguyện giữa các team: Gianty, Uway và Techainer."
+    },
+    "item7": {
+      "question": "Làm thế nào để xuất hoặc xóa dữ liệu của tôi?",
+      "answer": "Bạn có thể xuất hoặc xóa tất cả dữ liệu của mình trong trang Profile. Tính năng này tuân thủ quy định GDPR về quyền của người dùng đối với dữ liệu cá nhân."
+    },
+    "item8": {
+      "question": "Tôi có thể đóng góp cho dự án không?",
+      "answer": "Có, nếu bạn muốn đóng góp cho dự án hoặc có câu hỏi, vui lòng liên hệ với chúng tôi qua trang Liên hệ. Chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng."
+    },
+    "contact": {
+      "title": "Vẫn còn thắc mắc?",
+      "description": "Nếu bạn không tìm thấy câu trả lời trong FAQ, hãy liên hệ với chúng tôi",
+      "button": "Liên hệ ngay"
     }
   }
 }

@@ -69,6 +69,7 @@
   },
   "login": {
     "title": "Login",
+    "description": "Login or register an account to save analysis history and manage your files",
     "email": "Email",
     "emailPlaceholder": "your.email@example.com",
     "submit": "Login",
@@ -77,6 +78,7 @@
   },
   "register": {
     "title": "Register",
+    "description": "Create a new account to save analysis history and manage your files",
     "fullName": "Full Name",
     "fullNamePlaceholder": "Enter your full name",
     "fullNameError": "Please enter your full name (at least 2 characters)",
@@ -131,8 +133,8 @@
     "description": "Protect yourself from voice scams with advanced AI technology",
     "products": "Products",
     "features": "Features",
-    "pricing": "Pricing",
-    "api": "API",
+    "pricing": "About Us",
+    "faq": "FAQs",
     "resources": "Resources",
     "documentation": "Documentation",
     "guides": "Guides",
@@ -338,6 +340,172 @@
     "footer": {
       "title": "Conclusion",
       "content": "Thank you for using Blacklist. This project is built to serve the community and protect Vietnamese users from scams. We commit to maintaining a transparent service that does not collect data and serves the public interest."
+    }
+  },
+  "cookieConsent": {
+    "title": "Cookies & Privacy",
+    "description": "We use cookies to store your login information on your browser. Data is only stored locally and not sent to servers.",
+    "learnMore": "Learn more in our",
+    "privacyPolicy": "Privacy Policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "helpfulLinks": "Helpful Links",
+    "home": "Home",
+    "voiceTest": "Voice Test",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "We are always ready to listen to your opinions, questions and feedback.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "responseTime": "Response Time",
+      "responseTimeDesc": "We will respond within 24-48 hours",
+      "note": {
+        "title": "Note",
+        "content": "As this is a community project, responses may take longer. We will try to respond as soon as possible."
+      }
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": {
+        "general": "General Question",
+        "support": "Technical Support",
+        "bug": "Report Bug",
+        "feedback": "Feedback",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Enter your message...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thank you! Your message has been sent successfully."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Manage your personal information",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "fullNameError": "Full name must be at least 2 characters",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "emailError": "Invalid email",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "saveSuccess": "Saved successfully!",
+    "exportSuccess": "Data exported successfully!",
+    "deleteSuccess": "All data has been deleted. You will be redirected to the login page.",
+    "dataManagement": {
+      "title": "Data Management",
+      "description": "You have the right to export or delete all your data according to GDPR regulations.",
+      "export": {
+        "title": "Export Data",
+        "description": "Download a JSON file containing all your data (profile, files, history)",
+        "button": "Export Data"
+      },
+      "delete": {
+        "title": "Delete All Data",
+        "description": "Permanently delete all your data including profile, files and history. This action cannot be undone.",
+        "button": "Delete All Data",
+        "confirm": "Are you sure you want to delete all data? This action cannot be undone.",
+        "confirmYes": "Yes, Delete All",
+        "confirmNo": "Cancel"
+      }
+    }
+  },
+  "about": {
+    "pageTitle": "About Us",
+    "pageDescription": "Community project collaboration between 3 teams to protect Vietnamese users from scams",
+    "mission": {
+      "title": "Mission",
+      "content1": "Blacklist is a community project developed through collaboration between 3 teams: Gianty, Uway and Techainer. Our goal is to protect Vietnamese users from scam calls through advanced AI technology.",
+      "content2": "We commit to providing a tool that completely serves the community, with no commercial purpose, does not collect user data, and strictly complies with Vietnamese regulations."
+    },
+    "partnership": {
+      "title": "Partnership",
+      "content1": "This project is the result of collaboration between 3 development teams:",
+      "note": "Important Note",
+      "noteContent": "Blacklist is not a company or commercial organization. This is a non-profit community project developed through voluntary collaboration between teams."
+    },
+    "technology": {
+      "title": "Technology",
+      "content1": "We use advanced technologies to detect scams:",
+      "ai": {
+        "title": "Artificial Intelligence",
+        "description": "Using AI and machine learning to analyze audio and detect scam patterns"
+      },
+      "security": {
+        "title": "Security",
+        "description": "All data is processed locally on your browser, not stored on servers"
+      }
+    },
+    "commitment": {
+      "title": "Commitment",
+      "point1": "Serve the community: Project is completely non-profit, with no commercial purpose",
+      "point2": "Data security: Absolutely committed to not storing any personal information",
+      "point3": "Legal compliance: Strictly comply with Vietnamese regulations",
+      "point4": "Transparency: Open about how it works and usage terms"
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have questions or want to contribute to the project, please contact us:",
+      "button": "Contact Now"
+    },
+    "backToHome": "Back to Home"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to common questions about Blacklist",
+    "item1": {
+      "question": "What is Blacklist?",
+      "answer": "Blacklist is a community project that uses AI technology to detect scam calls. The project is developed through collaboration between 3 teams: Gianty, Uway and Techainer with the goal of protecting Vietnamese users."
+    },
+    "item2": {
+      "question": "Is Blacklist free?",
+      "answer": "Yes, Blacklist completely serves the community and is free of charge. This is a non-profit project developed through voluntary collaboration between teams."
+    },
+    "item3": {
+      "question": "Is my data stored?",
+      "answer": "No, we absolutely commit to not storing any user data on servers or databases. All information is only temporarily stored on your browser if you log in."
+    },
+    "item4": {
+      "question": "What is the accuracy of the system?",
+      "answer": "The system uses AI technology to analyze and provide results with a confidence score. However, results are for reference only and do not replace human judgment. You should consider carefully before making important decisions."
+    },
+    "item5": {
+      "question": "Do I need to log in to use?",
+      "answer": "No, you can use the analysis service immediately without logging in. However, if you want to save analysis history for later review, you can log in with email."
+    },
+    "item6": {
+      "question": "Is Blacklist a company?",
+      "answer": "No, Blacklist is not a company or commercial organization. This is a non-profit community project developed through voluntary collaboration between teams: Gianty, Uway and Techainer."
+    },
+    "item7": {
+      "question": "How to export or delete my data?",
+      "answer": "You can export or delete all your data on the Profile page. This feature complies with GDPR regulations on user rights regarding personal data."
+    },
+    "item8": {
+      "question": "Can I contribute to the project?",
+      "answer": "Yes, if you want to contribute to the project or have questions, please contact us through the Contact page. We welcome all contributions from the community."
+    },
+    "contact": {
+      "title": "Still have questions?",
+      "description": "If you don't find the answer in the FAQ, please contact us",
+      "button": "Contact Now"
     }
   }
 }
