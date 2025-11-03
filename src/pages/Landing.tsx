@@ -509,7 +509,7 @@ export const Landing = () => {
                   backgroundSize: '200% 200%',
                 }}
               >
-                {t('about.title')}
+                {t('landingAbout.title')}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
