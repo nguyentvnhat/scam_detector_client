@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Logo } from './Logo';
 
 // Team members data - moved outside component for performance
 const teamMembers = [
