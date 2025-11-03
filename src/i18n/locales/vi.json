@@ -121,13 +121,15 @@
     "fileTooLarge": "File quá lớn! Kích thước tối đa là {{maxSize}}"
   },
   "results": {
-    "transcript": "Lý do",
+    "transcript": "Phân tích",
     "riskScore": "Mức độ nghi ngờ lừa đảo",
     "warnings": "Cảnh báo",
     "isScam": "⚠️ Đây là cuộc gọi lừa đảo",
     "confidenceDescriptionScam": "Hệ thống tin tưởng {{percent}}% rằng đoạn âm thanh này là lừa đảo.",
     "confidenceDescriptionNotScam": "Hệ thống tin {{percent}}% rằng đây là âm thanh bình thường.",
     "confidenceDescriptionLow": "Mức độ tin cậy thấp ({{percent}}%), cần kiểm tra thêm.",
+    "showMore": "Xem hết",
+    "showLess": "Thu gọn",
     "reasoningLabels": {
       "Context": "Ngữ cảnh",
       "Behavioral indicators": "Dấu hiệu hành vi",
@@ -145,7 +147,7 @@
   "footer": {
     "description": "Bảo vệ bạn khỏi lừa đảo qua giọng nói với công nghệ AI tiên tiến",
     "products": "Sản phẩm",
-    "features": "Tính năng",
+    "features": "Donate",
     "pricing": "Về chúng tôi",
     "faq": "FAQs",
     "resources": "Tài nguyên",
@@ -581,6 +583,82 @@
       "title": "Vẫn còn thắc mắc?",
       "description": "Nếu bạn không tìm thấy câu trả lời trong FAQ, hãy liên hệ với chúng tôi",
       "button": "Liên hệ ngay"
+    }
+  },
+  "donate": {
+    "pageTitle": "Đóng góp",
+    "pageDescription": "Đóng góp cho dự án cộng đồng Blacklist - Kỹ năng, Thời gian, Dự án/Dữ liệu, Hạ tầng hoặc Cam kết tài chính",
+    "header": "Bạn có thể đóng góp theo nhiều cách: hiến tặng kỹ năng & thời gian, gửi dự án/nguồn dữ liệu để đội Software/AI triển khai, cung cấp hạ tầng, hoặc cam kết tài chính (xử lý theo quy định pháp lý). Mọi đóng góp đều quý giá.",
+    "leftColumn": {
+      "title": "Chọn hình thức đóng góp",
+      "subtitle": "Bạn có thể chọn một hoặc nhiều hình thức. Điền thông tin ở phần biểu mẫu bên phải.",
+      "dataProtection": "Dữ liệu của bạn được bảo vệ. Blacklist có public & private; việc nhận tiền sẽ theo process pháp lý riêng.",
+      "compliance": "Tuân thủ: chống lạm dụng, chống bôi nhọ, cơ chế khiếu nại & sửa sai."
+    },
+    "types": {
+      "skillsTime": {
+        "title": "Kỹ năng & Thời gian",
+        "description": "AI • Software • Design • Product • Legal • Moderation"
+      },
+      "projectData": {
+        "title": "Dự án / Nguồn dữ liệu",
+        "description": "Feed cho đội Software/AI, chuẩn dữ liệu & quyền dùng"
+      },
+      "infrastructure": {
+        "title": "Hạ tầng (Infra)",
+        "description": "GPU • Storage • Bandwidth • Monitoring • CDN"
+      },
+      "financial": {
+        "title": "Cam kết tài chính",
+        "description": "Duy trì hạ tầng & phát triển phần mềm (theo quy định pháp lý)"
+      }
+    },
+    "form": {
+      "title": "Biểu mẫu đóng góp",
+      "subtitle": "Vui lòng điền thông tin trung thực để chúng tôi kết nối đúng người, đúng việc.",
+      "fields": {
+        "fullName": "Họ & Tên",
+        "fullNamePlaceholder": "Nguyễn Văn A",
+        "email": "Email",
+        "emailPlaceholder": "ban@domain.com",
+        "phone": "Số điện thoại",
+        "phonePlaceholder": "(+84) 9xx xxxx xxx",
+        "organization": "Tổ chức/Đơn vị (nếu có)",
+        "organizationPlaceholder": "Công ty / Cộng đồng / Trường",
+        "contributionTypes": "Hình thức đóng góp quan tâm",
+        "skills": "Kỹ năng bạn có thể đóng góp",
+        "timeCommitment": "Thời gian có thể tham gia",
+        "referralLink": "Link giới thiệu",
+        "referralLinkPlaceholder": "LinkedIn / GitHub / Portfolio",
+        "notes": "Ghi chú",
+        "notesPlaceholder": "Nêu rõ kinh nghiệm liên quan tới moderation, xử lý tố cáo, NLP, đồ thị tri thức..."
+      },
+      "skills": {
+        "ai-ml": "AI/ML",
+        "software": "Software (FE/BE)",
+        "design-ux": "Design/UX",
+        "product": "Product",
+        "data-bi": "Data/BI",
+        "security-legal": "Security/Legal",
+        "moderation": "Moderation",
+        "growth-content": "Growth/Content"
+      },
+      "timeCommitment": {
+        "ad-hoc": "Ad-hoc / Task nhỏ",
+        "part-time": "Part-time",
+        "full-time": "Full-time tạm thời (theo sprint)"
+      },
+      "agreement1": "Tôi xác nhận thông tin cung cấp là chính xác; đồng ý để Blacklist.vn liên hệ & xử lý dữ liệu theo Chính sách Quyền riêng tư.",
+      "agreement2": "Tôi cam kết không lạm dụng Blacklist.vn để bôi nhọ, công kích cá nhân; mọi tố cáo sẽ kèm bằng chứng và tôn trọng quy trình khiếu nại.",
+      "captchaPlaceholder": "reCAPTCHA/Turnstile placeholder — thêm sau ở môi trường production.",
+      "submit": "Gửi đăng ký đóng góp",
+      "submitting": "Đang gửi...",
+      "support": "Cần hỗ trợ? Liên hệ",
+      "supportEmail": "hello@blacklist.vn",
+      "success": {
+        "title": "Đăng ký thành công!",
+        "message": "Cảm ơn bạn đã đóng góp. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể."
+      }
     }
   }
 }

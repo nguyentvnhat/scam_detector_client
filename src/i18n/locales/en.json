@@ -128,6 +128,8 @@
     "confidenceDescriptionScam": "The system is {{percent}}% confident that this audio is a scam.",
     "confidenceDescriptionNotScam": "The system is {{percent}}% confident that this is normal audio.",
     "confidenceDescriptionLow": "Low confidence level ({{percent}}%), needs further verification.",
+    "showMore": "Show More",
+    "showLess": "Show Less",
     "reasoningLabels": {
       "Context": "Context",
       "Behavioral indicators": "Behavioral indicators",
@@ -145,7 +147,7 @@
   "footer": {
     "description": "Protect yourself from voice scams with advanced AI technology",
     "products": "Products",
-    "features": "Features",
+    "features": "Donate",
     "pricing": "About Us",
     "faq": "FAQs",
     "resources": "Resources",
@@ -540,6 +542,82 @@
       "title": "Still have questions?",
       "description": "If you don't find the answer in the FAQ, please contact us",
       "button": "Contact Now"
+    }
+  },
+  "donate": {
+    "pageTitle": "Contribute",
+    "pageDescription": "Contribute to Blacklist community project - Skills, Time, Projects/Data, Infrastructure or Financial Commitment",
+    "header": "You can contribute in many ways: donate skills & time, send projects/data sources for the Software/AI team to deploy, provide infrastructure, or make a financial commitment (processed according to legal regulations). All contributions are valuable.",
+    "leftColumn": {
+      "title": "Choose contribution method",
+      "subtitle": "You can choose one or more methods. Fill in the information in the form on the right.",
+      "dataProtection": "Your data is protected. Blacklist has public & private; receiving money will follow a separate legal process.",
+      "compliance": "Compliance: anti-abuse, anti-defamation, complaint & correction mechanism."
+    },
+    "types": {
+      "skillsTime": {
+        "title": "Skills & Time",
+        "description": "AI • Software • Design • Product • Legal • Moderation"
+      },
+      "projectData": {
+        "title": "Projects / Data Sources",
+        "description": "Feed for Software/AI team, data standardization & usage rights"
+      },
+      "infrastructure": {
+        "title": "Infrastructure (Infra)",
+        "description": "GPU • Storage • Bandwidth • Monitoring • CDN"
+      },
+      "financial": {
+        "title": "Financial Commitment",
+        "description": "Maintain infrastructure & develop software (according to legal regulations)"
+      }
+    },
+    "form": {
+      "title": "Contribution Form",
+      "subtitle": "Please fill in accurate information so we can connect the right people for the right job.",
+      "fields": {
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "John Doe",
+        "email": "Email",
+        "emailPlaceholder": "you@domain.com",
+        "phone": "Phone Number",
+        "phonePlaceholder": "(+1) xxx xxx xxxx",
+        "organization": "Organization/Unit (if any)",
+        "organizationPlaceholder": "Company / Community / School",
+        "contributionTypes": "Contribution methods of interest",
+        "skills": "Skills you can contribute",
+        "timeCommitment": "Time commitment",
+        "referralLink": "Referral Link",
+        "referralLinkPlaceholder": "LinkedIn / GitHub / Portfolio",
+        "notes": "Notes",
+        "notesPlaceholder": "Specify experience related to moderation, complaint handling, NLP, knowledge graph..."
+      },
+      "skills": {
+        "ai-ml": "AI/ML",
+        "software": "Software (FE/BE)",
+        "design-ux": "Design/UX",
+        "product": "Product",
+        "data-bi": "Data/BI",
+        "security-legal": "Security/Legal",
+        "moderation": "Moderation",
+        "growth-content": "Growth/Content"
+      },
+      "timeCommitment": {
+        "ad-hoc": "Ad-hoc / Small task",
+        "part-time": "Part-time",
+        "full-time": "Temporary full-time (by sprint)"
+      },
+      "agreement1": "I confirm the information provided is accurate; I agree for Blacklist.vn to contact me & process data according to the Privacy Policy.",
+      "agreement2": "I commit not to abuse Blacklist.vn to defame, attack individuals; all accusations will be accompanied by evidence and respect the complaint process.",
+      "captchaPlaceholder": "reCAPTCHA/Turnstile placeholder — add later in production environment.",
+      "submit": "Send contribution registration",
+      "submitting": "Submitting...",
+      "support": "Need support? Contact",
+      "supportEmail": "hello@blacklist.vn",
+      "success": {
+        "title": "Registration successful!",
+        "message": "Thank you for your contribution. We will contact you as soon as possible."
+      }
     }
   }
 }

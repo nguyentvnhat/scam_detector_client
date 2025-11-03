@@ -865,14 +865,15 @@ export const Landing = () => {
                   {/* Animated connector arrow */}
                   {index < howItWorks.length - 1 && (
                     <motion.div
-                      className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-gray-300 to-gray-400 transform -translate-y-1/2 z-10"
+                      className="hidden md:flex absolute top-1/2 -right-4 items-center justify-center transform -translate-y-1/2 z-10"
                       initial={{ scaleX: 0 }}
                       whileInView={{ scaleX: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.5 + index * 0.15 }}
                     >
+                      <div className="w-8 h-0.5 bg-gradient-to-r from-gray-300 to-gray-400"></div>
                       <motion.div
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-l-gray-400 border-t-4 border-t-transparent border-b-4 border-b-transparent"
+                        className="w-0 h-0 border-l-8 border-l-gray-400 border-t-4 border-t-transparent border-b-4 border-b-transparent -ml-1"
                         animate={{ x: [0, 3, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.3 }}
                       />

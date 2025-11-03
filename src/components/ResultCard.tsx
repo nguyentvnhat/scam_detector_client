@@ -1,6 +1,7 @@
 import { AnalysisResult } from '../utils/api';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 interface ResultCardProps {
   result: AnalysisResult;
@@ -43,51 +44,55 @@ const translateLabel = (label: string, t: (key: string) => string): string => {
 };
 
 // Helper function to format reasoning text with bullets and line breaks
-const formatReasoning = (text: string, t: (key: string) => string): string => {
-  if (!text) return '';
+const formatReasoning = (text: string, t: (key: string) => string, showAll: boolean = false): { html: string; totalItems: number } => {
+  if (!text) return { html: '', totalItems: 0 };
   
   // Replace \n with actual newlines
-  let processed = text.replace(/\\n/g, '\n');
+  const processed = text.replace(/\\n/g, '\n');
   
   // Split by newlines to process each line
   const lines = processed.split('\n').map(line => line.trim()).filter(line => line);
   
-  const formattedLines: string[] = [];
+  const regularBullets: string[] = [];
+  let summaryHtml = '';
+  let regularBulletCount = 0;
+  const maxInitialBullets = 3;
   
+  // First pass: separate regular bullets and summary
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    // Check if it's a bullet point starting with *
     if (line.startsWith('* ')) {
       const content = line.substring(2).trim();
+      const isSummary = content.toLowerCase().startsWith('summary:');
       
-      // Special handling for Summary section
-      if (content.toLowerCase().startsWith('summary:')) {
+      if (isSummary) {
+        // Handle Summary separately (always show at end)
         const summaryContent = content.substring(8).trim();
         const summaryLabel = translateLabel('Summary:', t);
-        formattedLines.push(
-          `<div class="mt-5 p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500 rounded-r-lg shadow-sm">
-            <div class="font-bold text-blue-900 text-base mb-2 flex items-center gap-2">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-              </svg>
-              ${summaryLabel.replace(':', '')}
-            </div>
-            <p class="text-blue-800 leading-relaxed">${summaryContent}</p>
-          </div>`
-        );
+        summaryHtml = `<div class="mt-5 p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500 rounded-r-lg shadow-sm">
+          <div class="font-bold text-blue-900 text-base mb-2 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            ${summaryLabel.replace(':', '')}
+          </div>
+          <p class="text-blue-800 leading-relaxed">${summaryContent}</p>
+        </div>`;
         continue;
       }
       
-      // Check if it's a heading with content (contains colon)
+      // Regular bullet
+      regularBulletCount++;
+      
+      // Format the bullet
       if (content.includes(':')) {
         const colonIndex = content.indexOf(':');
         const originalLabel = content.substring(0, colonIndex + 1).trim();
         const description = content.substring(colonIndex + 1).trim();
-        // Translate the label
         const translatedLabel = translateLabel(originalLabel, t);
         
-        formattedLines.push(
+        regularBullets.push(
           `<div class="mt-3 mb-2.5">
             <div class="flex items-start gap-2">
               <span class="text-blue-600 font-semibold mt-1">•</span>
@@ -99,25 +104,31 @@ const formatReasoning = (text: string, t: (key: string) => string): string => {
           </div>`
         );
       } else {
-        // Regular bullet point without colon
-        formattedLines.push(
+        regularBullets.push(
           `<div class="ml-2 mb-2 text-gray-700 leading-relaxed">
             <span class="text-gray-400">•</span> ${content}
           </div>`
         );
       }
     } else if (line.trim()) {
-      // Non-bullet line (shouldn't happen much, but handle it)
-      formattedLines.push(`<p class="mb-2 text-gray-600">${line}</p>`);
+      // Non-bullet line
+      regularBullets.push(`<p class="mb-2 text-gray-600">${line}</p>`);
     }
   }
   
-  return formattedLines.join('');
+  // Build final HTML: show first 3 bullets if not showAll, then summary if exists
+  const bulletsToShow = showAll ? regularBullets : regularBullets.slice(0, maxInitialBullets);
+  const finalHtml = bulletsToShow.join('') + (summaryHtml ? summaryHtml : '');
+  
+  return { html: finalHtml, totalItems: regularBulletCount };
 };
 
 export const ResultCard = ({ result }: ResultCardProps) => {
   const { t } = useTranslation();
-
+  const [showAllAnalysis, setShowAllAnalysis] = useState(false);
+  
+  // Format reasoning with show more/less
+  const reasoningResult = formatReasoning(result.transcript, t, showAllAnalysis);
   
   // confidence là số từ 0-1, thể hiện mức độ tin tưởng của hệ thống về kết luận
   // Khi is_scam = true: confidence = 0.95 nghĩa là hệ thống tin 95% rằng đây LÀ lừa đảo
@@ -172,13 +183,31 @@ export const ResultCard = ({ result }: ResultCardProps) => {
           </svg>
           {t('results.transcript')}
         </h3>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm max-w-none"
-          dangerouslySetInnerHTML={{ __html: formatReasoning(result.transcript, t) }}
-        />
+        <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm max-w-none"
+            dangerouslySetInnerHTML={{ __html: reasoningResult.html }}
+          />
+          {reasoningResult.totalItems > 3 && (
+            <button
+              onClick={() => setShowAllAnalysis(!showAllAnalysis)}
+              className="mt-3 text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors"
+            >
+              {showAllAnalysis ? t('results.showLess') : t('results.showMore')}
+              <svg 
+                className={`w-4 h-4 transition-transform ${showAllAnalysis ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+        </div>
       </motion.div>
 
       {/* Confidence Section */}
@@ -194,29 +223,41 @@ export const ResultCard = ({ result }: ResultCardProps) => {
           {t('results.riskScore')}
         </h3> */}
         <div className="space-y-3">
-          <motion.div
-            className={`inline-flex items-center px-5 py-3 md:px-6 md:py-4 rounded-xl border-2 shadow-md ${getConfidenceColor(
-              result.riskScore,
-              result.flagged
-            )}`}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <span className="text-2xl md:text-3xl font-bold">{confidencePercent}%</span>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="text-sm md:text-base text-gray-600 leading-relaxed"
-          >
-            {result.riskScore < 0.5 
-              ? t('results.confidenceDescriptionLow', { percent: confidencePercent })
-              : result.flagged
-                ? t('results.confidenceDescriptionScam', { percent: confidencePercent })
-                : t('results.confidenceDescriptionNotScam', { percent: confidencePercent })
-            }
-          </motion.p>
+          <div className="flex items-center gap-3">
+            <motion.div
+              className={`inline-flex items-center px-5 py-3 md:px-6 md:py-4 rounded-xl border-2 shadow-md ${getConfidenceColor(
+                result.riskScore,
+                result.flagged
+              )}`}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="text-2xl md:text-3xl font-bold">{confidencePercent}%</span>
+            </motion.div>
+            <div className="relative group">
+              <svg 
+                className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-help transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                <p className="leading-relaxed">
+                  {result.riskScore < 0.5 
+                    ? t('results.confidenceDescriptionLow', { percent: confidencePercent })
+                    : result.flagged
+                      ? t('results.confidenceDescriptionScam', { percent: confidencePercent })
+                      : t('results.confidenceDescriptionNotScam', { percent: confidencePercent })
+                  }
+                </p>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                  <div className="w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-gray-900"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
 
