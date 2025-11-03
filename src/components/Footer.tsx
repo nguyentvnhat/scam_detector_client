@@ -60,14 +60,14 @@ export const Footer = memo(() => {
   return (
     <footer className="bg-gray-900 text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-8">
-          <div>
-            <div className="mb-4">
-              <Logo variant="footer" showText={true} />
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
+          <div className="flex items-start gap-3 md:gap-4">
+            <Logo variant="footer" />
+            <div className="flex-1">
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {t('footer.description')}
+              </p>
             </div>
-            <p className="text-gray-400 text-sm">
-              {t('footer.description')}
-            </p>
           </div>
           <div>
             <h4 className="font-semibold mb-4">{t('footer.products')}</h4>
@@ -75,14 +75,6 @@ export const Footer = memo(() => {
               <li><a href="#" className="hover:text-white transition-colors">{t('footer.features')}</a></li>
               <li><a href="#" className="hover:text-white transition-colors">{t('footer.pricing')}</a></li>
               <li><a href="#" className="hover:text-white transition-colors">{t('footer.api')}</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">{t('footer.resources')}</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.documentation')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.guides')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.blog')}</a></li>
             </ul>
           </div>
           <div>
@@ -95,7 +87,7 @@ export const Footer = memo(() => {
           </div>
           
           {/* ========== NEWLY ADDED: Project Team Section ========== */}
-          <div className="md:col-span-4 lg:col-span-1">
+          <div>
             <h4 className="font-semibold mb-4">{t('footer.team.title')}</h4>
             <p className="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">
               {t('footer.team.description')}
