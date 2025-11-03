@@ -54,9 +54,9 @@ export const Files = () => {
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     
-    if (diffDays === 0) return t('files.today');
-    if (diffDays === 1) return t('files.yesterday');
-    if (diffDays < 7) return `${diffDays} ${t('files.daysAgo')}`;
+    if (diffDays === 0) return t('pageFiles.today');
+    if (diffDays === 1) return t('pageFiles.yesterday');
+    if (diffDays < 7) return `${diffDays} ${t('pageFiles.daysAgo')}`;
     
     return date.toLocaleDateString('vi-VN', {
       month: 'short',
@@ -119,8 +119,8 @@ export const Files = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO 
-        title={`${t('files.title')} - ${t('common.appName')}`}
-        description={t('files.description')}
+        title={`${t('pageFiles.title')} - ${t('common.appName')}`}
+        description={t('pageFiles.description')}
       />
       <Navbar showAuth={true} />
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
@@ -134,10 +134,10 @@ export const Files = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-1 sm:mb-2">
-                {t('files.title')}
+                {t('pageFiles.title')}
               </h1>
               <p className="text-xs sm:text-sm lg:text-base text-gray-600">
-                {t('files.description')} ({files.length} {t('files.files')})
+                {t('pageFiles.description')} ({files.length} {t('pageFiles.files')})
               </p>
             </div>
             {files.length > 0 && (
@@ -146,7 +146,7 @@ export const Files = () => {
                 className="lg:hidden px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
                 whileTap={{ scale: 0.95 }}
               >
-                {viewMode === 'mobile-detail' ? t('files.showList') : t('files.showDetail')}
+                {viewMode === 'mobile-detail' ? t('pageFiles.showList') : t('pageFiles.showDetail')}
               </motion.button>
             )}
           </div>
@@ -165,14 +165,14 @@ export const Files = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </motion.div>
-              <p className="text-sm sm:text-base text-gray-500 mb-4">{t('files.empty')}</p>
+              <p className="text-sm sm:text-base text-gray-500 mb-4">{t('pageFiles.empty')}</p>
               <motion.a
                 href="/scan"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block px-6 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"
               >
-                {t('files.goToDashboard')}
+                {t('pageFiles.goToDashboard')}
               </motion.a>
             </motion.div>
           ) : (
@@ -196,7 +196,7 @@ export const Files = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </div>
-                      <span>{t('files.listTitle')}</span>
+                      <span>{t('pageFiles.listTitle')}</span>
                       <span className="ml-auto text-xs sm:text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
                         {files.length}
                       </span>
@@ -255,7 +255,7 @@ export const Files = () => {
                                   <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border-2 ${riskColors.border} ${riskColors.bg} ${riskColors.text}`}>
                                     <div className={`w-1.5 h-1.5 rounded-full ${riskColors.iconBg}`}></div>
                                     <span className="text-xs font-bold">{file.result.riskScore}%</span>
-                                    <span className="text-[10px] font-medium">{t('files.risk')}</span>
+                                    <span className="text-[10px] font-medium">{t('pageFiles.risk')}</span>
                                   </div>
                                 </div>
 
@@ -274,7 +274,7 @@ export const Files = () => {
                                       ? 'bg-red-100 text-red-700'
                                       : 'text-gray-400 hover:bg-red-50 hover:text-red-600 group-hover:opacity-100 opacity-0'
                                   }`}
-                                  title={t('files.delete')}
+                                  title={t('pageFiles.delete')}
                                 >
                                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -341,7 +341,7 @@ export const Files = () => {
                           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 ${getRiskColor(selectedFile.result.riskScore).border} ${getRiskColor(selectedFile.result.riskScore).bg} ${getRiskColor(selectedFile.result.riskScore).text}`}>
                             <div className={`w-2 h-2 rounded-full ${getRiskColor(selectedFile.result.riskScore).iconBg}`}></div>
                             <span className="text-lg sm:text-xl font-bold">{selectedFile.result.riskScore}%</span>
-                            <span className="text-xs sm:text-sm font-medium">{t('files.riskScore')}</span>
+                            <span className="text-xs sm:text-sm font-medium">{t('pageFiles.riskScore')}</span>
                           </div>
                         </div>
                         
@@ -373,7 +373,7 @@ export const Files = () => {
                                 : 'text-red-600 bg-red-50 border-red-200 hover:bg-red-100 hover:border-red-300'
                             }`}
                           >
-                            {deleteConfirm === selectedFile.id ? t('files.confirmDelete') : t('files.delete')}
+                            {deleteConfirm === selectedFile.id ? t('pageFiles.confirmDelete') : t('pageFiles.delete')}
                           </motion.button>
                         </div>
                       </div>
@@ -392,7 +392,7 @@ export const Files = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                               </svg>
                             </div>
-                            <p className="text-sm sm:text-base text-red-800 font-medium">{t('files.deleteWarning')}</p>
+                            <p className="text-sm sm:text-base text-red-800 font-medium">{t('pageFiles.deleteWarning')}</p>
                           </div>
                           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                             <motion.button
@@ -401,7 +401,7 @@ export const Files = () => {
                               whileTap={{ scale: 0.98 }}
                               className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-md"
                             >
-                              {t('files.confirmDelete')}
+                              {t('pageFiles.confirmDelete')}
                             </motion.button>
                             <motion.button
                               onClick={() => setDeleteConfirm(null)}
@@ -409,7 +409,7 @@ export const Files = () => {
                               whileTap={{ scale: 0.98 }}
                               className="flex-1 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                             >
-                              {t('files.cancel')}
+                              {t('pageFiles.cancel')}
                             </motion.button>
                           </div>
                         </motion.div>
@@ -432,8 +432,8 @@ export const Files = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                         </svg>
                       </motion.div>
-                      <p className="text-sm sm:text-base text-gray-500 mb-1">{t('files.selectFile')}</p>
-                      <p className="text-xs sm:text-sm text-gray-400">{t('files.selectFileHint')}</p>
+                      <p className="text-sm sm:text-base text-gray-500 mb-1">{t('pageFiles.selectFile')}</p>
+                      <p className="text-xs sm:text-sm text-gray-400">{t('pageFiles.selectFileHint')}</p>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -441,14 +441,14 @@ export const Files = () => {
                       animate={{ opacity: 1 }}
                       className="bg-white rounded-xl shadow-lg border-2 border-gray-200 p-6 text-center"
                     >
-                      <p className="text-sm text-gray-500 mb-4">{t('files.selectFile')}</p>
+                      <p className="text-sm text-gray-500 mb-4">{t('pageFiles.selectFile')}</p>
                       <motion.button
                         onClick={() => setViewMode('desktop')}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
                       >
-                        {t('files.showList')}
+                        {t('pageFiles.showList')}
                       </motion.button>
                     </motion.div>
                   )}

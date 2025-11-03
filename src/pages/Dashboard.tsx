@@ -23,7 +23,7 @@ export const Dashboard = () => {
 
   const handleAnalyze = async (skipCaptchaCheck = false) => {
     if (!selectedFile) {
-      alert(t('dashboard.selectFile'));
+      alert(t('pageDashboard.selectFile'));
       return;
     }
 
@@ -58,7 +58,7 @@ export const Dashboard = () => {
         }, 5000);
       }
     } catch (error) {
-      alert(t('dashboard.analyzeError'));
+      alert(t('pageDashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);
     }
@@ -87,8 +87,8 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO 
-        title={`${t('dashboard.title')} - ${t('common.appName')}`}
-        description={t('dashboard.description')}
+        title={`${t('pageDashboard.title')} - ${t('common.appName')}`}
+        description={t('pageDashboard.description')}
       />
       <Navbar showAuth={isLoggedIn} />
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -103,9 +103,9 @@ export const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 md:mb-3">{t('dashboard.title')}</h1>
+            {/* <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 md:mb-3">{t('pageDashboard.title')}</h1>
             <p className="text-sm sm:text-base text-gray-600 mb-3">
-              {t('dashboard.description')}
+              {t('pageDashboard.description')}
             </p>
             {!isLoggedIn && (
               <motion.div
@@ -116,9 +116,9 @@ export const Dashboard = () => {
                 <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{t('dashboard.notLoggedIn')}</span>
+                <span>{t('pageDashboard.notLoggedIn')}</span>
                 <Link to="/login" className="ml-auto text-blue-600 hover:text-blue-700 font-medium underline">
-                  {t('dashboard.loginToSave')}
+                  {t('pageDashboard.loginToSave')}
                 </Link>
               </motion.div>
             )} */}
@@ -140,7 +140,7 @@ export const Dashboard = () => {
               >
                 1
               </motion.span>
-              {t('dashboard.uploadTitle')}
+              {t('pageDashboard.uploadTitle')}
             </h2>
             <FileUploader
               onFileSelect={handleFileSelect}
@@ -164,7 +164,7 @@ export const Dashboard = () => {
               >
                 2
               </motion.span>
-              {t('dashboard.analyzeTitle')}
+              {t('pageDashboard.analyzeTitle')}
             </h2>
             <motion.button
               onClick={(e) => {
@@ -200,25 +200,25 @@ export const Dashboard = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </motion.svg>
-                  <span className="text-sm sm:text-base">{t('dashboard.analyzing')}</span>
+                  <span className="text-sm sm:text-base">{t('pageDashboard.analyzing')}</span>
                 </>
               ) : !isLoggedIn && !captchaVerified ? (
                 <>
                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                  <span className="text-sm sm:text-base">{t('dashboard.verifyCaptcha')}</span>
+                  <span className="text-sm sm:text-base">{t('pageDashboard.verifyCaptcha')}</span>
                 </>
               ) : !isLoggedIn && captchaVerified ? (
                 <>
                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
+                  <span className="text-sm sm:text-base">{t('pageDashboard.analyze')}</span>
                 </>
               ) : (
                 <>
-                  <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
+                  <span className="text-sm sm:text-base">{t('pageDashboard.analyze')}</span>
                   <motion.svg
                     className="w-5 h-5 md:w-6 md:h-6"
                     fill="none"
@@ -259,7 +259,7 @@ export const Dashboard = () => {
                 >
                   🔒
                 </motion.span>
-                {t('dashboard.captchaTitle')}
+                {t('pageDashboard.captchaTitle')}
               </h2>
               <Captcha onVerify={handleCaptchaVerify} />
             </motion.section>
@@ -285,7 +285,7 @@ export const Dashboard = () => {
                 </motion.div>
                 <div className="flex-1">
                   <p className="text-sm sm:text-base font-semibold text-green-900">{t('captcha.success')}</p>
-                  <p className="text-xs sm:text-sm text-green-700 mt-1">{t('dashboard.captchaVerifiedDesc')}</p>
+                  <p className="text-xs sm:text-sm text-green-700 mt-1">{t('pageDashboard.captchaVerifiedDesc')}</p>
                 </div>
               </div>
             </motion.div>
@@ -308,7 +308,7 @@ export const Dashboard = () => {
                 >
                   3
                 </motion.span>
-                {t('dashboard.resultsTitle')}
+                {t('pageDashboard.resultsTitle')}
               </h2>
               <ResultCard result={analysisResult} />
               
@@ -328,8 +328,8 @@ export const Dashboard = () => {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('dashboard.saveHistory')}</h3>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('dashboard.saveHistoryDesc')}</p>
+                        <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('pageDashboard.saveHistory')}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('pageDashboard.saveHistoryDesc')}</p>
                          <Link
                           to="/login"
                           className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
@@ -337,7 +337,7 @@ export const Dashboard = () => {
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
-                          {t('dashboard.loginToSave')}
+                          {t('pageDashboard.loginToSave')}
                         </Link>
                       </div>
                     </div>
@@ -361,8 +361,8 @@ export const Dashboard = () => {
                         </svg>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('dashboard.fileSaved')}</h3>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('dashboard.fileSavedDesc')}</p>
+                        <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('pageDashboard.fileSaved')}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('pageDashboard.fileSavedDesc')}</p>
                         <Link
                           to="/files"
                           className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
@@ -370,7 +370,7 @@ export const Dashboard = () => {
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
-                          {t('dashboard.viewFiles')}
+                          {t('pageDashboard.viewFiles')}
                         </Link>
                       </div>
                     </div>

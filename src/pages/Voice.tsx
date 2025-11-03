@@ -11,8 +11,8 @@ export const Voice = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO 
-        title={`${t('voice.title')} - ${t('common.appName')}`}
-        description={t('voice.description')}
+        title={`${t('pageVoice.title')} - ${t('common.appName')}`}
+        description={t('pageVoice.description')}
       />
       <Navbar />
       <main className="flex-1 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
@@ -37,10 +37,10 @@ export const Voice = () => {
               </div>
             </motion.div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {t('voice.title')}
+              {t('pageVoice.title')}
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              {t('voice.description')}
+              {t('pageVoice.description')}
             </p>
           </motion.div>
 
@@ -64,32 +64,32 @@ export const Voice = () => {
               <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              {t('voice.info.title')}
+              {t('pageVoice.info.title')}
             </h2>
             <ul className="space-y-3 text-sm md:text-base text-gray-600">
               <li className="flex items-start gap-2">
                 <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>{t('voice.info.point1')}</span>
+                <span>{t('pageVoice.info.point1')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>{t('voice.info.point2')}</span>
+                <span>{t('pageVoice.info.point2')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>{t('voice.info.point3')}</span>
+                <span>{t('pageVoice.info.point3')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>{t('voice.info.point4')}</span>
+                <span>{t('pageVoice.info.point4')}</span>
               </li>
             </ul>
           </motion.div>

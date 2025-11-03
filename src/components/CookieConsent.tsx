@@ -71,13 +71,13 @@ export const CookieConsent = () => {
               {/* Content */}
               <div className="flex-1">
                 <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
-                  {t('cookieConsent.title')}
+                  {t('pageCookieConsent.title')}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-2">
-                  {t('cookieConsent.description')}
+                  {t('pageCookieConsent.description')}
                 </p>
                 <p className="text-xs sm:text-sm text-gray-500">
-                  {t('cookieConsent.learnMore')}{' '}
+                  {t('pageCookieConsent.learnMore')}{' '}
                   <a
                     href="/privacy"
                     className="text-blue-600 hover:text-blue-700 underline"
@@ -86,7 +86,7 @@ export const CookieConsent = () => {
                       window.location.href = '/privacy';
                     }}
                   >
-                    {t('cookieConsent.privacyPolicy')}
+                    {t('pageCookieConsent.privacyPolicy')}
                   </a>
                 </p>
               </div>
@@ -99,7 +99,7 @@ export const CookieConsent = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors whitespace-nowrap"
                 >
-                  {t('cookieConsent.decline')}
+                  {t('pageCookieConsent.decline')}
                 </motion.button>
                 <motion.button
                   onClick={handleAccept}
@@ -107,7 +107,7 @@ export const CookieConsent = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 rounded-lg transition-all whitespace-nowrap shadow-md"
                 >
-                  {t('cookieConsent.accept')}
+                  {t('pageCookieConsent.accept')}
                 </motion.button>
               </div>
             </div>

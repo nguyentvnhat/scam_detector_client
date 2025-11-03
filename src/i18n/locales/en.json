@@ -67,7 +67,7 @@
     "profile": "Profile",
     "loggedInAs": "Logged in as"
   },
-  "login": {
+  "pageLogin": {
     "title": "Login",
     "description": "Login or register an account to save analysis history and manage your files",
     "email": "Email",
@@ -76,7 +76,7 @@
     "error": "Please enter a valid email address",
     "noAccount": "Don't have an account?"
   },
-  "register": {
+  "pageRegister": {
     "title": "Register",
     "description": "Create a new account to save analysis history and manage your files",
     "fullName": "Full Name",
@@ -94,7 +94,7 @@
     "passwordMatchError": "Passwords do not match",
     "haveAccount": "Already have an account?"
   },
-  "dashboard": {
+  "pageDashboard": {
     "title": "Scan",
     "description": "Upload audio or video files to analyze and detect scams",
     "uploadTitle": "Upload file",
@@ -154,7 +154,7 @@
       "uiuxDesigner": "UI/UX Designer"
     }
   },
-  "files": {
+  "pageFiles": {
     "title": "File Management",
     "description": "View and manage all your analysis files",
     "files": "files",
@@ -175,20 +175,7 @@
     "showDetail": "Detail",
     "goToDashboard": "Go to Dashboard"
   },
-  "profile": {
-    "title": "Profile",
-    "description": "Manage your personal information",
-    "fullName": "Full Name",
-    "fullNamePlaceholder": "Enter your full name",
-    "fullNameError": "Please enter your full name (at least 2 characters)",
-    "email": "Email",
-    "emailPlaceholder": "your.email@example.com",
-    "emailError": "Please enter a valid email address",
-    "save": "Save Changes",
-    "saving": "Saving...",
-    "saveSuccess": "Profile updated successfully!"
-  },
-  "captcha": {
+  "pageCaptcha": {
     "title": "Security Verification",
     "description": "Please enter the verification code below to continue file analysis",
     "enterCode": "Enter verification code",
@@ -200,7 +187,7 @@
     "tooManyAttempts": "Too many failed attempts. Please try again.",
     "tryAgain": "Try Again"
   },
-  "voice": {
+  "pageVoice": {
     "title": "Voice Test - Scam Call Detection",
     "description": "Record directly from your microphone to check if a call is a scam. Just press the record button and speak for 15 seconds.",
     "startRecording": "🎤 Record 15s",
@@ -225,7 +212,7 @@
       "point4": "Results will show confidence score and reasoning within a few seconds."
     }
   },
-  "privacy": {
+  "pagePrivacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last Updated",
     "backToHome": "Back to Home",
@@ -287,7 +274,7 @@
       "content": "We commit to continuing to maintain the principle of not storing user data. This project will always be a tool serving the community, with no commercial purposes or data collection. Any changes to the privacy policy will be clearly announced on this website."
     }
   },
-  "terms": {
+  "pageTerms": {
     "title": "Terms of Service",
     "lastUpdated": "Last Updated",
     "backToHome": "Back to Home",
@@ -342,7 +329,7 @@
       "content": "Thank you for using Blacklist. This project is built to serve the community and protect Vietnamese users from scams. We commit to maintaining a transparent service that does not collect data and serves the public interest."
     }
   },
-  "cookieConsent": {
+  "pageCookieConsent": {
     "title": "Cookies & Privacy",
     "description": "We use cookies to store your login information on your browser. Data is only stored locally and not sent to servers.",
     "learnMore": "Learn more in our",
@@ -350,7 +337,7 @@
     "accept": "Accept",
     "decline": "Decline"
   },
-  "notFound": {
+  "pageNotFound": {
     "title": "Page Not Found",
     "description": "Sorry, the page you are looking for does not exist or has been moved.",
     "goHome": "Go Home",
@@ -395,7 +382,41 @@
       "success": "Thank you! Your message has been sent successfully."
     }
   },
-  "profile": {
+  "pageContact": {
+    "title": "Contact Us",
+    "description": "We are always ready to listen to your opinions, questions and feedback.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "responseTime": "Response Time",
+      "responseTimeDesc": "We will respond within 24-48 hours",
+      "note": {
+        "title": "Note",
+        "content": "As this is a community project, responses may take longer. We will try to respond as soon as possible."
+      }
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": {
+        "general": "General Question",
+        "support": "Technical Support",
+        "bug": "Report Bug",
+        "feedback": "Feedback",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Enter your message...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thank you! Your message has been sent successfully."
+    }
+  },
+  "pageProfile": {
     "title": "Profile",
     "description": "Manage your personal information",
     "fullName": "Full Name",
@@ -467,7 +488,7 @@
     },
     "backToHome": "Back to Home"
   },
-  "faq": {
+  "pageFaq": {
     "title": "Frequently Asked Questions",
     "description": "Find answers to common questions about Blacklist",
     "item1": {

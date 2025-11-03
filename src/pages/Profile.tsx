@@ -41,13 +41,13 @@ export const Profile = () => {
 
     // Validate
     if (!fullName.trim() || fullName.trim().length < 2) {
-      alert(t('profile.fullNameError'));
+      alert(t('pageProfile.fullNameError'));
       setIsSaving(false);
       return;
     }
 
     if (!email || !email.includes('@')) {
-      alert(t('profile.emailError'));
+      alert(t('pageProfile.emailError'));
       setIsSaving(false);
       return;
     }
@@ -60,7 +60,7 @@ export const Profile = () => {
     saveProfile(profile);
 
     setIsSaving(false);
-    setSuccessMessage(t('profile.saveSuccess'));
+    setSuccessMessage(t('pageProfile.saveSuccess'));
 
     // Clear success message after 3 seconds
     setTimeout(() => setSuccessMessage(''), 3000);
@@ -89,7 +89,7 @@ export const Profile = () => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 
-    setSuccessMessage(t('profile.exportSuccess'));
+    setSuccessMessage(t('pageProfile.exportSuccess'));
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
@@ -103,7 +103,7 @@ export const Profile = () => {
     removeUserEmail();
 
     // Show success message
-    setSuccessMessage(t('profile.deleteSuccess'));
+    setSuccessMessage(t('pageProfile.deleteSuccess'));
     setShowDeleteConfirm(false);
     setTimeout(() => {
       setSuccessMessage('');
@@ -117,7 +117,7 @@ export const Profile = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <SEO title={`${t('profile.title')} - ${t('common.appName')}`} />
+      <SEO title={`${t('pageProfile.title')} - ${t('common.appName')}`} />
       <Navbar showAuth={true} />
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <motion.div
@@ -129,10 +129,10 @@ export const Profile = () => {
           {/* Header */}
           <div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2">
-              {t('profile.title')}
+              {t('pageProfile.title')}
             </h1>
             <p className="text-sm sm:text-base text-gray-600">
-              {t('profile.description')}
+              {t('pageProfile.description')}
             </p>
           </div>
 
@@ -150,7 +150,7 @@ export const Profile = () => {
                   htmlFor="fullName"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  {t('profile.fullName')}
+                  {t('pageProfile.fullName')}
                 </label>
                 <motion.input
                   type="text"
@@ -159,7 +159,7 @@ export const Profile = () => {
                   onChange={(e) => setFullName(e.target.value)}
                   whileFocus={{ scale: 1.02 }}
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none transition-all hover:border-gray-400"
-                  placeholder={t('profile.fullNamePlaceholder')}
+                  placeholder={t('pageProfile.fullNamePlaceholder')}
                   required
                 />
               </div>
@@ -170,7 +170,7 @@ export const Profile = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  {t('profile.email')}
+                  {t('pageProfile.email')}
                 </label>
                 <motion.input
                   type="email"
@@ -179,7 +179,7 @@ export const Profile = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   whileFocus={{ scale: 1.02 }}
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-gray-900 outline-none transition-all hover:border-gray-400"
-                  placeholder={t('profile.emailPlaceholder')}
+                  placeholder={t('pageProfile.emailPlaceholder')}
                   required
                 />
               </div>
@@ -218,11 +218,11 @@ export const Profile = () => {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </motion.svg>
-                    {t('profile.saving')}
+                    {t('pageProfile.saving')}
                   </span>
                 ) : (
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    {t('profile.save')}
+                    {t('pageProfile.save')}
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -249,10 +249,10 @@ export const Profile = () => {
               <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
-              {t('profile.dataManagement.title')}
+              {t('pageProfile.dataManagement.title')}
             </h2>
             <p className="text-sm text-gray-600 mb-6">
-              {t('profile.dataManagement.description')}
+              {t('pageProfile.dataManagement.description')}
             </p>
 
             <div className="space-y-4">
@@ -260,8 +260,8 @@ export const Profile = () => {
               <div className="border-2 border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{t('profile.dataManagement.export.title')}</h3>
-                    <p className="text-xs text-gray-600">{t('profile.dataManagement.export.description')}</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">{t('pageProfile.dataManagement.export.title')}</h3>
+                    <p className="text-xs text-gray-600">{t('pageProfile.dataManagement.export.description')}</p>
                   </div>
                 </div>
                 <motion.button
@@ -273,7 +273,7 @@ export const Profile = () => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  {t('profile.dataManagement.export.button')}
+                  {t('pageProfile.dataManagement.export.button')}
                 </motion.button>
               </div>
 
@@ -281,8 +281,8 @@ export const Profile = () => {
               <div className="border-2 border-red-200 bg-red-50 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-red-900 mb-1">{t('profile.dataManagement.delete.title')}</h3>
-                    <p className="text-xs text-red-700">{t('profile.dataManagement.delete.description')}</p>
+                    <h3 className="font-semibold text-red-900 mb-1">{t('pageProfile.dataManagement.delete.title')}</h3>
+                    <p className="text-xs text-red-700">{t('pageProfile.dataManagement.delete.description')}</p>
                   </div>
                 </div>
                 {!showDeleteConfirm ? (
@@ -295,11 +295,11 @@ export const Profile = () => {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
-                    {t('profile.dataManagement.delete.button')}
+                    {t('pageProfile.dataManagement.delete.button')}
                   </motion.button>
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-sm text-red-800 font-medium">{t('profile.dataManagement.delete.confirm')}</p>
+                    <p className="text-sm text-red-800 font-medium">{t('pageProfile.dataManagement.delete.confirm')}</p>
                     <div className="flex gap-2">
                       <motion.button
                         onClick={handleDeleteAllData}
@@ -307,7 +307,7 @@ export const Profile = () => {
                         whileTap={{ scale: 0.98 }}
                         className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors"
                       >
-                        {t('profile.dataManagement.delete.confirmYes')}
+                        {t('pageProfile.dataManagement.delete.confirmYes')}
                       </motion.button>
                       <motion.button
                         onClick={() => setShowDeleteConfirm(false)}
@@ -315,7 +315,7 @@ export const Profile = () => {
                         whileTap={{ scale: 0.98 }}
                         className="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium rounded-lg transition-colors"
                       >
-                        {t('profile.dataManagement.delete.confirmNo')}
+                        {t('pageProfile.dataManagement.delete.confirmNo')}
                       </motion.button>
                     </div>
                   </div>

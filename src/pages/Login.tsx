@@ -22,7 +22,7 @@ export const Login = () => {
     setError('');
 
     if (!email || !email.includes('@')) {
-      setError(t('login.error'));
+        setError(t('pageLogin.error'));
       return;
     }
 
@@ -65,8 +65,8 @@ export const Login = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO 
-        title={`${isRegister ? t('register.title') : t('login.title')} - ${t('common.appName')}`}
-        description={isRegister ? t('register.description') : t('login.description')}
+        title={`${isRegister ? t('pageRegister.title') : t('pageLogin.title')} - ${t('common.appName')}`}
+        description={isRegister ? t('pageRegister.description') : t('pageLogin.description')}
       />
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
@@ -92,7 +92,7 @@ export const Login = () => {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              {t('login.title')}
+              {t('pageLogin.title')}
             </button>
             <button
               onClick={() => {
@@ -106,7 +106,7 @@ export const Login = () => {
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              {t('register.title')}
+              {t('pageRegister.title')}
             </button>
           </div>
 
@@ -119,7 +119,7 @@ export const Login = () => {
               transition={{ duration: 0.3 }}
             >
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
-                {isRegister ? t('register.title') : t('login.title')}
+                {isRegister ? t('pageRegister.title') : t('pageLogin.title')}
               </h2>
               <form onSubmit={handleSubmit} className="space-y-5">
                 {isRegister && (
@@ -223,7 +223,7 @@ export const Login = () => {
                   className="relative w-full px-4 py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all shadow-lg hover:shadow-xl overflow-hidden group"
                 >
                   <span className="relative z-10">
-                    {isRegister ? t('register.submit') : t('login.submit')}
+                    {isRegister ? t('pageRegister.submit') : t('pageLogin.submit')}
                   </span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900"

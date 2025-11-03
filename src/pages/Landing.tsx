@@ -26,7 +26,7 @@ export const Landing = () => {
 
   const handleAnalyze = async (skipCaptchaCheck = false) => {
     if (!selectedFile) {
-      alert(t('dashboard.selectFile'));
+      alert(t('pageDashboard.selectFile'));
       return;
     }
 
@@ -61,7 +61,7 @@ export const Landing = () => {
         }, 5000);
       }
     } catch (error) {
-      alert(t('dashboard.analyzeError'));
+      alert(t('pageDashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);
     }
@@ -362,7 +362,7 @@ export const Landing = () => {
                   >
                     1
                   </motion.span>
-                  {t('dashboard.uploadTitle')}
+                  {t('pageDashboard.uploadTitle')}
                 </h2>
                 <FileUploader
                   onFileSelect={handleFileSelect}
@@ -386,7 +386,7 @@ export const Landing = () => {
                   >
                     2
                   </motion.span>
-                  {t('dashboard.analyzeTitle')}
+                  {t('pageDashboard.analyzeTitle')}
                 </h2>
                 <motion.button
                   onClick={(e) => {
@@ -422,25 +422,25 @@ export const Landing = () => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </motion.svg>
-                      <span className="text-sm sm:text-base">{t('dashboard.analyzing')}</span>
+                      <span className="text-sm sm:text-base">{t('pageDashboard.analyzing')}</span>
                     </>
                   ) : !isLoggedIn && !captchaVerified ? (
                     <>
                       <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
-                      <span className="text-sm sm:text-base">{t('dashboard.verifyCaptcha')}</span>
+                      <span className="text-sm sm:text-base">{t('pageDashboard.verifyCaptcha')}</span>
                     </>
                   ) : !isLoggedIn && captchaVerified ? (
                     <>
                       <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
+                      <span className="text-sm sm:text-base">{t('pageDashboard.analyze')}</span>
                     </>
                   ) : (
                     <>
-                      <span className="text-sm sm:text-base">{t('dashboard.analyze')}</span>
+                      <span className="text-sm sm:text-base">{t('pageDashboard.analyze')}</span>
                       <motion.svg
                         className="w-5 h-5 md:w-6 md:h-6"
                         fill="none"
@@ -481,7 +481,7 @@ export const Landing = () => {
                     >
                       🔒
                     </motion.span>
-                    {t('dashboard.captchaTitle')}
+                    {t('pageDashboard.captchaTitle')}
                   </h2>
                   <Captcha onVerify={handleCaptchaVerify} />
                 </motion.div>
@@ -507,7 +507,7 @@ export const Landing = () => {
                     </motion.div>
                     <div className="flex-1">
                       <p className="text-sm sm:text-base font-semibold text-green-900">{t('captcha.success')}</p>
-                      <p className="text-xs sm:text-sm text-green-700 mt-1">{t('dashboard.captchaVerifiedDesc')}</p>
+                      <p className="text-xs sm:text-sm text-green-700 mt-1">{t('pageDashboard.captchaVerifiedDesc')}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -531,7 +531,7 @@ export const Landing = () => {
                     >
                       3
                     </motion.span>
-                    {t('dashboard.resultsTitle')}
+                    {t('pageDashboard.resultsTitle')}
                   </h2>
                   <ResultCard result={analysisResult} />
                   
@@ -551,8 +551,8 @@ export const Landing = () => {
                             </svg>
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('dashboard.fileSaved')}</h3>
-                            <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('dashboard.fileSavedDesc')}</p>
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">{t('pageDashboard.fileSaved')}</h3>
+                            <p className="text-xs sm:text-sm text-gray-600 mb-3">{t('pageDashboard.fileSavedDesc')}</p>
                             <Link
                               to="/files"
                               className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors shadow-md hover:shadow-lg"
@@ -560,7 +560,7 @@ export const Landing = () => {
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                               </svg>
-                              {t('dashboard.viewFiles')}
+                              {t('pageDashboard.viewFiles')}
                             </Link>
                           </div>
                         </div>

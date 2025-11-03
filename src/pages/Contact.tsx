@@ -45,8 +45,8 @@ export const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
-        title={`${t('contact.title')} - ${t('common.appName')}`}
-        description={t('contact.description')}
+        title={`${t('pageContact.title')} - ${t('common.appName')}`}
+        description={t('pageContact.description')}
       />
       <Navbar />
       <main className="flex-1 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
@@ -71,10 +71,10 @@ export const Contact = () => {
               </div>
             </motion.div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {t('contact.title')}
+              {t('pageContact.title')}
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              {t('contact.description')}
+              {t('pageContact.description')}
             </p>
           </motion.div>
 
@@ -87,7 +87,7 @@ export const Contact = () => {
               className="space-y-6"
             >
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.info.title')}</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('pageContact.info.title')}</h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -96,7 +96,7 @@ export const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{t('contact.info.email')}</h3>
+                      <h3 className="font-semibold text-gray-900 mb-1">{t('pageContact.info.email')}</h3>
                       <a href="mailto:info@blacklist.vn" className="text-blue-600 hover:text-blue-700">
                         info@blacklist.vn
                       </a>
@@ -110,8 +110,8 @@ export const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{t('contact.info.responseTime')}</h3>
-                      <p className="text-gray-600 text-sm">{t('contact.info.responseTimeDesc')}</p>
+                      <h3 className="font-semibold text-gray-900 mb-1">{t('pageContact.info.responseTime')}</h3>
+                      <p className="text-gray-600 text-sm">{t('pageContact.info.responseTimeDesc')}</p>
                     </div>
                   </div>
                 </div>
@@ -122,10 +122,10 @@ export const Contact = () => {
                   <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  {t('contact.info.note.title')}
+                  {t('pageContact.info.note.title')}
                 </h3>
                 <p className="text-sm text-gray-700 leading-relaxed">
-                  {t('contact.info.note.content')}
+                  {t('pageContact.info.note.content')}
                 </p>
               </div>
             </motion.div>
@@ -140,7 +140,7 @@ export const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                      {t('contact.form.name')} <span className="text-red-500">*</span>
+                      {t('pageContact.form.name')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -150,13 +150,13 @@ export const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
-                      placeholder={t('contact.form.namePlaceholder')}
+                      placeholder={t('pageContact.form.namePlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                      {t('contact.form.email')} <span className="text-red-500">*</span>
+                      {t('pageContact.form.email')} <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -166,13 +166,13 @@ export const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
-                      placeholder={t('contact.form.emailPlaceholder')}
+                      placeholder={t('pageContact.form.emailPlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
-                      {t('contact.form.subject')} <span className="text-red-500">*</span>
+                      {t('pageContact.form.subject')} <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="subject"
@@ -182,18 +182,18 @@ export const Contact = () => {
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
                     >
-                      <option value="">{t('contact.form.subjectPlaceholder')}</option>
-                      <option value="general">{t('contact.form.subjectOptions.general')}</option>
-                      <option value="support">{t('contact.form.subjectOptions.support')}</option>
-                      <option value="bug">{t('contact.form.subjectOptions.bug')}</option>
-                      <option value="feedback">{t('contact.form.subjectOptions.feedback')}</option>
-                      <option value="other">{t('contact.form.subjectOptions.other')}</option>
+                      <option value="">{t('pageContact.form.subjectPlaceholder')}</option>
+                      <option value="general">{t('pageContact.form.subjectOptions.general')}</option>
+                      <option value="support">{t('pageContact.form.subjectOptions.support')}</option>
+                      <option value="bug">{t('pageContact.form.subjectOptions.bug')}</option>
+                      <option value="feedback">{t('pageContact.form.subjectOptions.feedback')}</option>
+                      <option value="other">{t('pageContact.form.subjectOptions.other')}</option>
                     </select>
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                      {t('contact.form.message')} <span className="text-red-500">*</span>
+                      {t('pageContact.form.message')} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -203,7 +203,7 @@ export const Contact = () => {
                       required
                       rows={6}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all resize-none"
-                      placeholder={t('contact.form.messagePlaceholder')}
+                      placeholder={t('pageContact.form.messagePlaceholder')}
                     />
                   </div>
 
@@ -217,7 +217,7 @@ export const Contact = () => {
                         <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <p className="text-sm text-green-800 font-medium">{t('contact.form.success')}</p>
+                        <p className="text-sm text-green-800 font-medium">{t('pageContact.form.success')}</p>
                       </div>
                     </motion.div>
                   )}
@@ -241,14 +241,14 @@ export const Contact = () => {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </motion.svg>
-                        <span>{t('contact.form.submitting')}</span>
+                        <span>{t('pageContact.form.submitting')}</span>
                       </>
                     ) : (
                       <>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
-                        <span>{t('contact.form.submit')}</span>
+                        <span>{t('pageContact.form.submit')}</span>
                       </>
                     )}
                   </motion.button>

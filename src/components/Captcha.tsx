@@ -51,10 +51,10 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
           <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
-          {t('captcha.title')}
+          {t('pageCaptcha.title')}
         </h3>
         <p className="text-sm text-gray-600 mb-4">
-          {t('captcha.description')}
+          {t('pageCaptcha.description')}
         </p>
       </div>
 
@@ -73,7 +73,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="absolute -right-2 -top-2 p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
-              title={t('captcha.refresh')}
+              title={t('pageCaptcha.refresh')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -85,7 +85,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
         {/* Input Field */}
         <div className="space-y-2">
           <label htmlFor="captcha-input" className="block text-sm font-medium text-gray-700">
-            {t('captcha.enterCode')}
+            {t('pageCaptcha.enterCode')}
           </label>
           <div className="flex gap-2">
             <input
@@ -100,7 +100,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
                   ? 'border-red-500 bg-red-50'
                   : 'border-gray-300 hover:border-gray-400'
               }`}
-              placeholder={t('captcha.placeholder')}
+              placeholder={t('pageCaptcha.placeholder')}
               maxLength={6}
             />
             <motion.button
@@ -114,7 +114,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
-              {t('captcha.verify')}
+              {t('pageCaptcha.verify')}
             </motion.button>
           </div>
         </div>
@@ -129,7 +129,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
             <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span className="text-sm font-medium">{t('captcha.success')}</span>
+            <span className="text-sm font-medium">{t('pageCaptcha.success')}</span>
           </motion.div>
         )}
 
@@ -143,7 +143,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
             </svg>
             <span className="text-sm font-medium">
-              {t('captcha.error')} ({attempts}/3)
+              {t('pageCaptcha.error')} ({attempts}/3)
             </span>
           </motion.div>
         )}
@@ -154,14 +154,14 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <p className="text-sm text-gray-600 mb-2">{t('captcha.tooManyAttempts')}</p>
+            <p className="text-sm text-gray-600 mb-2">{t('pageCaptcha.tooManyAttempts')}</p>
             <motion.button
               onClick={handleRefresh}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
             >
-              {t('captcha.tryAgain')}
+              {t('pageCaptcha.tryAgain')}
             </motion.button>
           </motion.div>
         )}

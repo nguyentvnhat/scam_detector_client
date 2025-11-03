@@ -12,8 +12,8 @@ export const NotFound = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
-        title={`${t('notFound.title')} - ${t('common.appName')}`}
-        description={t('notFound.description')}
+        title={`${t('pageNotFound.title')} - ${t('common.appName')}`}
+        description={t('pageNotFound.description')}
       />
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -43,10 +43,10 @@ export const NotFound = () => {
               className="mb-8"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {t('notFound.title')}
+                {t('pageNotFound.title')}
               </h2>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto">
-                {t('notFound.description')}
+                {t('pageNotFound.description')}
               </p>
             </motion.div>
 
@@ -79,7 +79,7 @@ export const NotFound = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
-                  {t('notFound.goHome')}
+                  {t('pageNotFound.goHome')}
                 </Link>
               </motion.div>
               <motion.button
@@ -91,7 +91,7 @@ export const NotFound = () => {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                {t('notFound.goBack')}
+                {t('pageNotFound.goBack')}
               </motion.button>
             </motion.div>
 
@@ -102,19 +102,19 @@ export const NotFound = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mt-12 pt-8 border-t border-gray-200"
             >
-              <p className="text-sm text-gray-500 mb-4">{t('notFound.helpfulLinks')}:</p>
+              <p className="text-sm text-gray-500 mb-4">{t('pageNotFound.helpfulLinks')}:</p>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
                 <Link to="/" className="text-blue-600 hover:text-blue-700 underline">
-                  {t('notFound.home')}
+                  {t('pageNotFound.home')}
                 </Link>
                 <Link to="/voice" className="text-blue-600 hover:text-blue-700 underline">
-                  {t('notFound.voiceTest')}
+                  {t('pageNotFound.voiceTest')}
                 </Link>
                 <Link to="/privacy" className="text-blue-600 hover:text-blue-700 underline">
-                  {t('notFound.privacy')}
+                  {t('pageNotFound.privacy')}
                 </Link>
                 <Link to="/terms" className="text-blue-600 hover:text-blue-700 underline">
-                  {t('notFound.terms')}
+                  {t('pageNotFound.terms')}
                 </Link>
               </div>
             </motion.div>

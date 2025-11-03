@@ -29,8 +29,8 @@ export const About = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
-        title={`${t('about.pageTitle')} - ${t('common.appName')}`}
-        description={t('about.pageDescription')}
+        title={`${t('pageAbout.pageTitle')} - ${t('common.appName')}`}
+        description={t('pageAbout.pageDescription')}
       />
       <Navbar />
       <main className="flex-1 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
@@ -55,10 +55,10 @@ export const About = () => {
               </div>
             </motion.div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {t('about.pageTitle')}
+              {t('pageAbout.pageTitle')}
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              {t('about.pageDescription')}
+              {t('pageAbout.pageDescription')}
             </p>
           </motion.div>
 
@@ -75,11 +75,11 @@ export const About = () => {
                 <svg className="w-6 h-6 md:w-7 md:h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
-                {t('about.mission.title')}
+                {t('pageAbout.mission.title')}
               </h2>
               <div className="space-y-4 text-base md:text-lg text-gray-700 leading-relaxed">
-                <p>{t('about.mission.content1')}</p>
-                <p>{t('about.mission.content2')}</p>
+                <p>{t('pageAbout.mission.content1')}</p>
+                <p>{t('pageAbout.mission.content2')}</p>
               </div>
             </section>
 
@@ -87,21 +87,21 @@ export const About = () => {
             <section>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold text-sm">1</span>
-                {t('about.partnership.title')}
+                {t('pageAbout.partnership.title')}
               </h2>
               <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-200 mb-6">
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                  {t('about.partnership.content1')}
+                  {t('pageAbout.partnership.content1')}
                 </p>
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-lg p-5 border-2 border-purple-200">
                   <h3 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
                     <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {t('about.partnership.note')}
+                    {t('pageAbout.partnership.note')}
                   </h3>
                   <p className="text-sm md:text-base text-purple-800 leading-relaxed">
-                    {t('about.partnership.noteContent')}
+                    {t('pageAbout.partnership.noteContent')}
                   </p>
                 </div>
               </div>
@@ -145,11 +145,11 @@ export const About = () => {
             <section>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold text-sm">2</span>
-                {t('about.technology.title')}
+                {t('pageAbout.technology.title')}
               </h2>
               <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-200">
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                  {t('about.technology.content1')}
+                  {t('pageAbout.technology.content1')}
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="bg-white rounded-lg p-5 border border-gray-300">
@@ -157,18 +157,18 @@ export const About = () => {
                       <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      {t('about.technology.ai.title')}
+                      {t('pageAbout.technology.ai.title')}
                     </h3>
-                    <p className="text-sm text-gray-700">{t('about.technology.ai.description')}</p>
+                    <p className="text-sm text-gray-700">{t('pageAbout.technology.ai.description')}</p>
                   </div>
                   <div className="bg-white rounded-lg p-5 border border-gray-300">
                     <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      {t('about.technology.security.title')}
+                      {t('pageAbout.technology.security.title')}
                     </h3>
-                    <p className="text-sm text-gray-700">{t('about.technology.security.description')}</p>
+                    <p className="text-sm text-gray-700">{t('pageAbout.technology.security.description')}</p>
                   </div>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export const About = () => {
             <section>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center font-bold text-sm">3</span>
-                {t('about.commitment.title')}
+                {t('pageAbout.commitment.title')}
               </h2>
               <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-6 md:p-8 border-2 border-green-200">
                 <ul className="space-y-4 text-base md:text-lg text-gray-700">
@@ -186,25 +186,25 @@ export const About = () => {
                     <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t('about.commitment.point1')}</span>
+                    <span>{t('pageAbout.commitment.point1')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t('about.commitment.point2')}</span>
+                    <span>{t('pageAbout.commitment.point2')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t('about.commitment.point3')}</span>
+                    <span>{t('pageAbout.commitment.point3')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t('about.commitment.point4')}</span>
+                    <span>{t('pageAbout.commitment.point4')}</span>
                   </li>
                 </ul>
               </div>
@@ -213,10 +213,10 @@ export const About = () => {
             {/* Contact Section */}
             <section className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-200">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                {t('about.contact.title')}
+                {t('pageAbout.contact.title')}
               </h2>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
-                {t('about.contact.content1')}
+                {t('pageAbout.contact.content1')}
               </p>
               <Link
                 to="/contact"
@@ -225,7 +225,7 @@ export const About = () => {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                {t('about.contact.button')}
+                {t('pageAbout.contact.button')}
               </Link>
             </section>
           </motion.div>
@@ -244,7 +244,7 @@ export const About = () => {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              {t('about.backToHome')}
+              {t('pageAbout.backToHome')}
             </Link>
           </motion.div>
         </div>

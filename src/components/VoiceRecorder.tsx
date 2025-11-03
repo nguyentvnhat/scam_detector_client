@@ -115,7 +115,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
 
     } catch (err) {
       console.error('Error starting recording:', err);
-      setError(err instanceof Error ? err.message : t('voice.error.microphone'));
+      setError(err instanceof Error ? err.message : t('pageVoice.error.microphone'));
       setIsRecording(false);
     }
   };
@@ -177,7 +177,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
       setError(
         err instanceof Error 
           ? err.message 
-          : t('voice.error.upload')
+          : t('pageVoice.error.upload')
       );
     } finally {
       setIsUploading(false);
@@ -232,7 +232,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                 {formatTime(timeRemaining)}
               </motion.div>
               <p className="text-sm md:text-base text-gray-600">
-                {t('voice.recording')}
+                {t('pageVoice.recording')}
               </p>
             </motion.div>
           )}
@@ -250,7 +250,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                 transition={{ duration: 1, repeat: Infinity }}
               />
               <span className="text-sm text-gray-600">
-                {t('voice.recordingStatus')}
+                {t('pageVoice.recordingStatus')}
               </span>
             </motion.div>
           )}
@@ -268,7 +268,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
-                <span>{t('voice.startRecording')}</span>
+                <span>{t('pageVoice.startRecording')}</span>
               </motion.button>
             ) : (
               <motion.button
@@ -281,7 +281,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
                 </svg>
-                <span>{t('voice.stopRecording')}</span>
+                <span>{t('pageVoice.stopRecording')}</span>
               </motion.button>
             )}
 
@@ -296,7 +296,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                <span>{t('voice.reset')}</span>
+                <span>{t('pageVoice.reset')}</span>
               </motion.button>
             )}
           </div>
@@ -304,10 +304,10 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
           {/* Audio Info */}
           {audioChunks.length > 0 && !isRecording && (
             <div className="text-center text-sm text-gray-600 space-y-1">
-              <p>{t('voice.fileSize')}: {formatFileSize(getAudioBlobSize())}</p>
+              <p>{t('pageVoice.fileSize')}: {formatFileSize(getAudioBlobSize())}</p>
               {audioUrl && (
                 <audio controls src={audioUrl} className="mt-2 w-full max-w-md mx-auto">
-                  {t('voice.audioNotSupported')}
+                  {t('pageVoice.audioNotSupported')}
                 </audio>
               )}
             </div>
@@ -325,7 +325,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm md:text-base font-semibold text-gray-700">
-                {t('voice.uploading')}
+                {t('pageVoice.uploading')}
               </span>
               <span className="text-sm md:text-base font-bold text-blue-600">
                 {uploadProgress}%
@@ -356,7 +356,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
             </svg>
             <div className="flex-1">
               <h3 className="font-semibold text-red-900 mb-1">
-                {t('voice.error.title')}
+                {t('pageVoice.error.title')}
               </h3>
               <p className="text-sm text-red-700">{error}</p>
             </div>
@@ -372,7 +372,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
           transition={{ duration: 0.5 }}
         >
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-            {t('voice.results')}
+            {t('pageVoice.results')}
           </h3>
           <ResultCard result={result} />
         </motion.div>

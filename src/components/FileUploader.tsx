@@ -15,7 +15,7 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
 
   const validateFile = (file: File): boolean => {
     if (file.size > MAX_FILE_SIZE) {
-      alert(t('dashboard.fileTooLarge', { maxSize: '3.5MB' }));
+      alert(t('pageDashboard.fileTooLarge', { maxSize: '3.5MB' }));
       return false;
     }
     return true;
@@ -104,7 +104,7 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <p className="text-sm sm:text-base font-semibold text-green-700">
-                  {t('dashboard.fileSelected')}
+                  {t('pageDashboard.fileSelected')}
                 </p>
               </div>
               <p className="text-xs sm:text-sm text-green-600 font-medium mb-1 break-all px-2">
@@ -117,11 +117,11 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
           ) : (
             <div className="text-center">
               <p className="text-sm sm:text-base text-gray-700 font-medium mb-2">
-                {t('dashboard.uploadHint')}{' '}
-                <span className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">{t('dashboard.uploadHint2')}</span>
+                {t('pageDashboard.uploadHint')}{' '}
+                <span className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">{t('pageDashboard.uploadHint2')}</span>
               </p>
               <p className="text-xs sm:text-sm text-gray-500">
-                {t('dashboard.uploadSupport')}
+                {t('pageDashboard.uploadSupport')}
               </p>
             </div>
           )}

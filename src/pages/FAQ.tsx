@@ -17,14 +17,14 @@ export const FAQ = () => {
 
   // Get FAQ items from translations
   const faqItems: FAQItem[] = [
-    { question: t('faq.item1.question'), answer: t('faq.item1.answer') },
-    { question: t('faq.item2.question'), answer: t('faq.item2.answer') },
-    { question: t('faq.item3.question'), answer: t('faq.item3.answer') },
-    { question: t('faq.item4.question'), answer: t('faq.item4.answer') },
-    { question: t('faq.item5.question'), answer: t('faq.item5.answer') },
-    { question: t('faq.item6.question'), answer: t('faq.item6.answer') },
-    { question: t('faq.item7.question'), answer: t('faq.item7.answer') },
-    { question: t('faq.item8.question'), answer: t('faq.item8.answer') },
+    { question: t('pageFaq.item1.question'), answer: t('pageFaq.item1.answer') },
+    { question: t('pageFaq.item2.question'), answer: t('pageFaq.item2.answer') },
+    { question: t('pageFaq.item3.question'), answer: t('pageFaq.item3.answer') },
+    { question: t('pageFaq.item4.question'), answer: t('pageFaq.item4.answer') },
+    { question: t('pageFaq.item5.question'), answer: t('pageFaq.item5.answer') },
+    { question: t('pageFaq.item6.question'), answer: t('pageFaq.item6.answer') },
+    { question: t('pageFaq.item7.question'), answer: t('pageFaq.item7.answer') },
+    { question: t('pageFaq.item8.question'), answer: t('pageFaq.item8.answer') },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -34,8 +34,8 @@ export const FAQ = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
-        title={`${t('faq.title')} - ${t('common.appName')}`}
-        description={t('faq.description')}
+        title={`${t('pageFaq.title')} - ${t('common.appName')}`}
+        description={t('pageFaq.description')}
       />
       <Navbar />
       <main className="flex-1 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
@@ -60,10 +60,10 @@ export const FAQ = () => {
               </div>
             </motion.div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {t('faq.title')}
+              {t('pageFaq.title')}
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              {t('faq.description')}
+              {t('pageFaq.description')}
             </p>
           </motion.div>
 
@@ -131,10 +131,10 @@ export const FAQ = () => {
             className="mt-12 bg-gradient-to-br from-indigo-50 to-indigo-100/50 rounded-xl p-6 md:p-8 border-2 border-indigo-200 text-center"
           >
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-              {t('faq.contact.title')}
+              {t('pageFaq.contact.title')}
             </h2>
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              {t('faq.contact.description')}
+              {t('pageFaq.contact.description')}
             </p>
             <Link
               to="/contact"
@@ -143,7 +143,7 @@ export const FAQ = () => {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              {t('faq.contact.button')}
+              {t('pageFaq.contact.button')}
             </Link>
           </motion.div>
         </div>
