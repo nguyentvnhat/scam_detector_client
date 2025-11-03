@@ -6,6 +6,115 @@ interface ResultCardProps {
   result: AnalysisResult;
 }
 
+// Helper function to translate reasoning labels
+const translateLabel = (label: string, t: (key: string) => string): string => {
+  // Remove colon if present for lookup
+  const key = label.replace(':', '').trim();
+  
+  // Try exact match first
+  let translationKey = `results.reasoningLabels.${key}`;
+  let translated = t(translationKey);
+  
+  // If translation exists (not the same as key), use it
+  if (translated && translated !== translationKey) {
+    return translated + (label.endsWith(':') ? ':' : '');
+  }
+  
+  // Try case-insensitive match
+  const lowerKey = key.toLowerCase();
+  const labelKeys = [
+    'Context', 'Behavioral indicators', 'Linguistic signals',
+    'Emotional tone', 'Social engineering techniques', 'Information sensitivity',
+    'Verification cues', 'Consistency check', 'Previous pattern match',
+    'Risk assessment', 'Summary'
+  ];
+  
+  const matchedKey = labelKeys.find(lk => lk.toLowerCase() === lowerKey);
+  if (matchedKey) {
+    translationKey = `results.reasoningLabels.${matchedKey}`;
+    translated = t(translationKey);
+    if (translated && translated !== translationKey) {
+      return translated + (label.endsWith(':') ? ':' : '');
+    }
+  }
+  
+  // Fallback to original
+  return label;
+};
+
+// Helper function to format reasoning text with bullets and line breaks
+const formatReasoning = (text: string, t: (key: string) => string): string => {
+  if (!text) return '';
+  
+  // Replace \n with actual newlines
+  let processed = text.replace(/\\n/g, '\n');
+  
+  // Split by newlines to process each line
+  const lines = processed.split('\n').map(line => line.trim()).filter(line => line);
+  
+  const formattedLines: string[] = [];
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Check if it's a bullet point starting with *
+    if (line.startsWith('* ')) {
+      const content = line.substring(2).trim();
+      
+      // Special handling for Summary section
+      if (content.toLowerCase().startsWith('summary:')) {
+        const summaryContent = content.substring(8).trim();
+        const summaryLabel = translateLabel('Summary:', t);
+        formattedLines.push(
+          `<div class="mt-5 p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-500 rounded-r-lg shadow-sm">
+            <div class="font-bold text-blue-900 text-base mb-2 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+              </svg>
+              ${summaryLabel.replace(':', '')}
+            </div>
+            <p class="text-blue-800 leading-relaxed">${summaryContent}</p>
+          </div>`
+        );
+        continue;
+      }
+      
+      // Check if it's a heading with content (contains colon)
+      if (content.includes(':')) {
+        const colonIndex = content.indexOf(':');
+        const originalLabel = content.substring(0, colonIndex + 1).trim();
+        const description = content.substring(colonIndex + 1).trim();
+        // Translate the label
+        const translatedLabel = translateLabel(originalLabel, t);
+        
+        formattedLines.push(
+          `<div class="mt-3 mb-2.5">
+            <div class="flex items-start gap-2">
+              <span class="text-blue-600 font-semibold mt-1">•</span>
+              <div class="flex-1">
+                <span class="font-semibold text-gray-900">${translatedLabel}</span>
+                ${description ? `<span class="text-gray-700 ml-2">${description}</span>` : ''}
+              </div>
+            </div>
+          </div>`
+        );
+      } else {
+        // Regular bullet point without colon
+        formattedLines.push(
+          `<div class="ml-2 mb-2 text-gray-700 leading-relaxed">
+            <span class="text-gray-400">•</span> ${content}
+          </div>`
+        );
+      }
+    } else if (line.trim()) {
+      // Non-bullet line (shouldn't happen much, but handle it)
+      formattedLines.push(`<p class="mb-2 text-gray-600">${line}</p>`);
+    }
+  }
+  
+  return formattedLines.join('');
+};
+
 export const ResultCard = ({ result }: ResultCardProps) => {
   const { t } = useTranslation();
 
@@ -67,8 +176,8 @@ export const ResultCard = ({ result }: ResultCardProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm prose prose-sm max-w-none"
-          dangerouslySetInnerHTML={{ __html: result.transcript }}
+          className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-5 rounded-xl border border-gray-200 shadow-sm max-w-none"
+          dangerouslySetInnerHTML={{ __html: formatReasoning(result.transcript, t) }}
         />
       </motion.div>
 

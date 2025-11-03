@@ -506,7 +506,7 @@ export const Landing = () => {
                       </svg>
                     </motion.div>
                     <div className="flex-1">
-                      <p className="text-sm sm:text-base font-semibold text-green-900">{t('captcha.success')}</p>
+                      <p className="text-sm sm:text-base font-semibold text-green-900">{t('pageCaptcha.success')}</p>
                       <p className="text-xs sm:text-sm text-green-700 mt-1">{t('pageDashboard.captchaVerifiedDesc')}</p>
                     </div>
                   </div>

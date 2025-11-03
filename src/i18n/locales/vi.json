@@ -127,7 +127,20 @@
     "isScam": "⚠️ Đây là cuộc gọi lừa đảo",
     "confidenceDescriptionScam": "Hệ thống tin tưởng {{percent}}% rằng đoạn âm thanh này là lừa đảo.",
     "confidenceDescriptionNotScam": "Hệ thống tin {{percent}}% rằng đây là âm thanh bình thường.",
-    "confidenceDescriptionLow": "Mức độ tin cậy thấp ({{percent}}%), cần kiểm tra thêm."
+    "confidenceDescriptionLow": "Mức độ tin cậy thấp ({{percent}}%), cần kiểm tra thêm.",
+    "reasoningLabels": {
+      "Context": "Ngữ cảnh",
+      "Behavioral indicators": "Dấu hiệu hành vi",
+      "Linguistic signals": "Tín hiệu ngôn ngữ",
+      "Emotional tone": "Giọng điệu cảm xúc",
+      "Social engineering techniques": "Kỹ thuật tấn công xã hội",
+      "Information sensitivity": "Độ nhạy cảm thông tin",
+      "Verification cues": "Dấu hiệu xác minh",
+      "Consistency check": "Kiểm tra tính nhất quán",
+      "Previous pattern match": "Khớp với mẫu trước đó",
+      "Risk assessment": "Đánh giá rủi ro",
+      "Summary": "Tóm tắt"
+    }
   },
   "footer": {
     "description": "Bảo vệ bạn khỏi lừa đảo qua giọng nói với công nghệ AI tiên tiến",

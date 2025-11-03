@@ -127,7 +127,20 @@
     "isScam": "⚠️ This is a scam call",
     "confidenceDescriptionScam": "The system is {{percent}}% confident that this audio is a scam.",
     "confidenceDescriptionNotScam": "The system is {{percent}}% confident that this is normal audio.",
-    "confidenceDescriptionLow": "Low confidence level ({{percent}}%), needs further verification."
+    "confidenceDescriptionLow": "Low confidence level ({{percent}}%), needs further verification.",
+    "reasoningLabels": {
+      "Context": "Context",
+      "Behavioral indicators": "Behavioral indicators",
+      "Linguistic signals": "Linguistic signals",
+      "Emotional tone": "Emotional tone",
+      "Social engineering techniques": "Social engineering techniques",
+      "Information sensitivity": "Information sensitivity",
+      "Verification cues": "Verification cues",
+      "Consistency check": "Consistency check",
+      "Previous pattern match": "Previous pattern match",
+      "Risk assessment": "Risk assessment",
+      "Summary": "Summary"
+    }
   },
   "footer": {
     "description": "Protect yourself from voice scams with advanced AI technology",
