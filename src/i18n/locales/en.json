@@ -197,6 +197,31 @@
     "error": "Incorrect verification code",
     "tooManyAttempts": "Too many failed attempts. Please try again.",
     "tryAgain": "Try Again"
+  },
+  "voice": {
+    "title": "Voice Test - Scam Call Detection",
+    "description": "Record directly from your microphone to check if a call is a scam. Just press the record button and speak for 15 seconds.",
+    "startRecording": "🎤 Record 15s",
+    "stopRecording": "Stop Early",
+    "recording": "Recording...",
+    "recordingStatus": "Recording in progress",
+    "uploading": "Uploading...",
+    "reset": "Record Again",
+    "fileSize": "File size",
+    "audioNotSupported": "Your browser does not support audio playback.",
+    "results": "Analysis Results",
+    "error": {
+      "title": "An error occurred",
+      "microphone": "Cannot access microphone. Please check browser permissions in settings.",
+      "upload": "Failed to upload file. Please try again later."
+    },
+    "info": {
+      "title": "How to use",
+      "point1": "Click the \"Record 15s\" button and allow your browser to access your microphone.",
+      "point2": "Speak for up to 15 seconds (or click \"Stop Early\" if you want to finish earlier).",
+      "point3": "The audio file will be automatically uploaded and analyzed by the AI system.",
+      "point4": "Results will show confidence score and reasoning within a few seconds."
+    }
   }
 }
 

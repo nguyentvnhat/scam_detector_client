@@ -197,6 +197,31 @@
     "error": "Mã xác minh không đúng",
     "tooManyAttempts": "Quá nhiều lần thử sai. Vui lòng thử lại.",
     "tryAgain": "Thử lại"
+  },
+  "voice": {
+    "title": "Kiểm tra cuộc gọi lừa đảo (Voice Test)",
+    "description": "Ghi âm trực tiếp từ microphone của bạn để kiểm tra xem cuộc gọi có phải lừa đảo hay không. Chỉ cần nhấn nút ghi âm và nói trong 15 giây.",
+    "startRecording": "🎤 Ghi âm 15s",
+    "stopRecording": "Dừng sớm",
+    "recording": "Đang ghi...",
+    "recordingStatus": "Đang thu âm",
+    "uploading": "Đang tải lên...",
+    "reset": "Ghi lại",
+    "fileSize": "Kích thước file",
+    "audioNotSupported": "Trình duyệt của bạn không hỗ trợ phát audio.",
+    "results": "Kết quả phân tích",
+    "error": {
+      "title": "Có lỗi xảy ra",
+      "microphone": "Không thể truy cập microphone. Vui lòng kiểm tra quyền truy cập trong cài đặt trình duyệt.",
+      "upload": "Không thể tải lên file. Vui lòng thử lại sau."
+    },
+    "info": {
+      "title": "Hướng dẫn sử dụng",
+      "point1": "Nhấn nút \"Ghi âm 15s\" và cho phép trình duyệt truy cập microphone của bạn.",
+      "point2": "Nói trong vòng 15 giây (hoặc nhấn \"Dừng sớm\" nếu muốn kết thúc sớm).",
+      "point3": "File audio sẽ được tự động tải lên và phân tích bởi hệ thống AI.",
+      "point4": "Kết quả sẽ hiển thị độ tin cậy và lý do phân tích trong vài giây."
+    }
   }
 }
 

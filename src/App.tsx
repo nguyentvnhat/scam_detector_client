@@ -8,6 +8,7 @@ const Login = lazy(() => import('./pages/Login').then(module => ({ default: modu
 const Dashboard = lazy(() => import('./pages/Dashboard').then(module => ({ default: module.Dashboard })));
 const Files = lazy(() => import('./pages/Files').then(module => ({ default: module.Files })));
 const Profile = lazy(() => import('./pages/Profile').then(module => ({ default: module.Profile })));
+const Voice = lazy(() => import('./pages/Voice').then(module => ({ default: module.Voice })));
 
 // Loading fallback component
 const LoadingSpinner = () => (
@@ -53,6 +54,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/voice" element={<Voice />} />
       </Routes>
     </Suspense>
   );
