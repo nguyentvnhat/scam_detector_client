@@ -128,3 +128,47 @@ export const updateProfile = (updates: Partial<UserProfile>): void => {
   }
 };
 
+// Share functionality
+const SHARE_STORAGE_KEY = 'blacklist_share_results';
+
+export interface ShareResult {
+  id: string;
+  result: AnalysisResult;
+  createdAt: string;
+}
+
+export const saveShareResult = (result: AnalysisResult): string => {
+  const id = Date.now().toString() + Math.random().toString(36).substr(2, 9);
+  const shareResult: ShareResult = {
+    id,
+    result,
+    createdAt: new Date().toISOString(),
+  };
+
+  // Store in sessionStorage (cleared on tab close) for privacy
+  const shares = getShareResults();
+  shares.push(shareResult);
+  // Keep only last 10 shares to avoid storage bloat
+  if (shares.length > 10) {
+    shares.shift();
+  }
+  sessionStorage.setItem(SHARE_STORAGE_KEY, JSON.stringify(shares));
+  return id;
+};
+
+export const getShareResult = (id: string): ShareResult | null => {
+  const shares = getShareResults();
+  return shares.find(s => s.id === id) || null;
+};
+
+const getShareResults = (): ShareResult[] => {
+  const stored = sessionStorage.getItem(SHARE_STORAGE_KEY);
+  return stored ? JSON.parse(stored) : [];
+};
+
+export const clearAllUserData = (): void => {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(PROFILE_KEY);
+  sessionStorage.removeItem(SHARE_STORAGE_KEY);
+};
+

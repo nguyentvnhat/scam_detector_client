@@ -142,7 +142,15 @@
       "Previous pattern match": "Previous pattern match",
       "Risk assessment": "Risk assessment",
       "Summary": "Summary"
-    }
+    },
+    "share": {
+      "title": "Share Result",
+      "description": "Share analysis result with friends",
+      "linkCopied": "Link copied!",
+      "notFound": "Share result not found",
+      "backToHome": "Back to home"
+    },
+    "safe": "Safe"
   },
   "footer": {
     "description": "Protect yourself from voice scams with advanced AI technology",
@@ -613,10 +621,22 @@
       "submit": "Send contribution registration",
       "submitting": "Submitting...",
       "support": "Need support? Contact",
-      "supportEmail": "hello@blacklist.vn",
+      "supportEmail": "info@blacklist.vn",
       "success": {
         "title": "Registration successful!",
         "message": "Thank you for your contribution. We will contact you as soon as possible."
+      },
+      "validation": {
+        "fullNameRequired": "Please enter your full name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Invalid email address",
+        "contributionTypesRequired": "Please select at least one contribution method",
+        "agreement1Required": "Please confirm agreement with the first term",
+        "agreement2Required": "Please confirm agreement with the second term",
+        "captchaRequired": "Please verify CAPTCHA before submitting the form"
+      },
+      "error": {
+        "message": "An error occurred while submitting the form. Please try again later or contact hello@blacklist.vn"
       }
     }
   }

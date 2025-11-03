@@ -22,10 +22,27 @@ export const SEO = ({
   const defaultDescription = t('about.paragraph1');
   
   const finalTitle = title || defaultTitle;
-  const finalDescription = description || defaultDescription;
+  const finalDescription = (description || defaultDescription).substring(0, 200); // Limit description length
   const finalKeywords = keywords || 'AI, scam detection, voice analysis, lừa đảo, phát hiện lừa đảo, trí tuệ nhân tạo, bảo mật, an toàn';
-  const finalImage = `${url}${image}`;
-  const finalUrl = typeof window !== 'undefined' ? `${url}${window.location.pathname}` : url;
+  
+  // Handle URLs - if url prop is provided and is absolute, use it; otherwise construct from current location
+  let finalUrl: string;
+  if (url && url.startsWith('http')) {
+    finalUrl = url;
+  } else if (typeof window !== 'undefined') {
+    finalUrl = window.location.href;
+  } else {
+    finalUrl = url || 'https://blacklist.vn';
+  }
+  
+  // Handle images - if image prop is provided and is absolute, use it; otherwise construct absolute URL
+  let finalImage: string;
+  if (image && image.startsWith('http')) {
+    finalImage = image;
+  } else {
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://blacklist.vn';
+    finalImage = `${baseUrl}${image || '/og-image.jpg'}`;
+  }
 
   return (
     <Helmet>
@@ -49,11 +66,11 @@ export const SEO = ({
       <meta property="og:locale" content={i18n.language === 'vi' ? 'vi_VN' : 'en_US'} />
       
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={finalUrl} />
-      <meta property="twitter:title" content={finalTitle} />
-      <meta property="twitter:description" content={finalDescription} />
-      <meta property="twitter:image" content={finalImage} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={finalUrl} />
+      <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={finalDescription} />
+      <meta name="twitter:image" content={finalImage} />
       
       {/* Additional SEO */}
       <meta name="theme-color" content="#111827" />

@@ -62,8 +62,7 @@ export const Footer = memo(() => {
     <footer className="bg-gray-900 text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
-          <div className="flex items-start gap-3 md:gap-4">
-            <Logo variant="footer" />
+          <div className="flex items-start">
             <div className="flex-1">
               <p className="text-gray-400 text-sm leading-relaxed mb-3">
                 {t('footer.description')}
@@ -71,7 +70,7 @@ export const Footer = memo(() => {
               {/* Social Media Links */}
               <div className="flex items-center gap-3 mt-3">
                 <a
-                  href="https://www.facebook.com"
+                  href="https://www.facebook.com/blacklist.vn"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors group"
@@ -82,7 +81,7 @@ export const Footer = memo(() => {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-blue-700 hover:bg-blue-800 flex items-center justify-center transition-colors group"
@@ -93,7 +92,7 @@ export const Footer = memo(() => {
                   </svg>
                 </a>
                 <a
-                  href="https://www.twitter.com"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-sky-500 hover:bg-sky-600 flex items-center justify-center transition-colors group"

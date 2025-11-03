@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
+import { Captcha } from '../components/Captcha';
 
 export const Donate = () => {
   const { t } = useTranslation();
@@ -21,8 +22,10 @@ export const Donate = () => {
     agreement2: false,
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,15 +45,206 @@ export const Donate = () => {
     setFormData(prev => ({ ...prev, [field]: !prev[field] }));
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitSuccess(false);
+    
+    // Validate form
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = t('donate.form.validation.fullNameRequired');
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = t('donate.form.validation.emailRequired');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = t('donate.form.validation.emailInvalid');
+    }
+
+    if (formData.contributionTypes.length === 0) {
+      newErrors.contributionTypes = t('donate.form.validation.contributionTypesRequired');
+    }
+
+    if (!formData.agreement1) {
+      newErrors.agreement1 = t('donate.form.validation.agreement1Required');
+    }
+
+    if (!formData.agreement2) {
+      newErrors.agreement2 = t('donate.form.validation.agreement2Required');
+    }
+
+    if (!captchaVerified) {
+      newErrors.captcha = t('donate.form.validation.captchaRequired');
+    }
+
+    setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length > 0) {
+      // Scroll to first error
+      setTimeout(() => {
+        const firstErrorField = Object.keys(newErrors)[0];
+        if (firstErrorField) {
+          let element: HTMLElement | null = null;
+          if (firstErrorField === 'contributionTypes' || firstErrorField === 'captcha') {
+            element = document.querySelector(`[data-field="${firstErrorField}"]`) as HTMLElement;
+          } else if (firstErrorField === 'agreement1' || firstErrorField === 'agreement2') {
+            element = document.querySelector(`[data-field="${firstErrorField}"]`) as HTMLElement;
+          } else {
+            element = document.querySelector(`[name="${firstErrorField}"]`) as HTMLElement;
+          }
+          element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const strapiUrl = import.meta.env.VITE_STRAPI_URL;
+      const strapiToken = import.meta.env.VITE_STRAPI_API_TOKEN;
+      
+      // Debug: log env variables (remove in production if needed)
+      console.log('🔍 Strapi Config Check:', {
+        url: strapiUrl ? '✅ Set' : '❌ Missing',
+        token: strapiToken ? '✅ Set' : '❌ Missing',
+        urlValue: strapiUrl || 'undefined',
+        tokenValue: strapiToken ? `${strapiToken.substring(0, 10)}...` : 'undefined'
+      });
+      
+      if (!strapiUrl || !strapiToken) {
+        throw new Error('Strapi configuration is missing. Please check environment variables.');
+      }
+
+      // Prepare data for Strapi API
+      const payload = {
+        data: {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || null,
+          organization: formData.organization || null,
+          contributionTypes: formData.contributionTypes,
+          skills: formData.skills,
+          timeCommitment: formData.timeCommitment || null,
+          referralLink: formData.referralLink || null,
+          notes: formData.notes || null,
+        },
+      };
+
+      const response = await fetch(`${strapiUrl}/api/donate-submissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${strapiToken}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // Log response for debugging
+      console.log('📡 Strapi API Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries()),
+      });
+
+      if (!response.ok) {
+        let errorMessage = `Server error: ${response.status}`;
+        
+        try {
+          const errorData = await response.json();
+          console.error('❌ Strapi API Error Data:', errorData);
+          
+          // Handle different error formats from Strapi
+          if (errorData.error) {
+            errorMessage = errorData.error.message || errorData.error.name || errorMessage;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
+          } else if (Array.isArray(errorData.data)) {
+            // Strapi validation errors format
+            const validationErrors = errorData.data.map((err: any) => 
+              `${err.path?.join('.') || 'field'}: ${err.message || err.error || 'Invalid'}`
+            ).join(', ');
+            errorMessage = `Validation errors: ${validationErrors}`;
+          }
+        } catch (parseError) {
+          // Response is not JSON, try to get text
+          try {
+            const errorText = await response.text();
+            console.error('❌ Strapi API Error Text:', errorText);
+            errorMessage = errorText || `Server error: ${response.status} ${response.statusText}`;
+          } catch (textError) {
+            console.error('❌ Could not parse error response:', textError);
+            errorMessage = `Server error: ${response.status} ${response.statusText}`;
+          }
+        }
+        
+        throw new Error(errorMessage);
+      }
+
+      const result = await response.json();
+      console.log('✅ Form submitted successfully:', result);
+      
       setIsSubmitting(false);
       setSubmitSuccess(true);
-    }, 1500);
+      
+      // Reset form after success
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        organization: '',
+        contributionTypes: [],
+        skills: [],
+        timeCommitment: '',
+        referralLink: '',
+        notes: '',
+        agreement1: false,
+        agreement2: false,
+      });
+      setCaptchaVerified(false);
+      setErrors({});
+    } catch (error) {
+      console.error('❌ Error submitting form:', error);
+      setIsSubmitting(false);
+      
+      // Better error handling with detailed messages
+      let errorMessage = t('donate.form.error.message');
+      
+      if (error instanceof Error) {
+        const errorMsg = error.message;
+        
+        // Network/Connection errors
+        if (errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
+          errorMessage = 'Không thể kết nối đến Strapi. Vui lòng kiểm tra URL và đảm bảo Strapi đang chạy.';
+        }
+        // Configuration errors
+        else if (errorMsg.includes('configuration is missing')) {
+          errorMessage = 'Vui lòng cấu hình Strapi trong file .env (VITE_STRAPI_URL và VITE_STRAPI_API_TOKEN)';
+        }
+        // Permission errors
+        else if (errorMsg.includes('403') || errorMsg.includes('Forbidden')) {
+          errorMessage = 'Lỗi quyền truy cập. Vui lòng kiểm tra API Token và Permissions trong Strapi (Public role cần có quyền "create").';
+        }
+        // Not found errors
+        else if (errorMsg.includes('404') || errorMsg.includes('Not Found')) {
+          errorMessage = 'Không tìm thấy API endpoint. Vui lòng kiểm tra:\n1. URL đúng format (không có /api ở cuối)\n2. Content Type "donate-submission" đã tạo trong Strapi';
+        }
+        // Validation errors from Strapi
+        else if (errorMsg.includes('Validation errors')) {
+          errorMessage = errorMsg; // Show detailed validation errors
+        }
+        // Other errors
+        else {
+          errorMessage = errorMsg;
+        }
+      }
+      
+      // Show error message to user
+      alert(errorMessage);
+    }
   };
 
   const contributionTypeCards = [
@@ -228,7 +422,7 @@ export const Donate = () => {
                       {/* Full Name */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          {t('donate.form.fields.fullName')}
+                          {t('donate.form.fields.fullName')} <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -241,17 +435,21 @@ export const Donate = () => {
                             name="fullName"
                             value={formData.fullName}
                             onChange={handleInputChange}
-                            className="pl-10 w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className={`pl-10 w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+                              errors.fullName ? 'border-red-500' : 'border-gray-300'
+                            }`}
                             placeholder={t('donate.form.fields.fullNamePlaceholder')}
-                            required
                           />
                         </div>
+                        {errors.fullName && (
+                          <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+                        )}
                       </div>
 
                       {/* Email */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          {t('donate.form.fields.email')}
+                          {t('donate.form.fields.email')} <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -264,11 +462,15 @@ export const Donate = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="pl-10 w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className={`pl-10 w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+                              errors.email ? 'border-red-500' : 'border-gray-300'
+                            }`}
                             placeholder={t('donate.form.fields.emailPlaceholder')}
-                            required
                           />
                         </div>
+                        {errors.email && (
+                          <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                        )}
                       </div>
 
                       {/* Phone */}
@@ -309,9 +511,9 @@ export const Donate = () => {
                       </div>
 
                       {/* Contribution Types */}
-                      <div>
+                      <div data-field="contributionTypes">
                         <label className="block text-sm font-medium text-gray-700 mb-3">
-                          {t('donate.form.fields.contributionTypes')}
+                          {t('donate.form.fields.contributionTypes')} <span className="text-red-500">*</span>
                         </label>
                         <div className="space-y-2">
                           {contributionTypeCards.map((card) => (
@@ -326,6 +528,9 @@ export const Donate = () => {
                             </label>
                           ))}
                         </div>
+                        {errors.contributionTypes && (
+                          <p className="mt-1 text-sm text-red-600">{errors.contributionTypes}</p>
+                        )}
                       </div>
 
                       {/* Skills */}
@@ -401,39 +606,68 @@ export const Donate = () => {
                       </div>
 
                       {/* Agreements */}
-                      <div className="space-y-3">
-                        <label className="flex items-start gap-3 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={formData.agreement1}
-                            onChange={() => handleAgreementChange('agreement1')}
-                            className="w-5 h-5 mt-0.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                            required
-                          />
-                          <span className="text-sm text-gray-700">{t('donate.form.agreement1')}</span>
-                        </label>
-                        <label className="flex items-start gap-3 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={formData.agreement2}
-                            onChange={() => handleAgreementChange('agreement2')}
-                            className="w-5 h-5 mt-0.5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                            required
-                          />
-                          <span className="text-sm text-gray-700">{t('donate.form.agreement2')}</span>
-                        </label>
+                      <div className="space-y-3" data-field="agreements">
+                        <div data-field="agreement1">
+                          <label className="flex items-start gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={formData.agreement1}
+                              onChange={() => handleAgreementChange('agreement1')}
+                              className={`w-5 h-5 mt-0.5 text-blue-600 rounded focus:ring-blue-500 ${
+                                errors.agreement1 ? 'border-red-500' : 'border-gray-300'
+                              }`}
+                            />
+                            <span className={`text-sm ${errors.agreement1 ? 'text-red-600' : 'text-gray-700'}`}>
+                              {t('donate.form.agreement1')} <span className="text-red-500">*</span>
+                            </span>
+                          </label>
+                          {errors.agreement1 && (
+                            <p className="mt-1 ml-8 text-sm text-red-600">{errors.agreement1}</p>
+                          )}
+                        </div>
+                        <div data-field="agreement2">
+                          <label className="flex items-start gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={formData.agreement2}
+                              onChange={() => handleAgreementChange('agreement2')}
+                              className={`w-5 h-5 mt-0.5 text-blue-600 rounded focus:ring-blue-500 ${
+                                errors.agreement2 ? 'border-red-500' : 'border-gray-300'
+                              }`}
+                            />
+                            <span className={`text-sm ${errors.agreement2 ? 'text-red-600' : 'text-gray-700'}`}>
+                              {t('donate.form.agreement2')} <span className="text-red-500">*</span>
+                            </span>
+                          </label>
+                          {errors.agreement2 && (
+                            <p className="mt-1 ml-8 text-sm text-red-600">{errors.agreement2}</p>
+                          )}
+                        </div>
                       </div>
 
-                      {/* CAPTCHA Placeholder */}
-                      <div className="p-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 text-center">
-                        <p className="text-xs text-gray-500">{t('donate.form.captchaPlaceholder')}</p>
+                      {/* CAPTCHA */}
+                      <div data-field="captcha">
+                        {errors.captcha && (
+                          <p className="mb-2 text-sm text-red-600">{errors.captcha}</p>
+                        )}
+                        <Captcha onVerify={(isValid) => {
+                          setCaptchaVerified(isValid);
+                          // Clear error when verified
+                          if (isValid && errors.captcha) {
+                            setErrors(prev => {
+                              const newErrors = { ...prev };
+                              delete newErrors.captcha;
+                              return newErrors;
+                            });
+                          }
+                        }} />
                       </div>
 
                       {/* Submit Button */}
                       <div className="flex items-center justify-between pt-4">
                         <button
                           type="submit"
-                          disabled={isSubmitting || !formData.agreement1 || !formData.agreement2}
+                          disabled={isSubmitting || !formData.agreement1 || !formData.agreement2 || !captchaVerified}
                           className="px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                         >
                           {isSubmitting ? t('donate.form.submitting') : t('donate.form.submit')}

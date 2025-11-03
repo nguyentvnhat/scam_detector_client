@@ -16,6 +16,7 @@ const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: 
 const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
 const FAQ = lazy(() => import('./pages/FAQ').then(module => ({ default: module.FAQ })));
 const Donate = lazy(() => import('./pages/Donate').then(module => ({ default: module.Donate })));
+const Share = lazy(() => import('./pages/Share').then(module => ({ default: module.Share })));
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
 
 // Loading fallback component
@@ -71,6 +72,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/share/:id" element={<Share />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

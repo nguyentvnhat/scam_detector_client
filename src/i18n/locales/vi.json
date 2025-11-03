@@ -142,7 +142,15 @@
       "Previous pattern match": "Khớp với mẫu trước đó",
       "Risk assessment": "Đánh giá rủi ro",
       "Summary": "Tóm tắt"
-    }
+    },
+    "share": {
+      "title": "Chia sẻ kết quả",
+      "description": "Chia sẻ kết quả phân tích với bạn bè",
+      "linkCopied": "Đã sao chép link!",
+      "notFound": "Không tìm thấy kết quả chia sẻ",
+      "backToHome": "Về trang chủ"
+    },
+    "safe": "An toàn"
   },
   "footer": {
     "description": "Bảo vệ bạn khỏi lừa đảo qua giọng nói với công nghệ AI tiên tiến",
@@ -654,10 +662,22 @@
       "submit": "Gửi đăng ký đóng góp",
       "submitting": "Đang gửi...",
       "support": "Cần hỗ trợ? Liên hệ",
-      "supportEmail": "hello@blacklist.vn",
+      "supportEmail": "info@blacklist.vn",
       "success": {
         "title": "Đăng ký thành công!",
         "message": "Cảm ơn bạn đã đóng góp. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể."
+      },
+      "validation": {
+        "fullNameRequired": "Vui lòng nhập họ và tên",
+        "emailRequired": "Vui lòng nhập email",
+        "emailInvalid": "Email không hợp lệ",
+        "contributionTypesRequired": "Vui lòng chọn ít nhất một hình thức đóng góp",
+        "agreement1Required": "Vui lòng xác nhận đồng ý với điều khoản thứ nhất",
+        "agreement2Required": "Vui lòng xác nhận đồng ý với điều khoản thứ hai",
+        "captchaRequired": "Vui lòng xác minh CAPTCHA trước khi gửi form"
+      },
+      "error": {
+        "message": "Có lỗi xảy ra khi gửi form. Vui lòng thử lại sau hoặc liên hệ info@blacklist.vn"
       }
     }
   }
