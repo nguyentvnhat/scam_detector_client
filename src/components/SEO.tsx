@@ -19,7 +19,7 @@ export const SEO = ({
   const { t, i18n } = useTranslation();
   
   const defaultTitle = `${t('common.appName')} - ${t('common.tagline')}`;
-  const defaultDescription = t('about.paragraph1');
+  const defaultDescription = t('landingAbout.paragraph1');
   
   const finalTitle = title || defaultTitle;
   const finalDescription = (description || defaultDescription).substring(0, 200); // Limit description length

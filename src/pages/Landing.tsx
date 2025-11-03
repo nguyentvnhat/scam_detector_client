@@ -1,9 +1,10 @@
-import { lazy, Suspense, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { BackToTop } from '../components/BackToTop';
 import { FileUploader } from '../components/FileUploader';
 import { ResultCard } from '../components/ResultCard';
 import { Captcha } from '../components/Captcha';
@@ -11,9 +12,6 @@ import { SEO } from '../components/SEO';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
 import { isAuthenticated } from '../utils/auth';
 import { saveFile } from '../utils/storage';
-
-// Lazy load HeroIllustration for better performance
-const HeroIllustration = lazy(() => import('../components/HeroIllustration').then(module => ({ default: module.HeroIllustration })));
 
 export const Landing = () => {
   const { t } = useTranslation();
@@ -141,29 +139,23 @@ export const Landing = () => {
     },
   ];
 
-  const handleScrollTo = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
         title={`${t('common.appName')} - ${t('common.tagline')}`}
-        description={t('about.paragraph1')}
+        description={t('landingAbout.paragraph1')}
       />
       <Navbar />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-          {/* Animated background gradients */}
+          {/* Simplified background gradient */}
           <div className="absolute inset-0 opacity-10">
             <motion.div
               className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"
               animate={{
                 x: [0, 50, 0],
                 y: [0, 50, 0],
-                scale: [1, 1.1, 1],
               }}
               transition={{
                 duration: 8,
@@ -171,64 +163,17 @@ export const Landing = () => {
                 ease: "easeInOut",
               }}
             />
-            <motion.div
-              className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"
-              animate={{
-                x: [0, -50, 0],
-                y: [0, -50, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
           </div>
           
-          {/* Floating particles */}
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white/30 rounded-full"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-          
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div className="text-center lg:text-left">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-6"
-                >
-                  <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
-                    {t('hero.badge')}
-                  </span>
-                </motion.div>
-                
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight"
+                  transition={{ duration: 0.6 }}
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
                 >
                   {t('hero.title')}
                 </motion.h1>
@@ -236,102 +181,65 @@ export const Landing = () => {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-2 md:mb-4 font-light"
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 font-light"
                 >
                   {t('hero.subtitle')}
-                </motion.p>
-                
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white mb-8 md:mb-12 font-semibold"
-                >
-                  {t('hero.highlight')}
+                  {t('hero.highlight') && <span className="text-white font-semibold"> {t('hero.highlight')}</span>}
                 </motion.p>
                 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <motion.div
+                  <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      const scanSection = document.getElementById('scan');
+                      if (scanSection) {
+                        scanSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 font-semibold rounded-xl shadow-xl text-base sm:text-lg inline-flex items-center gap-2"
                   >
-                    <motion.button
-                      onClick={() => {
-                        const scanSection = document.getElementById('scan');
-                        if (scanSection) {
-                          scanSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }}
-                      className="relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 font-semibold rounded-xl overflow-hidden shadow-xl text-base sm:text-lg text-center inline-block group"
+                    {t('hero.ctaPrimary')}
+                    <motion.svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
                     >
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        {t('hero.ctaPrimary')}
-                        <motion.svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </motion.svg>
-                      </span>
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-gray-100 to-white"
-                        initial={{ x: '-100%' }}
-                        whileHover={{ x: '100%' }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    </motion.button>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <button 
-                      onClick={() => handleScrollTo('about')}
-                      className="relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white/80 text-white font-semibold rounded-xl hover:border-white hover:bg-white/10 transition-all text-base sm:text-lg overflow-hidden group"
-                    >
-                      <span className="relative z-10">{t('hero.ctaSecondary')}</span>
-                      <motion.div
-                        className="absolute inset-0 bg-white/10"
-                        initial={{ x: '-100%' }}
-                        whileHover={{ x: '0%' }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </button>
-                  </motion.div>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </motion.svg>
+                  </motion.button>
                 </motion.div>
               </div>
 
-              {/* Right Column - Hero Illustration */}
-              <div className="hidden lg:block">
-                <Suspense fallback={
-                  <div className="flex items-center justify-center h-full min-h-[400px]">
-                    <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  </div>
-                }>
-                  <HeroIllustration />
-                </Suspense>
+              {/* Right Column - YouTube Video */}
+              <div className="mt-8 lg:mt-0">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="relative aspect-video rounded-xl overflow-hidden shadow-2xl bg-gray-900 border-2 border-white/20"
+                >
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${import.meta.env.VITE_YOUTUBE_VIDEO_ID || 'YOUR_VIDEO_ID'}`}
+                    title="Hướng dẫn sử dụng Blacklist.vn"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </motion.div>
+                <p className="text-center text-sm text-gray-400 mt-3">
+                  {t('tutorial.note', { defaultValue: 'Nhấp vào video để xem hướng dẫn chi tiết' })}
+                </p>
               </div>
-            </div>
-
-            {/* Mobile Hero Illustration - Below text on mobile */}
-            <div className="lg:hidden mt-8">
-              <Suspense fallback={
-                <div className="flex items-center justify-center h-full min-h-[300px]">
-                  <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
-                </div>
-              }>
-                <HeroIllustration />
-              </Suspense>
             </div>
           </div>
         </section>
@@ -610,7 +518,7 @@ export const Landing = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-6 md:mb-8 px-2"
               >
-                {t('about.paragraph1')}
+                {t('landingAbout.paragraph1')}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -619,7 +527,7 @@ export const Landing = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2"
               >
-                {t('about.paragraph2')}
+                {t('landingAbout.paragraph2')}
               </motion.p>
             </motion.div>
           </div>
@@ -968,6 +876,7 @@ export const Landing = () => {
           </div>
         </section>
       </main>
+      <BackToTop />
       <Footer />
     </div>
   );

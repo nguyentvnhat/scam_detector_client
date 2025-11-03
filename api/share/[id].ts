@@ -91,6 +91,7 @@ export default async function handler(
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:secure_url" content="${imageUrl}" />
   <meta property="og:site_name" content="Blacklist.vn" />
   <meta property="og:locale" content="vi_VN" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -103,6 +104,7 @@ export default async function handler(
   <meta name="twitter:image" content="${imageUrl}" />
   <meta name="twitter:image:alt" content="${escapedTitle}" />
   <meta name="twitter:site" content="@blacklistvn" />
+  <meta name="twitter:creator" content="@blacklistvn" />
   
   <!-- Additional SEO -->
   <meta name="theme-color" content="${flagged ? '#DC2626' : '#059669'}" />

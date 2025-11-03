@@ -9,13 +9,13 @@
   },
   "hero": {
     "badge": "🛡️ Protect yourself from voice scams",
-    "title": "Blacklist",
-    "subtitle": "Detect scam calls with",
-    "highlight": "Artificial Intelligence Technology",
+    "title": "Protect yourself from phone call scams",
+    "subtitle": "Detect scams in seconds with AI technology. Upload an audio file to get instant risk analysis.",
+    "highlight": "",
     "ctaPrimary": "Start checking now",
     "ctaSecondary": "Learn more"
   },
-  "about": {
+  "landingAbout": {
     "title": "About us",
     "paragraph1": "Blacklist is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
     "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
@@ -639,6 +639,11 @@
         "message": "An error occurred while submitting the form. Please try again later or contact hello@blacklist.vn"
       }
     }
+  },
+  "tutorial": {
+    "title": "How to Use",
+    "description": "Watch our tutorial video to learn how to use Blacklist.vn to protect yourself from voice scams",
+    "note": "Click on the video to watch the detailed tutorial"
   }
 }
 

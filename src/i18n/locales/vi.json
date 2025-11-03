@@ -9,13 +9,13 @@
   },
   "hero": {
     "badge": "🛡️ Bảo vệ bạn khỏi lừa đảo qua giọng nói",
-    "title": "Blacklist",
-    "subtitle": "Phát hiện cuộc gọi lừa đảo với",
-    "highlight": "Công nghệ Trí tuệ Nhân tạo",
+    "title": "Bảo vệ bạn khỏi lừa đảo qua cuộc gọi",
+    "subtitle": "Phát hiện lừa đảo trong vòng vài giây với công nghệ AI. Tải file ghi âm để nhận phân tích rủi ro ngay lập tức.",
+    "highlight": "",
     "ctaPrimary": "Bắt đầu kiểm tra ngay",
     "ctaSecondary": "Tìm hiểu thêm"
   },
-  "about": {
+  "landingAbout": {
     "title": "Về chúng tôi",
     "paragraph1": "Blacklist là nền tảng công nghệ tiên tiến sử dụng trí tuệ nhân tạo để bảo vệ người dùng khỏi các cuộc gọi lừa đảo. Chúng tôi hiểu rằng lừa đảo qua điện thoại đang trở thành mối đe dọa lớn tại Việt Nam, với hàng nghìn người bị mất tiền mỗi năm.",
     "paragraph2": "Với công nghệ nhận diện giọng nói AI và machine learning, chúng tôi phân tích nội dung cuộc gọi, phát hiện các mẫu lừa đảo phổ biến và đánh giá mức độ rủi ro để giúp bạn đưa ra quyết định an toàn. Mục tiêu của chúng tôi là tạo ra một lá chắn bảo vệ cho mọi người dùng Việt Nam."
@@ -680,6 +680,11 @@
         "message": "Có lỗi xảy ra khi gửi form. Vui lòng thử lại sau hoặc liên hệ info@blacklist.vn"
       }
     }
+  },
+  "tutorial": {
+    "title": "Hướng dẫn sử dụng",
+    "description": "Xem video hướng dẫn cách sử dụng Blacklist.vn để bảo vệ bạn khỏi lừa đảo qua giọng nói",
+    "note": "Nhấp vào video để xem hướng dẫn chi tiết"
   }
 }
 
