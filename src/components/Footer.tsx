@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 
 // Team members data - moved outside component for performance
@@ -81,8 +82,8 @@ export const Footer = memo(() => {
             <h4 className="font-semibold mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">{t('footer.contact')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.privacy')}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t('footer.terms')}</a></li>
+              <li><Link to="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</Link></li>
             </ul>
           </div>
           

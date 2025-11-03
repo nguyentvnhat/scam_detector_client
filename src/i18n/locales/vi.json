@@ -222,6 +222,123 @@
       "point3": "File audio sẽ được tự động tải lên và phân tích bởi hệ thống AI.",
       "point4": "Kết quả sẽ hiển thị độ tin cậy và lý do phân tích trong vài giây."
     }
+  },
+  "privacy": {
+    "title": "Chính sách bảo mật",
+    "lastUpdated": "Cập nhật lần cuối",
+    "backToHome": "Quay về trang chủ",
+    "intro": {
+      "title": "Tuyên bố cam kết",
+      "content1": "Blacklist là một dự án cộng đồng được xây dựng với mục tiêu duy nhất là bảo vệ người dùng Việt Nam khỏi các cuộc gọi lừa đảo. Chúng tôi cam kết tuyệt đối không thu thập, lưu trữ hay chia sẻ bất kỳ thông tin cá nhân nào của người dùng.",
+      "content2": "Dự án này phục vụ mục đích cộng đồng, tuân thủ nghiêm ngặt các quy định về bảo mật thông tin cá nhân theo pháp luật Việt Nam."
+    },
+    "purpose": {
+      "title": "Mục đích sử dụng",
+      "content1": "Blacklist được phát triển với các mục đích sau:",
+      "point1": "Phục vụ cộng đồng: Cung cấp công cụ giúp người dùng phát hiện cuộc gọi lừa đảo",
+      "point2": "Giáo dục người dùng: Nâng cao nhận thức về các chiêu trò lừa đảo qua điện thoại",
+      "point3": "Bảo vệ cộng đồng: Góp phần giảm thiểu thiệt hại do lừa đảo gây ra"
+    },
+    "dataCollection": {
+      "title": "Thu thập và lưu trữ dữ liệu",
+      "warning": "Cam kết không lưu trữ dữ liệu",
+      "warningContent": "Chúng tôi cam kết tuyệt đối KHÔNG lưu trữ bất kỳ dữ liệu nào của người dùng lên máy chủ hay cơ sở dữ liệu. Tất cả thông tin chỉ được lưu trữ tạm thời trên trình duyệt của bạn.",
+      "content1": "Blacklist hoạt động hoàn toàn trên trình duyệt của bạn (client-side). Tất cả dữ liệu được lưu trữ cục bộ trên thiết bị của bạn thông qua các công nghệ web standard:",
+      "localStorage": "Lưu trữ cục bộ (localStorage)",
+      "localStoragePoint1": "Email người dùng (nếu đăng nhập) - chỉ lưu trên trình duyệt của bạn",
+      "localStoragePoint2": "Thông tin hồ sơ cá nhân (tên, email) - chỉ lưu trên trình duyệt của bạn",
+      "localStoragePoint3": "Lịch sử file đã phân tích - chỉ lưu trên trình duyệt của bạn"
+    },
+    "dataUsage": {
+      "title": "Cách sử dụng dữ liệu",
+      "content1": "Do tất cả dữ liệu được lưu trữ cục bộ trên trình duyệt của bạn, chúng tôi không thể và không bao giờ sử dụng dữ liệu của bạn cho bất kỳ mục đích nào. Dữ liệu của bạn:",
+      "allowed": {
+        "title": "Được phép",
+        "point1": "Chỉ được sử dụng trên trình duyệt của bạn",
+        "point2": "Giúp bạn quản lý lịch sử phân tích của mình",
+        "point3": "Cải thiện trải nghiệm sử dụng cá nhân của bạn"
+      },
+      "notAllowed": {
+        "title": "Không được phép",
+        "point1": "Không được gửi lên máy chủ hay cơ sở dữ liệu",
+        "point2": "Không được chia sẻ với bất kỳ bên thứ ba nào",
+        "point3": "Không được sử dụng cho mục đích thương mại hay quảng cáo"
+      }
+    },
+    "compliance": {
+      "title": "Tuân thủ pháp luật Việt Nam",
+      "content1": "Blacklist tuân thủ nghiêm ngặt các quy định về bảo vệ thông tin cá nhân theo pháp luật Việt Nam, bao gồm:",
+      "laws": {
+        "title": "Các văn bản pháp luật liên quan",
+        "point1": "Luật An toàn Thông tin Mạng số 86/2015/QH13",
+        "point2": "Nghị định 13/2023/NĐ-CP về Bảo vệ dữ liệu cá nhân",
+        "point3": "Thông tư số 20/2017/TT-BTTTT của Bộ Thông tin và Truyền thông"
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "content1": "Nếu bạn có bất kỳ câu hỏi nào về chính sách bảo mật này, vui lòng liên hệ với chúng tôi:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Cam kết cuối cùng",
+      "content": "Chúng tôi cam kết tiếp tục duy trì nguyên tắc không lưu trữ dữ liệu người dùng. Dự án này sẽ luôn là một công cụ phục vụ cộng đồng, không có mục đích thương mại hay thu thập dữ liệu. Mọi thay đổi về chính sách bảo mật sẽ được thông báo rõ ràng trên trang web này."
+    }
+  },
+  "terms": {
+    "title": "Điều khoản sử dụng",
+    "lastUpdated": "Cập nhật lần cuối",
+    "backToHome": "Quay về trang chủ",
+    "intro": {
+      "title": "Giới thiệu",
+      "content1": "Chào mừng bạn đến với Blacklist - một dự án cộng đồng được xây dựng để bảo vệ người dùng Việt Nam khỏi các cuộc gọi lừa đảo. Bằng việc sử dụng dịch vụ này, bạn đồng ý tuân thủ các điều khoản sau đây.",
+      "content2": "Dự án này được phát triển với mục đích phục vụ cộng đồng, không có mục đích thương mại. Việc sử dụng dịch vụ phải tuân thủ pháp luật Việt Nam."
+    },
+    "acceptance": {
+      "title": "Chấp nhận điều khoản",
+      "content1": "Bằng việc truy cập và sử dụng Blacklist, bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý tuân thủ các điều khoản sử dụng này. Nếu bạn không đồng ý với bất kỳ phần nào của các điều khoản này, vui lòng không sử dụng dịch vụ."
+    },
+    "service": {
+      "title": "Mô tả dịch vụ",
+      "content1": "Blacklist cung cấp các dịch vụ sau:",
+      "point1": "Phân tích audio để phát hiện các dấu hiệu lừa đảo tiềm ẩn",
+      "point2": "Cung cấp thông tin và cảnh báo về mức độ rủi ro",
+      "point3": "Giáo dục và nâng cao nhận thức về các chiêu trò lừa đảo"
+    },
+    "responsibilities": {
+      "title": "Trách nhiệm người dùng",
+      "content1": "Khi sử dụng Blacklist, bạn có trách nhiệm:",
+      "point1": "Sử dụng dịch vụ một cách hợp pháp và phù hợp với mục đích của nó",
+      "point2": "Không sử dụng dịch vụ để thực hiện các hoạt động bất hợp pháp hoặc gian lận",
+      "point3": "Chịu trách nhiệm về các file audio bạn upload và đảm bảo bạn có quyền sử dụng chúng",
+      "point4": "Không cố gắng can thiệp, phá vỡ hoặc làm gián đoạn dịch vụ"
+    },
+    "limitations": {
+      "title": "Giới hạn trách nhiệm",
+      "warning": "Cảnh báo quan trọng",
+      "warningContent": "Blacklist là một công cụ hỗ trợ và không thể đảm bảo 100% độ chính xác. Kết quả phân tích chỉ mang tính chất tham khảo và không thay thế cho việc phán đoán của con người.",
+      "content1": "Chúng tôi không chịu trách nhiệm về:",
+      "point1": "Bất kỳ thiệt hại nào phát sinh từ việc sử dụng hoặc không thể sử dụng dịch vụ",
+      "point2": "Các quyết định được đưa ra dựa trên kết quả phân tích của hệ thống",
+      "point3": "Độ chính xác hoặc đầy đủ của thông tin được cung cấp"
+    },
+    "intellectual": {
+      "title": "Sở hữu trí tuệ",
+      "content1": "Tất cả nội dung, mã nguồn, thiết kế và các tài sản khác của Blacklist là tài sản của dự án cộng đồng này. Bạn không được sao chép, phân phối hoặc sử dụng lại mà không có sự cho phép trước bằng văn bản."
+    },
+    "modifications": {
+      "title": "Thay đổi điều khoản",
+      "content1": "Chúng tôi có quyền sửa đổi các điều khoản này bất cứ lúc nào. Các thay đổi sẽ có hiệu lực ngay sau khi được đăng tải trên trang web. Việc bạn tiếp tục sử dụng dịch vụ sau khi các điều khoản được cập nhật đồng nghĩa với việc bạn chấp nhận các thay đổi đó."
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "content1": "Nếu bạn có bất kỳ câu hỏi nào về các điều khoản sử dụng này, vui lòng liên hệ với chúng tôi:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Lời kết",
+      "content": "Cảm ơn bạn đã sử dụng Blacklist. Dự án này được xây dựng để phục vụ cộng đồng và bảo vệ người dùng Việt Nam khỏi lừa đảo. Chúng tôi cam kết duy trì một dịch vụ minh bạch, không thu thập dữ liệu và phục vụ lợi ích công cộng."
+    }
   }
 }
 

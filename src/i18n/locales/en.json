@@ -222,6 +222,123 @@
       "point3": "The audio file will be automatically uploaded and analyzed by the AI system.",
       "point4": "Results will show confidence score and reasoning within a few seconds."
     }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "backToHome": "Back to Home",
+    "intro": {
+      "title": "Commitment Statement",
+      "content1": "Blacklist is a community project built with the sole purpose of protecting Vietnamese users from scam calls. We absolutely commit to not collecting, storing, or sharing any personal information of users.",
+      "content2": "This project serves community purposes, strictly complying with personal data protection regulations under Vietnamese law."
+    },
+    "purpose": {
+      "title": "Purpose of Use",
+      "content1": "Blacklist is developed with the following purposes:",
+      "point1": "Serve the community: Provide tools to help users detect scam calls",
+      "point2": "Educate users: Raise awareness about phone scam tactics",
+      "point3": "Protect the community: Contribute to reducing damage caused by scams"
+    },
+    "dataCollection": {
+      "title": "Data Collection and Storage",
+      "warning": "Commitment to No Data Storage",
+      "warningContent": "We absolutely commit to NOT storing any user data on servers or databases. All information is only temporarily stored on your browser.",
+      "content1": "Blacklist operates entirely on your browser (client-side). All data is stored locally on your device through standard web technologies:",
+      "localStorage": "Local Storage (localStorage)",
+      "localStoragePoint1": "User email (if logged in) - only stored on your browser",
+      "localStoragePoint2": "Personal profile information (name, email) - only stored on your browser",
+      "localStoragePoint3": "Analysis history of uploaded files - only stored on your browser"
+    },
+    "dataUsage": {
+      "title": "How Data is Used",
+      "content1": "Since all data is stored locally on your browser, we cannot and will never use your data for any purpose. Your data:",
+      "allowed": {
+        "title": "Allowed",
+        "point1": "Only used on your browser",
+        "point2": "Help you manage your analysis history",
+        "point3": "Improve your personal user experience"
+      },
+      "notAllowed": {
+        "title": "Not Allowed",
+        "point1": "Not sent to servers or databases",
+        "point2": "Not shared with any third parties",
+        "point3": "Not used for commercial or advertising purposes"
+      }
+    },
+    "compliance": {
+      "title": "Compliance with Vietnamese Law",
+      "content1": "Blacklist strictly complies with personal data protection regulations under Vietnamese law, including:",
+      "laws": {
+        "title": "Relevant Legal Documents",
+        "point1": "Cybersecurity Law No. 86/2015/QH13",
+        "point2": "Decree 13/2023/ND-CP on Personal Data Protection",
+        "point3": "Circular No. 20/2017/TT-BTTTT of the Ministry of Information and Communications"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have any questions about this privacy policy, please contact us:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Final Commitment",
+      "content": "We commit to continuing to maintain the principle of not storing user data. This project will always be a tool serving the community, with no commercial purposes or data collection. Any changes to the privacy policy will be clearly announced on this website."
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated",
+    "backToHome": "Back to Home",
+    "intro": {
+      "title": "Introduction",
+      "content1": "Welcome to Blacklist - a community project built to protect Vietnamese users from scam calls. By using this service, you agree to comply with the following terms.",
+      "content2": "This project is developed for community purposes, with no commercial intent. Use of the service must comply with Vietnamese law."
+    },
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content1": "By accessing and using Blacklist, you acknowledge that you have read, understood, and agree to be bound by these terms of service. If you do not agree with any part of these terms, please do not use the service."
+    },
+    "service": {
+      "title": "Service Description",
+      "content1": "Blacklist provides the following services:",
+      "point1": "Audio analysis to detect potential scam indicators",
+      "point2": "Provide information and warnings about risk levels",
+      "point3": "Educate and raise awareness about scam tactics"
+    },
+    "responsibilities": {
+      "title": "User Responsibilities",
+      "content1": "When using Blacklist, you are responsible for:",
+      "point1": "Using the service legally and in accordance with its intended purpose",
+      "point2": "Not using the service to perform illegal or fraudulent activities",
+      "point3": "Being responsible for the audio files you upload and ensuring you have the right to use them",
+      "point4": "Not attempting to interfere, break, or disrupt the service"
+    },
+    "limitations": {
+      "title": "Limitation of Liability",
+      "warning": "Important Warning",
+      "warningContent": "Blacklist is a support tool and cannot guarantee 100% accuracy. Analysis results are for reference only and do not replace human judgment.",
+      "content1": "We are not responsible for:",
+      "point1": "Any damages arising from the use or inability to use the service",
+      "point2": "Decisions made based on the system's analysis results",
+      "point3": "The accuracy or completeness of information provided"
+    },
+    "intellectual": {
+      "title": "Intellectual Property",
+      "content1": "All content, source code, design, and other assets of Blacklist are the property of this community project. You may not copy, distribute, or reuse without prior written permission."
+    },
+    "modifications": {
+      "title": "Modifications to Terms",
+      "content1": "We reserve the right to modify these terms at any time. Changes will take effect immediately upon posting on the website. Your continued use of the service after the terms are updated means you accept those changes."
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have any questions about these terms of service, please contact us:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Conclusion",
+      "content": "Thank you for using Blacklist. This project is built to serve the community and protect Vietnamese users from scams. We commit to maintaining a transparent service that does not collect data and serves the public interest."
+    }
   }
 }
 

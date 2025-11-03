@@ -9,6 +9,8 @@ const Dashboard = lazy(() => import('./pages/Dashboard').then(module => ({ defau
 const Files = lazy(() => import('./pages/Files').then(module => ({ default: module.Files })));
 const Profile = lazy(() => import('./pages/Profile').then(module => ({ default: module.Profile })));
 const Voice = lazy(() => import('./pages/Voice').then(module => ({ default: module.Voice })));
+const Privacy = lazy(() => import('./pages/Privacy').then(module => ({ default: module.Privacy })));
+const Terms = lazy(() => import('./pages/Terms').then(module => ({ default: module.Terms })));
 
 // Loading fallback component
 const LoadingSpinner = () => (
@@ -55,6 +57,8 @@ function App() {
           }
         />
         <Route path="/voice" element={<Voice />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </Suspense>
   );
