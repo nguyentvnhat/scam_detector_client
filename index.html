@@ -36,10 +36,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Pre-render meta tags for share URLs (before React loads) -->
+    <!-- Note: Share URLs are handled by API route /api/share/[id].ts -->
+    <!-- This script is just a fallback for client-side rendering -->
     <script>
       (function() {
-        // Only for share URLs
+        // Only for share URLs - update meta tags as fallback
         if (window.location.pathname.startsWith('/share/')) {
           const urlParams = new URLSearchParams(window.location.search);
           const score = urlParams.get('s') || '0';
@@ -51,7 +52,7 @@
           const shareUrl = window.location.href;
           const imageUrl = window.location.origin + '/api/og-image?score=' + score + '&flagged=' + (flagged ? '1' : '0');
           
-          // Update or create meta tags for crawlers
+          // Update or create meta tags for crawlers (fallback only)
           function updateMeta(name, content, isProperty) {
             const attr = isProperty ? 'property' : 'name';
             let meta = document.querySelector('meta[' + attr + '="' + name + '"]');

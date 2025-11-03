@@ -4,10 +4,25 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse,
 ) {
+  // Debug logging
+  console.log('🖼️ OG Image API called:', {
+    url: req.url,
+    query: req.query,
+    score: req.query.score,
+    flagged: req.query.flagged,
+  });
+
   const { score = '0', flagged = '0' } = req.query;
   
   const isScam = flagged === '1';
   const riskScore = parseInt(score as string) || 0;
+  
+  console.log('✅ Generating OG image:', {
+    score,
+    flagged,
+    isScam,
+    riskScore,
+  });
   
   // Colors
   const bgColor = isScam ? '#DC2626' : '#059669'; // red or green
