@@ -196,7 +196,7 @@ export const ResultCard = ({ result }: ResultCardProps) => {
   const reasoningResult = formatReasoning(result.transcript || '', t, showAllAnalysis);
   
   // Share functions
-  const handleShare = (platform: 'facebook' | 'twitter' | 'linkedin') => {
+  const handleShare = async (platform: 'facebook' | 'twitter' | 'linkedin') => {
     const score = Math.round(result.riskScore * 100);
     const status = result.flagged ? t('results.isScam') : t('results.safe');
     const text = `${status} - ${t('results.riskScore')}: ${score}% | ${t('common.appName')}`;
@@ -207,7 +207,35 @@ export const ResultCard = ({ result }: ResultCardProps) => {
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
     };
     
-    window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+    // Check if mobile device and Web Share API is available
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const hasWebShare = navigator.share && typeof navigator.share === 'function';
+    
+    // Try Web Share API on mobile first (works better than window.open)
+    if (isMobile && hasWebShare && platform === 'facebook') {
+      try {
+        await navigator.share({
+          title: `${status} - ${t('results.riskScore')}: ${score}%`,
+          text: text,
+          url: shareUrl,
+        });
+        return; // Success, exit early
+      } catch (err) {
+        // User cancelled or error, fall through to window.open
+        if ((err as Error).name !== 'AbortError') {
+          console.log('Web Share API failed, falling back to window.open');
+        }
+      }
+    }
+    
+    // Fallback: Use window.open for all platforms
+    if (isMobile) {
+      // On mobile, open in new tab without size constraints (mobile browsers ignore window size)
+      window.open(shareUrls[platform], '_blank');
+    } else {
+      // On desktop, open in popup window
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+    }
   };
   
   // confidence là số từ 0-1, thể hiện mức độ tin tưởng của hệ thống về kết luận

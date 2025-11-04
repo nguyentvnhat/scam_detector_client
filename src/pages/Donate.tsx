@@ -304,7 +304,7 @@ export const Donate = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900">
+    <div className="min-h-screen flex flex-col bg-gray-900 overflow-x-hidden w-full max-w-full">
       <SEO
         title={`${t('donate.pageTitle')} - ${t('common.appName')}`}
         description={t('donate.pageDescription')}

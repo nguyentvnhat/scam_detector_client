@@ -9,7 +9,7 @@ export const Privacy = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full max-w-full">
       <SEO 
         title={`${t('pagePrivacy.title')} - ${t('common.appName')}`}
         description={t('pagePrivacy.intro.content1')}

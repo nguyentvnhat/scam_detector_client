@@ -63,7 +63,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full max-w-full">
       <SEO 
         title={`${isRegister ? t('pageRegister.title') : t('pageLogin.title')} - ${t('common.appName')}`}
         description={isRegister ? t('pageRegister.description') : t('pageLogin.description')}

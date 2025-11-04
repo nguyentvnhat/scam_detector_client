@@ -10,7 +10,7 @@ export const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full max-w-full">
       <SEO 
         title={`${t('pageNotFound.title')} - ${t('common.appName')}`}
         description={t('pageNotFound.description')}

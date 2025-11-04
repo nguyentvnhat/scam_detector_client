@@ -33,7 +33,7 @@ export default async function handler(
   const status = isScam ? 'LỪA ĐẢO' : 'AN TOÀN';
   
   // Generate SVG image (1200x630 for OG)
-  // Use system fonts that are universally available
+  // Use Arial font which supports Vietnamese characters well
   const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -48,19 +48,19 @@ export default async function handler(
     <circle cx="100" cy="100" r="80" fill="${accentColor}" opacity="0.2"/>
     <circle cx="1100" cy="530" r="100" fill="${accentColor}" opacity="0.2"/>
     
-    <!-- Logo/Brand - using fonts that support Vietnamese -->
-    <text x="600" y="180" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="64" font-weight="bold" fill="${textColor}" text-anchor="middle">BLACKLIST.VN</text>
+    <!-- Logo/Brand -->
+    <text x="600" y="180" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="bold" fill="${textColor}" text-anchor="middle">BLACKLIST.VN</text>
     
     <!-- Status Badge -->
     <rect x="400" y="240" width="400" height="100" rx="50" fill="${accentColor}" opacity="0.3"/>
-    <text x="600" y="305" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="48" font-weight="bold" fill="${textColor}" text-anchor="middle">${status}</text>
+    <text x="600" y="305" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="bold" fill="${textColor}" text-anchor="middle">${status}</text>
     
     <!-- Risk Score - Vietnamese text -->
-    <text x="600" y="400" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="72" font-weight="bold" fill="${textColor}" text-anchor="middle">Điểm rủi ro: ${riskScore}%</text>
-    <text x="600" y="450" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="36" font-weight="normal" fill="${textColor}" text-anchor="middle" opacity="0.9">Risk Score: ${riskScore}%</text>
+    <text x="600" y="400" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="${textColor}" text-anchor="middle">Điểm rủi ro: ${riskScore}%</text>
+    <text x="600" y="450" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="normal" fill="${textColor}" text-anchor="middle" opacity="0.9">Risk Score: ${riskScore}%</text>
     
     <!-- Footer text - Vietnamese -->
-    <text x="600" y="580" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="32" font-weight="normal" fill="${textColor}" text-anchor="middle" opacity="0.8">AI Phát hiện Lừa đảo qua Giọng nói</text>
+    <text x="600" y="580" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="normal" fill="${textColor}" text-anchor="middle" opacity="0.8">AI Phát hiện Lừa đảo qua Giọng nói</text>
   </svg>`;
 
   res.setHeader('Content-Type', 'image/svg+xml');
