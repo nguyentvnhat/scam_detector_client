@@ -379,7 +379,7 @@ export const Landing = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl shadow-lg border-2 border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 p-5 sm:p-6 md:p-8"
+                  className="bg-white rounded-xl shadow-lg border-2 border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 p-4 sm:p-6 md:p-8 w-full overflow-hidden"
                 >
                   <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6 flex items-center gap-2 sm:gap-3">
                     <motion.span

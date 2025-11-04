@@ -17,14 +17,16 @@ i18n
         translation: enTranslations,
       },
     },
+    lng: 'vi', // Mặc định là tiếng Việt
     fallbackLng: 'vi',
     debug: false,
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage'], // Chỉ lấy từ localStorage nếu user đã chọn trước đó
       caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
     },
   });
 

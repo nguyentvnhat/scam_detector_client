@@ -44,7 +44,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl border-2 border-gray-200 p-6 space-y-4"
+      className="bg-white rounded-xl border-2 border-gray-200 p-4 sm:p-6 space-y-4 w-full"
     >
       <div className="text-center">
         <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
@@ -61,9 +61,9 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
       <div className="space-y-4">
         {/* CAPTCHA Display */}
         <div className="flex items-center justify-center">
-          <div className="relative">
-            <div className="bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-gray-300 rounded-lg p-4 min-w-[200px] text-center">
-              <div className="text-2xl font-bold text-gray-800 tracking-wider select-none">
+          <div className="relative w-full max-w-xs">
+            <div className="bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-gray-300 rounded-lg p-3 sm:p-4 text-center w-full">
+              <div className="text-xl sm:text-2xl font-bold text-gray-800 tracking-wider select-none break-words">
                 {captchaText}
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
@@ -72,10 +72,10 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
               onClick={handleRefresh}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="absolute -right-2 -top-2 p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+              className="absolute -right-2 -top-2 p-1.5 sm:p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors"
               title={t('pageCaptcha.refresh')}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
             </motion.button>
@@ -87,13 +87,13 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
           <label htmlFor="captcha-input" className="block text-sm font-medium text-gray-700">
             {t('pageCaptcha.enterCode')}
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               id="captcha-input"
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              className={`flex-1 px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
+              className={`flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all ${
                 isValid === true
                   ? 'border-green-500 bg-green-50'
                   : isValid === false
@@ -108,7 +108,7 @@ export const Captcha = ({ onVerify }: CaptchaProps) => {
               disabled={userInput.length !== 6}
               whileHover={{ scale: userInput.length === 6 ? 1.02 : 1 }}
               whileTap={{ scale: userInput.length === 6 ? 0.98 : 1 }}
-              className={`px-6 py-3 font-medium rounded-lg transition-all ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-lg transition-all whitespace-nowrap flex-shrink-0 ${
                 userInput.length === 6
                   ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
