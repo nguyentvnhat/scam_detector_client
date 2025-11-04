@@ -13,17 +13,10 @@ const translateLabel = (label: string, t: (key: string) => string): string => {
   // Remove colon if present for lookup
   const key = label.replace(':', '').trim();
   
-  // Try exact match first
-  let translationKey = `results.reasoningLabels.${key}`;
-  let translated = t(translationKey);
+  // Normalize key: remove extra spaces, convert to proper case
+  const normalizedKey = key.replace(/\s+/g, ' ').trim();
   
-  // If translation exists (not the same as key), use it
-  if (translated && translated !== translationKey) {
-    return translated + (label.endsWith(':') ? ':' : '');
-  }
-  
-  // Try case-insensitive match
-  const lowerKey = key.toLowerCase();
+  // List of all possible labels (case-insensitive matching)
   const labelKeys = [
     'Context', 'Behavioral indicators', 'Linguistic signals',
     'Emotional tone', 'Social engineering techniques', 'Information sensitivity',
@@ -31,13 +24,32 @@ const translateLabel = (label: string, t: (key: string) => string): string => {
     'Risk assessment', 'Summary'
   ];
   
+  // Try case-insensitive match first
+  const lowerKey = normalizedKey.toLowerCase();
   const matchedKey = labelKeys.find(lk => lk.toLowerCase() === lowerKey);
+  
   if (matchedKey) {
-    translationKey = `results.reasoningLabels.${matchedKey}`;
-    translated = t(translationKey);
+    const translationKey = `results.reasoningLabels.${matchedKey}`;
+    const translated = t(translationKey);
+    // If translation exists and is different from key, use it
     if (translated && translated !== translationKey) {
       return translated + (label.endsWith(':') ? ':' : '');
     }
+    // Debug: log if translation not found
+    if (translated === translationKey) {
+      console.warn('⚠️ Translation not found for label:', matchedKey, 'key:', translationKey);
+    }
+  } else {
+    // Debug: log if no match found
+    console.warn('⚠️ Label not matched:', normalizedKey, 'original:', label);
+  }
+  
+  // Try exact match as fallback
+  const translationKeyExact = `results.reasoningLabels.${normalizedKey}`;
+  const translatedExact = t(translationKeyExact);
+  
+  if (translatedExact && translatedExact !== translationKeyExact) {
+    return translatedExact + (label.endsWith(':') ? ':' : '');
   }
   
   // Fallback to original
@@ -55,17 +67,21 @@ const formatReasoning = (text: string, t: (key: string) => string, showAll: bool
   const lines = processed.split('\n').map(line => line.trim()).filter(line => line);
   
   const regularBullets: string[] = [];
+  const nonBulletLines: string[] = [];
   let summaryHtml = '';
   let regularBulletCount = 0;
   const maxInitialBullets = 3;
   
-  // First pass: separate regular bullets and summary
-  // Only count items that start with "* " (bullets), ignore other lines
+  // First pass: separate regular bullets, summary, and non-bullet lines
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    if (line.startsWith('* ')) {
-      const content = line.substring(2).trim();
+    // Check if line starts with bullet marker (* or -)
+    const isBullet = line.startsWith('* ') || line.startsWith('- ');
+    const bulletContent = isBullet ? (line.startsWith('* ') ? line.substring(2).trim() : line.substring(2).trim()) : null;
+    
+    if (isBullet && bulletContent) {
+      const content = bulletContent;
       const isSummary = content.toLowerCase().startsWith('summary:');
       
       if (isSummary) {
@@ -112,14 +128,37 @@ const formatReasoning = (text: string, t: (key: string) => string, showAll: bool
           </div>`
         );
       }
+    } else {
+      // Non-bullet line - check if it's a label line (e.g., "Context: ..." or "Behavioral indicators: ...")
+      if (line.includes(':')) {
+        const colonIndex = line.indexOf(':');
+        const label = line.substring(0, colonIndex + 1).trim();
+        const description = line.substring(colonIndex + 1).trim();
+        const translatedLabel = translateLabel(label, t);
+        
+        nonBulletLines.push(
+          `<div class="mb-3">
+            <span class="font-semibold text-gray-900">${translatedLabel}</span>
+            ${description ? `<span class="text-gray-700 ml-2">${description}</span>` : ''}
+          </div>`
+        );
+      } else {
+        // Plain text line
+        nonBulletLines.push(`<p class="mb-3 text-gray-700 leading-relaxed">${line}</p>`);
+      }
     }
-    // Ignore non-bullet lines - they don't count and won't be shown separately
   }
   
-  // Build final HTML: show first 3 regular bullets if not showAll, then summary if exists
-  // Only slice the bullet items, not other content
+  // Build final HTML: show non-bullet lines first, then bullets, then summary
   const bulletsToShow = showAll ? regularBullets : regularBullets.slice(0, maxInitialBullets);
-  const finalHtml = bulletsToShow.join('') + (summaryHtml ? summaryHtml : '');
+  const nonBulletHtml = nonBulletLines.join('');
+  const bulletsHtml = bulletsToShow.join('');
+  const finalHtml = nonBulletHtml + bulletsHtml + (summaryHtml ? summaryHtml : '');
+  
+  // If no bullets found, show all non-bullet lines as fallback
+  if (regularBulletCount === 0 && nonBulletLines.length > 0) {
+    return { html: nonBulletHtml, totalItems: 0 };
+  }
   
   return { html: finalHtml, totalItems: regularBulletCount };
 };
@@ -145,7 +184,7 @@ export const ResultCard = ({ result }: ResultCardProps) => {
   }, [result]);
   
   // Format reasoning with show more/less
-  const reasoningResult = formatReasoning(result.transcript, t, showAllAnalysis);
+  const reasoningResult = formatReasoning(result.transcript || '', t, showAllAnalysis);
   
   // Share functions
   const handleShare = (platform: 'facebook' | 'twitter' | 'linkedin') => {
