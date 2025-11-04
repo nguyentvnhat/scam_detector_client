@@ -333,14 +333,14 @@ export const ResultCard = ({ result }: ResultCardProps) => {
         <div className="space-y-3">
           <div className="flex items-center gap-3">
             <motion.div
-              className={`inline-flex items-center px-5 py-3 md:px-6 md:py-4 rounded-xl border-2 shadow-md ${getConfidenceColor(
+              className={`inline-flex items-center justify-center px-6 py-4 md:px-8 md:py-6 rounded-2xl border-4 shadow-xl ${getConfidenceColor(
                 result.riskScore,
                 result.flagged
               )}`}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.08 }}
               transition={{ duration: 0.2 }}
             >
-              <span className="text-2xl md:text-3xl font-bold">{confidencePercent}%</span>
+              <span className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">{confidencePercent}%</span>
             </motion.div>
             <div className="relative group">
               <svg 
