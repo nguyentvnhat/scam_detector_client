@@ -71,6 +71,12 @@ export const SEO = ({
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={finalImage} />
+      <meta name="twitter:image:alt" content={finalTitle} />
+      
+      {/* LinkedIn - uses Open Graph tags, but ensure image is set */}
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/svg+xml" />
       
       {/* Additional SEO */}
       <meta name="theme-color" content="#111827" />

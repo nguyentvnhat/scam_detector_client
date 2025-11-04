@@ -6,6 +6,7 @@ import { saveShareResult } from '../utils/storage';
 
 interface ResultCardProps {
   result: AnalysisResult;
+  showFullAnalysis?: boolean;
 }
 
 // Helper function to translate reasoning labels
@@ -172,15 +173,15 @@ const formatReasoning = (text: string, t: (key: string) => string, showAll: bool
   return { html: finalHtml, totalItems: regularBulletCount };
 };
 
-export const ResultCard = ({ result }: ResultCardProps) => {
+export const ResultCard = ({ result, showFullAnalysis = false }: ResultCardProps) => {
   const { t } = useTranslation();
-  const [showAllAnalysis, setShowAllAnalysis] = useState(false);
+  const [showAllAnalysis, setShowAllAnalysis] = useState(showFullAnalysis);
   const [shareUrl, setShareUrl] = useState<string>('');
   
-  // Reset showAllAnalysis when result changes (new analysis)
+  // Reset showAllAnalysis when result changes (new analysis) or when showFullAnalysis prop changes
   useEffect(() => {
-    setShowAllAnalysis(false);
-  }, [result.transcript]);
+    setShowAllAnalysis(showFullAnalysis);
+  }, [result.transcript, showFullAnalysis]);
   
   // Generate share URL on mount - encode result data in URL for crawlers
   useEffect(() => {
@@ -207,33 +208,17 @@ export const ResultCard = ({ result }: ResultCardProps) => {
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
     };
     
-    // Check if mobile device and Web Share API is available
+    // Check if mobile device
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const hasWebShare = navigator.share && typeof navigator.share === 'function';
     
-    // Try Web Share API on mobile first (works better than window.open)
-    if (isMobile && hasWebShare && platform === 'facebook') {
-      try {
-        await navigator.share({
-          title: `${status} - ${t('results.riskScore')}: ${score}%`,
-          text: text,
-          url: shareUrl,
-        });
-        return; // Success, exit early
-      } catch (err) {
-        // User cancelled or error, fall through to window.open
-        if ((err as Error).name !== 'AbortError') {
-          console.log('Web Share API failed, falling back to window.open');
-        }
-      }
-    }
-    
-    // Fallback: Use window.open for all platforms
+    // On mobile, use direct links to open in-app or browser (consistent behavior)
+    // On desktop, use popup window
     if (isMobile) {
-      // On mobile, open in new tab without size constraints (mobile browsers ignore window size)
+      // Mobile: Open directly in new tab (works for both app and browser)
+      // This ensures consistent behavior across all platforms (Facebook, Twitter, LinkedIn)
       window.open(shareUrls[platform], '_blank');
     } else {
-      // On desktop, open in popup window
+      // Desktop: Open in popup window
       window.open(shareUrls[platform], '_blank', 'width=600,height=400');
     }
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { getShareResult, ShareResult } from '../utils/storage';
+import { getShareResult, ShareResult, getSavedFiles, SavedFile } from '../utils/storage';
 import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -22,16 +22,54 @@ export const Share = () => {
       return;
     }
 
-    const data = getShareResult(id);
+    // Try to get from sessionStorage first
+    let data = getShareResult(id);
+    
+    // If not found in sessionStorage, try localStorage as fallback
     if (!data) {
-      // If not found in sessionStorage, redirect to home
-      navigate('/');
-      return;
+      // Try to find in saved files
+      const savedFiles = getSavedFiles();
+      const savedFile = savedFiles.find((f: SavedFile) => f.id === id);
+      
+      if (savedFile && savedFile.result) {
+        // Found in saved files, use it
+        data = {
+          id: id,
+          result: savedFile.result,
+          createdAt: savedFile.uploadedAt || new Date().toISOString(),
+        };
+      }
+    }
+    
+    // If still not found, try to reconstruct from URL params (for crawlers and direct links)
+    if (!data) {
+      const urlScore = searchParams.get('s');
+      const urlFlagged = searchParams.get('f');
+      
+      if (urlScore && urlFlagged !== null) {
+        // Reconstruct minimal result from URL params
+        const score = parseFloat(urlScore) / 100;
+        const flagged = urlFlagged === '1';
+        
+        data = {
+          id: id,
+          result: {
+            transcript: '', // Will be empty if not in storage
+            riskScore: score,
+            flagged: flagged,
+          },
+          createdAt: new Date().toISOString(),
+        };
+      } else {
+        // No data available, show message instead of redirecting
+        setLoading(false);
+        return;
+      }
     }
 
     setShareData(data);
     setLoading(false);
-  }, [id, navigate]);
+  }, [id, navigate, searchParams]);
 
   if (loading) {
     return (
@@ -153,7 +191,7 @@ export const Share = () => {
             </Link>
           </motion.div>
 
-          <ResultCard result={result} />
+          <ResultCard result={result} showFullAnalysis={true} />
         </div>
       </main>
       <Footer />

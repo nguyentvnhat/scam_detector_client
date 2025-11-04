@@ -106,27 +106,22 @@ export default async function handler(
   <meta name="twitter:site" content="@blacklistvn" />
   <meta name="twitter:creator" content="@blacklistvn" />
   
+  <!-- LinkedIn - uses same Open Graph tags but ensure secure_url -->
+  
   <!-- Additional SEO -->
   <meta name="theme-color" content="${flagged ? '#DC2626' : '#059669'}" />
   <link rel="canonical" href="${shareUrl}" />
   
   <!-- Prevent indexing of share pages by default (they're temporary) -->
   <meta name="robots" content="noindex, nofollow" />
-  
-  <!-- Redirect to SPA after a brief moment for users -->
-  <script>
-    setTimeout(function() {
-      window.location.href = "${shareUrl}";
-    }, 100);
-  </script>
 </head>
-<body>
-  <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; padding: 20px;">
-    <div style="text-align: center; max-width: 600px;">
-      <h1 style="font-size: 2rem; margin-bottom: 1rem; color: ${flagged ? '#DC2626' : '#059669'};">${status}</h1>
-      <p style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #374151;">Điểm rủi ro: <strong>${score}%</strong></p>
-      <p style="color: #6B7280; margin-bottom: 2rem;">Đang chuyển hướng...</p>
-      <a href="${shareUrl}" style="color: #2563EB; text-decoration: none;">Nhấn vào đây nếu không tự động chuyển</a>
+  <body>
+    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; padding: 20px; background: ${flagged ? '#DC2626' : '#059669'};">
+    <div style="text-align: center; max-width: 600px; color: white;">
+      <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: bold;">${status}</h1>
+      <p style="font-size: 1.5rem; margin-bottom: 2rem;">Risk Score: <strong>${score}%</strong></p>
+      <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Loading full results...</p>
+      <a href="${shareUrl}" style="color: white; text-decoration: underline; font-weight: 600;">Click here to view full results</a>
     </div>
   </div>
   <script type="module" src="/src/main.tsx"></script>
