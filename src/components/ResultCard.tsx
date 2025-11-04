@@ -130,20 +130,29 @@ const formatReasoning = (text: string, t: (key: string) => string, showAll: bool
       }
     } else {
       // Non-bullet line - check if it's a label line (e.g., "Context: ..." or "Behavioral indicators: ...")
+      // These lines should be treated as bullets too for display purposes
       if (line.includes(':')) {
         const colonIndex = line.indexOf(':');
         const label = line.substring(0, colonIndex + 1).trim();
         const description = line.substring(colonIndex + 1).trim();
         const translatedLabel = translateLabel(label, t);
         
-        nonBulletLines.push(
-          `<div class="mb-3">
-            <span class="font-semibold text-gray-900">${translatedLabel}</span>
-            ${description ? `<span class="text-gray-700 ml-2">${description}</span>` : ''}
+        // Count as a regular bullet for "show more/less" functionality
+        regularBulletCount++;
+        
+        regularBullets.push(
+          `<div class="mt-3 mb-2.5">
+            <div class="flex items-start gap-2">
+              <span class="text-blue-600 font-semibold mt-1">•</span>
+              <div class="flex-1">
+                <span class="font-semibold text-gray-900">${translatedLabel}</span>
+                ${description ? `<span class="text-gray-700 ml-2">${description}</span>` : ''}
+              </div>
+            </div>
           </div>`
         );
       } else {
-        // Plain text line
+        // Plain text line (no label, no bullet)
         nonBulletLines.push(`<p class="mb-3 text-gray-700 leading-relaxed">${line}</p>`);
       }
     }
