@@ -19,7 +19,7 @@ export const Logo = ({ variant = 'header', className = '' }: LogoProps) => {
           <img 
             src="/logo-blacklist.jpg" 
             alt="BLACKLIST.VN" 
-            className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+            className="h-8 sm:h-10 md:h-12 w-auto max-w-[180px] sm:max-w-[220px] md:max-w-none object-contain"
           />
         </motion.div>
       </Link>

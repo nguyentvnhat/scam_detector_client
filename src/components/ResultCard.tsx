@@ -326,8 +326,8 @@ export const ResultCard = ({ result }: ResultCardProps) => {
                 />
               </svg>
             </motion.div>
-            <div className="flex-1">
-              <p className="text-base md:text-lg font-bold text-red-700">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm sm:text-base md:text-lg font-bold text-red-700 break-words">
                 {t('results.isScam')}
               </p>
             </div>
