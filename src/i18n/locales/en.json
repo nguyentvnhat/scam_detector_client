@@ -107,6 +107,7 @@
     "fileSelected": "Selected",
     "uploadHint": "Drag and drop file here or",
     "uploadHint2": "select file",
+    "uploadButton": "Choose File",
     "uploadSupport": "Audio and video supported",
     "saveHistory": "Save History",
     "saveHistoryDesc": "Login to save your analysis history",

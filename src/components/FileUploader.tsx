@@ -72,26 +72,35 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
     >
       <input
         type="file"
-        accept="audio/*,video/*"
+        accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.mp4,.mov,.3gp,.mpeg,.webm"
         onChange={handleChange}
         className="hidden"
         id="file-upload"
       />
-      <label htmlFor="file-upload" className="cursor-pointer block text-center">
-        <div className="flex flex-col items-center space-y-4">
-          <svg
-            className="w-12 h-12 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      <label 
+        htmlFor="file-upload" 
+        className="cursor-pointer block text-center touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+        style={{ WebkitTapHighlightColor: 'transparent', touchAction: 'manipulation' }}
+      >
+        <div className="flex flex-col items-center space-y-4 w-full">
+          <motion.div
+            whileTap={{ scale: 0.95 }}
+            className="flex flex-col items-center"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            />
-          </svg>
+            <svg
+              className="w-12 h-12 sm:w-14 sm:h-14 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              />
+            </svg>
+          </motion.div>
           {selectedFile ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -115,14 +124,25 @@ export const FileUploader = ({ onFileSelect, selectedFile }: FileUploaderProps) 
               </p>
             </motion.div>
           ) : (
-            <div className="text-center">
-              <p className="text-sm sm:text-base text-gray-700 font-medium mb-2">
+            <div className="text-center w-full">
+              <p className="text-sm sm:text-base text-gray-700 font-medium mb-3">
                 {t('pageDashboard.uploadHint')}{' '}
-                <span className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">{t('pageDashboard.uploadHint2')}</span>
+                <span className="text-blue-600 font-semibold">{t('pageDashboard.uploadHint2')}</span>
               </p>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-xs sm:text-sm text-gray-500 mb-4">
                 {t('pageDashboard.uploadSupport')}
               </p>
+              <motion.button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('file-upload')?.click();
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors text-sm sm:text-base min-h-[44px]"
+              >
+                {t('pageDashboard.uploadButton', { defaultValue: 'Chọn file' })}
+              </motion.button>
             </div>
           )}
         </div>
