@@ -12,6 +12,7 @@ import { SEO } from '../components/SEO';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
 import { isAuthenticated } from '../utils/auth';
 import { saveFile } from '../utils/storage';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Landing = () => {
   const { t } = useTranslation();
@@ -27,6 +28,9 @@ export const Landing = () => {
       alert(t('pageDashboard.selectFile'));
       return;
     }
+
+    // Track file analysis attempt
+    trackEvent('click', 'button', 'analyze_audio', 1);
 
     // Check if user needs to verify CAPTCHA
     if (!skipCaptchaCheck && !isLoggedIn && !captchaVerified) {
@@ -47,6 +51,9 @@ export const Landing = () => {
       const result = await analyzeAudio(selectedFile);
       setAnalysisResult(result);
       
+      // Track successful analysis
+      trackEvent('complete', 'analysis', result.flagged ? 'scam_detected' : 'safe', Math.round(result.riskScore * 100));
+      
       // Save to history if logged in
       if (isLoggedIn) {
         saveFile(selectedFile, result);
@@ -59,6 +66,7 @@ export const Landing = () => {
         }, 5000);
       }
     } catch (error) {
+      trackEvent('error', 'analysis', 'analysis_failed', 0);
       alert(t('pageDashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);

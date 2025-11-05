@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
 import { ResultCard } from './ResultCard';
+import { trackEvent } from './GoogleAnalytics';
 
 interface VoiceRecorderProps {
   maxDuration?: number; // in seconds
@@ -27,17 +28,21 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      stopRecording();
+      // Cleanup recording state
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+      if (countdownRef.current) window.clearInterval(countdownRef.current);
       if (streamRef.current) {
         streamRef.current.getTracks().forEach(track => track.stop());
       }
-      if (timerRef.current) window.clearTimeout(timerRef.current);
-      if (countdownRef.current) window.clearInterval(countdownRef.current);
+      if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+      }
       if (audioUrl) URL.revokeObjectURL(audioUrl);
     };
-  }, [audioUrl]);
+  }, [audioUrl, mediaRecorder, isRecording]);
 
   const startRecording = async () => {
+    trackEvent('click', 'button', 'start_recording', 1);
     try {
       setError(null);
       setResult(null);
@@ -121,6 +126,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
   };
 
   const stopRecording = () => {
+      trackEvent('click', 'button', 'stop_recording', 1);
       if (timerRef.current) {
         window.clearTimeout(timerRef.current);
         timerRef.current = null;
@@ -171,9 +177,13 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
       clearInterval(progressInterval);
       setUploadProgress(100);
       setResult(analysisResult);
+      
+      // Track successful analysis
+      trackEvent('complete', 'analysis', analysisResult.flagged ? 'scam_detected_voice' : 'safe_voice', Math.round(analysisResult.riskScore * 100));
 
     } catch (err) {
       console.error('Error uploading audio:', err);
+      trackEvent('error', 'analysis', 'voice_recording_failed', 0);
       setError(
         err instanceof Error 
           ? err.message 
@@ -263,7 +273,7 @@ export const VoiceRecorder = ({ maxDuration = 15 }: VoiceRecorderProps) => {
                 disabled={isUploading}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 min-w-[200px] justify-center"
+                className="px-4 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 sm:gap-3 w-full sm:w-auto sm:min-w-[200px] justify-center"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />

@@ -2,6 +2,7 @@ import { lazy, Suspense, type ReactNode } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { isAuthenticated } from './utils/auth';
 import { CookieConsent } from './components/CookieConsent';
+import { GoogleAnalytics } from './components/GoogleAnalytics';
 
 // Lazy load pages for better performance
 const Landing = lazy(() => import('./pages/Landing').then(module => ({ default: module.Landing })));
@@ -43,6 +44,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 function App() {
   return (
     <>
+      <GoogleAnalytics />
       <CookieConsent />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>

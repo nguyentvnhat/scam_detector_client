@@ -6,6 +6,7 @@ import { setUserEmail } from '../utils/auth';
 import { saveProfile, getProfile, updateProfile } from '../utils/storage';
 import { Navbar } from '../components/Navbar';
 import { SEO } from '../components/SEO';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Login = () => {
   const { t } = useTranslation();
@@ -20,6 +21,9 @@ export const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    // Track login/register attempt
+    trackEvent('click', 'button', isRegister ? 'register' : 'login', 1);
 
     if (!email || !email.includes('@')) {
         setError(t('pageLogin.error'));
@@ -51,12 +55,14 @@ export const Login = () => {
         fullName: fullName.trim(),
         email: email.trim(),
       });
+      trackEvent('complete', 'user', 'register_success', 1);
     } else if (!isRegister) {
       // If logging in, try to load profile but don't override if exists
       const existingProfile = getProfile();
       if (!existingProfile) {
         updateProfile({ email: email.trim() });
       }
+      trackEvent('complete', 'user', 'login_success', 1);
     }
     
     navigate('/scan');

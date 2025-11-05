@@ -7,6 +7,7 @@ import { SEO } from '../components/SEO';
 import { ResultCard } from '../components/ResultCard';
 import { isAuthenticated } from '../utils/auth';
 import { getSavedFiles, deleteFile, SavedFile } from '../utils/storage';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Files = () => {
   const { t } = useTranslation();
@@ -29,12 +30,14 @@ export const Files = () => {
   };
 
   const handleDelete = (id: string) => {
+    trackEvent('click', 'button', 'delete_file', 1);
     deleteFile(id);
     loadFiles();
     setDeleteConfirm(null);
     if (selectedFile?.id === id) {
       setSelectedFile(null);
     }
+    trackEvent('complete', 'file', 'file_deleted', 1);
   };
 
   const formatDate = (dateString: string) => {

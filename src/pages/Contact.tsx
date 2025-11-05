@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Contact = () => {
   const { t } = useTranslation();
@@ -28,6 +29,9 @@ export const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    // Track contact form submission
+    trackEvent('click', 'button', 'contact_submit', 1);
+
     // Simulate form submission (since we don't have backend)
     // In production, this would send to an API
     await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -37,6 +41,8 @@ export const Contact = () => {
     setSubmitStatus('success');
     setIsSubmitting(false);
     setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    trackEvent('complete', 'form', 'contact_form_success', 1);
 
     // Reset success message after 5 seconds
     setTimeout(() => setSubmitStatus('idle'), 5000);

@@ -115,13 +115,12 @@ export default async function handler(
   <!-- Prevent indexing of share pages by default (they're temporary) -->
   <meta name="robots" content="noindex, nofollow" />
 </head>
-  <body>
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; padding: 20px; background: ${flagged ? '#DC2626' : '#059669'};">
+<body>
+  <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; padding: 20px; background: ${flagged ? '#DC2626' : '#059669'};">
     <div style="text-align: center; max-width: 600px; color: white;">
       <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: bold;">${status}</h1>
       <p style="font-size: 1.5rem; margin-bottom: 2rem;">Risk Score: <strong>${score}%</strong></p>
       <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Loading full results...</p>
-      <a href="${shareUrl}" style="color: white; text-decoration: underline; font-weight: 600;">Click here to view full results</a>
     </div>
   </div>
   <script type="module" src="/src/main.tsx"></script>

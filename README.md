@@ -15,8 +15,9 @@ A community AI platform to detect scam voices through audio analysis.
 7. [API Integration](#api-integration)
 8. [Strapi Setup cho Donate Form](#strapi-setup-cho-donate-form)
 9. [Share Feature](#share-feature)
-10. [Deployment](#deployment)
-11. [Troubleshooting](#troubleshooting)
+10. [Google Analytics](#google-analytics)
+11. [Deployment](#deployment)
+12. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -84,6 +85,9 @@ VITE_API_BASE_URL=https://scam-detect.techainer.com
 # Strapi Configuration (cho donate form)
 VITE_STRAPI_URL=http://localhost:1337
 VITE_STRAPI_API_TOKEN=your-api-token-here
+
+# Google Analytics (optional - để trống nếu không dùng)
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 ### Kiểm tra Environment Variables
@@ -145,6 +149,7 @@ Thêm env variables trong Vercel Dashboard:
    - `VITE_API_BASE_URL` = URL của API
    - `VITE_STRAPI_URL` = URL của Strapi
    - `VITE_STRAPI_API_TOKEN` = Token
+   - `VITE_GA_MEASUREMENT_ID` = Google Analytics Measurement ID (optional)
 3. Redeploy lại project
 
 ---
@@ -601,6 +606,59 @@ Sau khi deploy lên Vercel, test với:
 - Share data chỉ lưu trong sessionStorage (client-side only)
 - Không expose sensitive data trong URLs
 - API functions không lưu trữ data persistent
+
+---
+
+## Google Analytics
+
+### Setup Google Analytics
+
+1. **Tạo Google Analytics Property**
+   - Vào [Google Analytics](https://analytics.google.com/)
+   - Tạo Property mới hoặc sử dụng Property hiện có
+   - Lấy **Measurement ID** (format: `G-XXXXXXXXXX`)
+
+2. **Thêm vào Environment Variables**
+   
+   Thêm vào file `.env`:
+   ```env
+   VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+   ```
+   
+   Hoặc trong Vercel Dashboard:
+   - Project → Settings → Environment Variables
+   - Thêm `VITE_GA_MEASUREMENT_ID` với giá trị là Measurement ID
+
+3. **Features**
+   - ✅ Tự động track page views khi chuyển trang
+   - ✅ Track custom events (nếu cần)
+   - ✅ Chỉ load khi có GA_MEASUREMENT_ID (optional)
+
+### Sử dụng Custom Events
+
+Để track custom events, import và sử dụng:
+
+```typescript
+import { trackEvent } from '../components/GoogleAnalytics';
+
+// Track button click
+trackEvent('click', 'button', 'share_facebook');
+
+// Track form submission
+trackEvent('submit', 'form', 'donate_form', 1);
+```
+
+**Parameters:**
+- `action`: Hành động (ví dụ: 'click', 'submit', 'download')
+- `category`: Danh mục (ví dụ: 'button', 'form', 'video')
+- `label`: Nhãn mô tả (optional)
+- `value`: Giá trị số (optional)
+
+### Kiểm tra
+
+1. Mở Google Analytics → Realtime
+2. Truy cập website
+3. Xem realtime data trong GA dashboard
 
 ---
 

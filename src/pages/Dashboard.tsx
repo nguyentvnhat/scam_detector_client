@@ -27,6 +27,9 @@ export const Dashboard = () => {
       return;
     }
 
+    // Track file analysis attempt
+    trackEvent('click', 'button', 'analyze_audio_dashboard', 1);
+
     // Check if user needs to verify CAPTCHA
     if (!skipCaptchaCheck && !isLoggedIn && !captchaVerified) {
       setShowCaptcha(true);
@@ -46,6 +49,9 @@ export const Dashboard = () => {
       const result = await analyzeAudio(selectedFile);
       setAnalysisResult(result);
       
+      // Track successful analysis
+      trackEvent('complete', 'analysis', result.flagged ? 'scam_detected' : 'safe', Math.round(result.riskScore * 100));
+      
       // Save to history if logged in
       if (isLoggedIn) {
         saveFile(selectedFile, result);
@@ -58,6 +64,7 @@ export const Dashboard = () => {
         }, 5000);
       }
     } catch (error) {
+      trackEvent('error', 'analysis', 'analysis_failed', 0);
       alert(t('pageDashboard.analyzeError'));
     } finally {
       setIsAnalyzing(false);
@@ -77,6 +84,7 @@ export const Dashboard = () => {
 
   // Reset CAPTCHA when new file is selected
   const handleFileSelect = (file: File) => {
+    trackEvent('select', 'file', file.type || 'unknown', Math.round(file.size / 1024));
     setSelectedFile(file);
     setAnalysisResult(null);
     setCaptchaVerified(false);

@@ -6,6 +6,7 @@ import { Navbar } from '../components/Navbar';
 import { SEO } from '../components/SEO';
 import { getUserEmail, isAuthenticated, removeUserEmail } from '../utils/auth';
 import { getProfile, saveProfile, getSavedFiles, UserProfile } from '../utils/storage';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -39,6 +40,9 @@ export const Profile = () => {
     setIsSaving(true);
     setSuccessMessage('');
 
+    // Track profile save
+    trackEvent('click', 'button', 'profile_save', 1);
+
     // Validate
     if (!fullName.trim() || fullName.trim().length < 2) {
       alert(t('pageProfile.fullNameError'));
@@ -61,12 +65,14 @@ export const Profile = () => {
 
     setIsSaving(false);
     setSuccessMessage(t('pageProfile.saveSuccess'));
+    trackEvent('complete', 'profile', 'profile_saved', 1);
 
     // Clear success message after 3 seconds
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const handleExportData = () => {
+    trackEvent('click', 'button', 'export_data', 1);
     const profile = getProfile();
     const files = getSavedFiles();
     const userEmail = getUserEmail();
@@ -90,10 +96,12 @@ export const Profile = () => {
     URL.revokeObjectURL(url);
 
     setSuccessMessage(t('pageProfile.exportSuccess'));
+    trackEvent('complete', 'profile', 'data_exported', 1);
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   const handleDeleteAllData = () => {
+    trackEvent('click', 'button', 'delete_all_data', 1);
     // Delete from localStorage
     localStorage.removeItem('nghelabiet_user_files');
     localStorage.removeItem('nghelabiet_user_profile');

@@ -5,6 +5,7 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Captcha } from '../components/Captcha';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Donate = () => {
   const { t } = useTranslation();
@@ -48,6 +49,10 @@ export const Donate = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track form submission attempt
+    trackEvent('click', 'button', 'donate_submit', 1);
+    
     setSubmitSuccess(false);
     
     // Validate form
@@ -164,7 +169,7 @@ export const Donate = () => {
             errorMessage = errorData.message;
           } else if (Array.isArray(errorData.data)) {
             // Strapi validation errors format
-            const validationErrors = errorData.data.map((err: any) => 
+            const validationErrors = errorData.data.map((err: { path?: string[]; message?: string; error?: string }) => 
               `${err.path?.join('.') || 'field'}: ${err.message || err.error || 'Invalid'}`
             ).join(', ');
             errorMessage = `Validation errors: ${validationErrors}`;
@@ -189,6 +194,9 @@ export const Donate = () => {
       
       setIsSubmitting(false);
       setSubmitSuccess(true);
+      
+      // Track successful submission
+      trackEvent('submit', 'form', 'donate_form_success', 1);
       
       // Reset form after success
       setFormData({
@@ -241,6 +249,9 @@ export const Donate = () => {
           errorMessage = errorMsg;
         }
       }
+      
+      // Track form error
+      trackEvent('error', 'form', 'donate_form_error', 0);
       
       // Show error message to user
       alert(errorMessage);

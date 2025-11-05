@@ -61,8 +61,8 @@ export const Share = () => {
           createdAt: new Date().toISOString(),
         };
       } else {
-        // No data available, show message instead of redirecting
-        setLoading(false);
+        // No data available, redirect to home silently
+        navigate('/');
         return;
       }
     }
@@ -91,6 +91,7 @@ export const Share = () => {
   }
 
   if (!shareData) {
+    // Show loading state while redirecting (will be handled by useEffect)
     return (
       <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full max-w-full">
         <SEO
@@ -100,10 +101,8 @@ export const Share = () => {
         <Navbar />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('results.share.notFound')}</h1>
-            <Link to="/" className="text-blue-600 hover:text-blue-700 underline">
-              {t('results.share.backToHome')}
-            </Link>
+            <div className="w-12 h-12 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600">{t('common.loading')}</p>
           </div>
         </main>
         <Footer />

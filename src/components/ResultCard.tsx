@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { saveShareResult } from '../utils/storage';
+import { trackEvent } from './GoogleAnalytics';
 
 interface ResultCardProps {
   result: AnalysisResult;
@@ -198,6 +199,9 @@ export const ResultCard = ({ result, showFullAnalysis = false }: ResultCardProps
   
   // Share functions
   const handleShare = async (platform: 'facebook' | 'twitter' | 'linkedin') => {
+    // Track share event
+    trackEvent('click', 'share', `share_${platform}`, Math.round(result.riskScore * 100));
+    
     const score = Math.round(result.riskScore * 100);
     const status = result.flagged ? t('results.isScam') : t('results.safe');
     const text = `${status} - ${t('results.riskScore')}: ${score}% | ${t('common.appName')}`;
