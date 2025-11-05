@@ -37,7 +37,7 @@ export const Navbar = ({ showAuth = false }: NavbarProps) => {
   };
 
   return (
-    <nav className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 sticky top-0 z-50 overflow-x-hidden w-full max-w-full">
+    <nav className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 sticky top-0 z-50 overflow-x-hidden w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20 gap-2">
           <div className="flex-shrink-0 min-w-0">

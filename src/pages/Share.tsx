@@ -73,7 +73,7 @@ export const Share = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full max-w-full">
+      <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full">
         <SEO
           title={`${t('results.share.title')} - ${t('common.appName')}`}
           description={t('results.share.description')}
@@ -93,7 +93,7 @@ export const Share = () => {
   if (!shareData) {
     // Show loading state while redirecting (will be handled by useEffect)
     return (
-      <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full max-w-full">
+      <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full">
         <SEO
           title={`${t('results.share.title')} - ${t('common.appName')}`}
           description={t('results.share.description')}

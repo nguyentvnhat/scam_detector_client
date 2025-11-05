@@ -148,7 +148,7 @@ export const Landing = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
       <SEO 
         title={`${t('common.appName')} - ${t('common.tagline')}`}
         description={t('landingAbout.paragraph1')}

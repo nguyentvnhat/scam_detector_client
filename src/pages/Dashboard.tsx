@@ -94,7 +94,7 @@ export const Dashboard = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-gray-50 overflow-x-hidden w-full">
       <SEO 
         title={`${t('pageDashboard.title')} - ${t('common.appName')}`}
         description={t('pageDashboard.description')}

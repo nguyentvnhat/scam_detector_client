@@ -32,12 +32,25 @@ declare global {
 
 // Initialize Google Analytics
 const initGoogleAnalytics = () => {
-  if (!GA_MEASUREMENT_ID || typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  // Debug: Log GA_MEASUREMENT_ID (always log for debugging)
+  console.log('GA_MEASUREMENT_ID:', GA_MEASUREMENT_ID || 'NOT SET');
+  console.log('Is placeholder?', GA_MEASUREMENT_ID === 'VITE_GA_MEASUREMENT_ID');
+
+  // Check if it's a placeholder or empty
+  if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'VITE_GA_MEASUREMENT_ID' || !GA_MEASUREMENT_ID.startsWith('G-')) {
+    console.warn('Google Analytics: VITE_GA_MEASUREMENT_ID is not set correctly. Please set it to your actual GA Measurement ID (e.g., G-XXXXXXXXXX)');
     return;
   }
 
   // Check if already initialized
   if (typeof window.gtag === 'function') {
+    if (import.meta.env.DEV) {
+      console.log('Google Analytics: Already initialized');
+    }
     return;
   }
 
@@ -45,6 +58,19 @@ const initGoogleAnalytics = () => {
   const script1 = document.createElement('script');
   script1.async = true;
   script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  script1.onload = () => {
+    console.log('Google Analytics: Script loaded successfully');
+    // Once script is loaded, Google Analytics will replace our custom gtag function
+    // Wait a bit then verify
+    setTimeout(() => {
+      if (window.dataLayer && window.dataLayer.length > 0) {
+        console.log('Google Analytics: dataLayer initialized', window.dataLayer.length, 'items');
+      }
+    }, 500);
+  };
+  script1.onerror = () => {
+    console.error('Google Analytics: Failed to load script from', script1.src);
+  };
   document.head.appendChild(script1);
 
   // Initialize gtag
@@ -62,6 +88,8 @@ const initGoogleAnalytics = () => {
   gtag('config', GA_MEASUREMENT_ID, {
     page_path: window.location.pathname,
   });
+
+  console.log('Google Analytics: Initialized with ID', GA_MEASUREMENT_ID);
 };
 
 // Track page views on route changes
@@ -72,12 +100,33 @@ export const GoogleAnalytics = () => {
     // Initialize GA on mount
     initGoogleAnalytics();
 
-    // Track page view on route change
-    if (GA_MEASUREMENT_ID && typeof window.gtag === 'function') {
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: location.pathname + location.search,
-      });
-    }
+    // Wait a bit for script to load before tracking
+    const timer = setTimeout(() => {
+      if (GA_MEASUREMENT_ID && typeof window.gtag === 'function') {
+        window.gtag('config', GA_MEASUREMENT_ID, {
+          page_path: location.pathname + location.search,
+          page_title: document.title,
+        });
+        console.log('Google Analytics: Page view tracked', location.pathname);
+      } else if (GA_MEASUREMENT_ID) {
+        console.warn('Google Analytics: gtag not available yet, retrying...');
+        // Retry after script loads
+        const checkGtag = setInterval(() => {
+          if (typeof window.gtag === 'function') {
+            window.gtag('config', GA_MEASUREMENT_ID, {
+              page_path: location.pathname + location.search,
+              page_title: document.title,
+            });
+            clearInterval(checkGtag);
+            console.log('Google Analytics: Page view tracked (retry)', location.pathname);
+          }
+        }, 100);
+        // Stop retrying after 5 seconds
+        setTimeout(() => clearInterval(checkGtag), 5000);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [location]);
 
   return null;

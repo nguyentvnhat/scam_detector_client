@@ -49,7 +49,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
       <SEO 
         title={`${t('pageContact.title')} - ${t('common.appName')}`}
         description={t('pageContact.description')}

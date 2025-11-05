@@ -36,15 +36,8 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure all containers respect max-width */
-.container,
-.max-w-7xl,
-.max-w-4xl,
-.max-w-5xl,
-.max-w-6xl {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+/* Mobile: full width with padding, Desktop: container with max-width */
+/* Tailwind handles max-width automatically, we just ensure no overflow */
 
 /* Custom animations */
 @keyframes shimmer {

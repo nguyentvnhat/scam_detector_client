@@ -9,7 +9,7 @@ export const Terms = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
       <SEO 
         title={`${t('pageTerms.title')} - ${t('common.appName')}`}
         description={t('pageTerms.intro.content1')}
