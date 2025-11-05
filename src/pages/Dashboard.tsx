@@ -11,6 +11,7 @@ import { SEO } from '../components/SEO';
 import { analyzeAudio, AnalysisResult } from '../utils/api';
 import { isAuthenticated } from '../utils/auth';
 import { saveFile } from '../utils/storage';
+import { trackEvent } from '../components/GoogleAnalytics';
 
 export const Dashboard = () => {
   const { t } = useTranslation();

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { trackEvent } from './GoogleAnalytics';
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
