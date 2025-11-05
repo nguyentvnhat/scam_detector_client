@@ -54,40 +54,52 @@ const initGoogleAnalytics = () => {
     return;
   }
 
+  // Initialize dataLayer first (before loading script)
+  window.dataLayer = window.dataLayer || [];
+  
+  // Define gtag function before script loads (will be replaced by GA script)
+  // eslint-disable-next-line prefer-rest-params
+  window.gtag = function() {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments);
+  };
+
+  // Set initial config (will be queued in dataLayer)
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID, {
+    page_path: window.location.pathname,
+    page_title: document.title,
+  });
+
   // Load Google Analytics script
   const script1 = document.createElement('script');
   script1.async = true;
   script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   script1.onload = () => {
     console.log('Google Analytics: Script loaded successfully');
-    // Once script is loaded, Google Analytics will replace our custom gtag function
-    // Wait a bit then verify
+    // Wait for GA to process the queued dataLayer items
     setTimeout(() => {
       if (window.dataLayer && window.dataLayer.length > 0) {
         console.log('Google Analytics: dataLayer initialized', window.dataLayer.length, 'items');
+        console.log('Google Analytics: dataLayer contents', window.dataLayer);
       }
-    }, 500);
+      // Verify gtag is now the real GA function (GA script replaces our custom function)
+      if (typeof window.gtag === 'function') {
+        console.log('Google Analytics: gtag function is ready');
+        // Ensure page view is sent (dataLayer items should be processed automatically)
+        // But send again to be sure
+        window.gtag('config', GA_MEASUREMENT_ID, {
+          page_path: window.location.pathname,
+          page_title: document.title,
+        });
+        console.log('Google Analytics: Page view sent to GA');
+      }
+    }, 1000);
   };
   script1.onerror = () => {
     console.error('Google Analytics: Failed to load script from', script1.src);
   };
   document.head.appendChild(script1);
-
-  // Initialize gtag
-  window.dataLayer = window.dataLayer || [];
-  const gtag = (
-    command: GtagCommand,
-    targetId: string | Date,
-    config?: GtagConfigParams | GtagEventParams
-  ) => {
-    window.dataLayer.push({ command, targetId, config });
-  };
-  window.gtag = gtag;
-
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID, {
-    page_path: window.location.pathname,
-  });
 
   console.log('Google Analytics: Initialized with ID', GA_MEASUREMENT_ID);
 };
