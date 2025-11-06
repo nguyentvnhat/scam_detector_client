@@ -108,51 +108,34 @@ export const Donate = () => {
     setIsSubmitting(true);
     
     try {
-      const strapiUrl = import.meta.env.VITE_STRAPI_URL;
-      const strapiToken = import.meta.env.VITE_STRAPI_API_TOKEN;
-      
-      // Debug: log env variables (remove in production if needed)
-      console.log('🔍 Strapi Config Check:', {
-        url: strapiUrl ? '✅ Set' : '❌ Missing',
-        token: strapiToken ? '✅ Set' : '❌ Missing',
-        urlValue: strapiUrl || 'undefined',
-        tokenValue: strapiToken ? `${strapiToken.substring(0, 10)}...` : 'undefined'
-      });
-      
-      if (!strapiUrl || !strapiToken) {
-        throw new Error('Strapi configuration is missing. Please check environment variables.');
-      }
+      const apiBaseUrl = 'https://api.blacklist.vn';
 
-      // Prepare data for Strapi API
+      // Prepare data for API
       const payload = {
-        data: {
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone || null,
-          organization: formData.organization || null,
-          contributionTypes: formData.contributionTypes,
-          skills: formData.skills,
-          timeCommitment: formData.timeCommitment || null,
-          referralLink: formData.referralLink || null,
-          notes: formData.notes || null,
-        },
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        organization: formData.organization || undefined,
+        contributionTypes: formData.contributionTypes,
+        skills: formData.skills,
+        timeCommitment: formData.timeCommitment || undefined,
+        referralLink: formData.referralLink || undefined,
+        notes: formData.notes || undefined,
       };
 
-      const response = await fetch(`${strapiUrl}/api/donate-submissions`, {
+      const response = await fetch(`${apiBaseUrl}/api/donates`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${strapiToken}`,
         },
         body: JSON.stringify(payload),
       });
 
       // Log response for debugging
-      console.log('📡 Strapi API Response:', {
+      console.log('📡 API Response:', {
         status: response.status,
         statusText: response.statusText,
         ok: response.ok,
-        headers: Object.fromEntries(response.headers.entries()),
       });
 
       if (!response.ok) {
@@ -160,25 +143,19 @@ export const Donate = () => {
         
         try {
           const errorData = await response.json();
-          console.error('❌ Strapi API Error Data:', errorData);
+          console.error('❌ API Error Data:', errorData);
           
-          // Handle different error formats from Strapi
+          // Handle different error formats
           if (errorData.error) {
             errorMessage = errorData.error.message || errorData.error.name || errorMessage;
           } else if (errorData.message) {
             errorMessage = errorData.message;
-          } else if (Array.isArray(errorData.data)) {
-            // Strapi validation errors format
-            const validationErrors = errorData.data.map((err: { path?: string[]; message?: string; error?: string }) => 
-              `${err.path?.join('.') || 'field'}: ${err.message || err.error || 'Invalid'}`
-            ).join(', ');
-            errorMessage = `Validation errors: ${validationErrors}`;
           }
         } catch (parseError) {
           // Response is not JSON, try to get text
           try {
             const errorText = await response.text();
-            console.error('❌ Strapi API Error Text:', errorText);
+            console.error('❌ API Error Text:', errorText);
             errorMessage = errorText || `Server error: ${response.status} ${response.statusText}`;
           } catch (textError) {
             console.error('❌ Could not parse error response:', textError);
@@ -225,24 +202,16 @@ export const Donate = () => {
         const errorMsg = error.message;
         
         // Network/Connection errors
-        if (errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
-          errorMessage = 'Không thể kết nối đến Strapi. Vui lòng kiểm tra URL và đảm bảo Strapi đang chạy.';
-        }
-        // Configuration errors
-        else if (errorMsg.includes('configuration is missing')) {
-          errorMessage = 'Vui lòng cấu hình Strapi trong file .env (VITE_STRAPI_URL và VITE_STRAPI_API_TOKEN)';
+        if (errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError') || errorMsg.includes('CORS')) {
+          errorMessage = 'Không thể kết nối đến API. Có thể do lỗi CORS hoặc kết nối mạng. Vui lòng thử lại sau.';
         }
         // Permission errors
         else if (errorMsg.includes('403') || errorMsg.includes('Forbidden')) {
-          errorMessage = 'Lỗi quyền truy cập. Vui lòng kiểm tra API Token và Permissions trong Strapi (Public role cần có quyền "create").';
+          errorMessage = 'Lỗi quyền truy cập. Vui lòng thử lại sau.';
         }
         // Not found errors
         else if (errorMsg.includes('404') || errorMsg.includes('Not Found')) {
-          errorMessage = 'Không tìm thấy API endpoint. Vui lòng kiểm tra:\n1. URL đúng format (không có /api ở cuối)\n2. Content Type "donate-submission" đã tạo trong Strapi';
-        }
-        // Validation errors from Strapi
-        else if (errorMsg.includes('Validation errors')) {
-          errorMessage = errorMsg; // Show detailed validation errors
+          errorMessage = 'Không tìm thấy API endpoint. Vui lòng thử lại sau.';
         }
         // Other errors
         else {

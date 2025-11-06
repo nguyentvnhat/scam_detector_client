@@ -152,6 +152,23 @@
       "notFound": "Share result not found",
       "backToHome": "Back to home"
     },
+    "blacklist": {
+      "title": "Add to Blacklist",
+      "description": "Help protect the community by adding this phone number to the blacklist",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter name (optional)",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "Enter phone number (optional)",
+      "optional": "optional",
+      "phoneHint": "Phone number must be 10 or 11 digits",
+      "phoneError": "Phone number must be 10 or 11 digits (numbers only)",
+      "nameRequired": "Please enter name when phone number is provided",
+      "phoneRequired": "Please enter phone number when name is provided",
+      "button": "Add to Blacklist",
+      "submitting": "Submitting...",
+      "success": "Successfully added to blacklist!",
+      "error": "An error occurred while adding to blacklist"
+    },
     "safe": "Safe"
   },
   "footer": {

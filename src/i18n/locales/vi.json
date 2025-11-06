@@ -152,6 +152,23 @@
       "notFound": "Không tìm thấy kết quả chia sẻ",
       "backToHome": "Về trang chủ"
     },
+    "blacklist": {
+      "title": "Thêm vào Blacklist",
+      "description": "Giúp bảo vệ cộng đồng bằng cách thêm số điện thoại này vào danh sách đen",
+      "nameLabel": "Tên",
+      "namePlaceholder": "Nhập tên (tùy chọn)",
+      "phoneLabel": "Số điện thoại",
+      "phonePlaceholder": "Nhập số điện thoại (tùy chọn)",
+      "optional": "không bắt buộc",
+      "phoneHint": "Số điện thoại phải có 10 hoặc 11 chữ số",
+      "phoneError": "Số điện thoại phải có 10 hoặc 11 chữ số (chỉ số)",
+      "nameRequired": "Vui lòng nhập tên khi đã điền số điện thoại",
+      "phoneRequired": "Vui lòng nhập số điện thoại khi đã điền tên",
+      "button": "Thêm vào Blacklist",
+      "submitting": "Đang gửi...",
+      "success": "Đã thêm vào blacklist thành công!",
+      "error": "Có lỗi xảy ra khi thêm vào blacklist"
+    },
     "safe": "An toàn"
   },
   "footer": {

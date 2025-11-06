@@ -174,10 +174,18 @@ const formatReasoning = (text: string, t: (key: string) => string, showAll: bool
   return { html: finalHtml, totalItems: regularBulletCount };
 };
 
-export const ResultCard = ({ result, showFullAnalysis = false }: ResultCardProps) => {
+export const ResultCard = ({ result: analysisResult, showFullAnalysis = false }: ResultCardProps) => {
   const { t } = useTranslation();
   const [showAllAnalysis, setShowAllAnalysis] = useState(showFullAnalysis);
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isSubmittingBlacklist, setIsSubmittingBlacklist] = useState(false);
+  const [blacklistSuccess, setBlacklistSuccess] = useState(false);
+  const [blacklistError, setBlacklistError] = useState('');
   const [shareUrl, setShareUrl] = useState<string>('');
+  
+  // Use analysisResult to avoid naming conflict with response result
+  const result = analysisResult;
   
   // Reset showAllAnalysis when result changes (new analysis) or when showFullAnalysis prop changes
   useEffect(() => {
@@ -357,6 +365,244 @@ export const ResultCard = ({ result, showFullAnalysis = false }: ResultCardProps
           </div>
         </div>
       </motion.div>
+
+      {/* Blacklist Form Section - Only show when flagged */}
+      {result.flagged && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          className="space-y-3"
+        >
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 border-2 border-gray-200 rounded-xl p-4 md:p-5 space-y-3">
+            <h4 className="text-sm md:text-base font-semibold text-gray-900 flex items-center gap-2">
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              {t('results.blacklist.title')}
+            </h4>
+            <p className="text-xs md:text-sm text-gray-600">
+              {t('results.blacklist.description')}
+            </p>
+            
+            {blacklistSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-3 bg-green-50 border border-green-200 rounded-lg"
+              >
+                <p className="text-sm text-green-700 font-medium flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  {t('results.blacklist.success')}
+                </p>
+              </motion.div>
+            ) : (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setIsSubmittingBlacklist(true);
+                  setBlacklistError('');
+                  
+                  try {
+                    const trimmedName = name.trim();
+                    const trimmedPhone = phoneNumber.trim();
+
+                    // Validation logic:
+                    // - If phone is provided, name is required
+                    // - If name is provided, phone is required (10-11 digits)
+                    // - If both are empty, allow submission (both optional)
+
+                    if (trimmedPhone && !trimmedName) {
+                      setBlacklistError(t('results.blacklist.nameRequired'));
+                      setIsSubmittingBlacklist(false);
+                      return;
+                    }
+
+                    if (trimmedName && !trimmedPhone) {
+                      setBlacklistError(t('results.blacklist.phoneRequired'));
+                      setIsSubmittingBlacklist(false);
+                      return;
+                    }
+
+                    // Validate phone number if provided (10 or 11 digits)
+                    if (trimmedPhone) {
+                      if (trimmedPhone.length !== 10 && trimmedPhone.length !== 11) {
+                        setBlacklistError(t('results.blacklist.phoneError'));
+                        setIsSubmittingBlacklist(false);
+                        return;
+                      }
+
+                      // Validate phone contains only digits (double check)
+                      if (!/^\d{10,11}$/.test(trimmedPhone)) {
+                        setBlacklistError(t('results.blacklist.phoneError'));
+                        setIsSubmittingBlacklist(false);
+                        return;
+                      }
+                    }
+
+                    const apiBaseUrl = 'https://api.blacklist.vn';
+
+                    // Prepare payload according to API spec
+                    const payload = {
+                      name: trimmedName || undefined,
+                      phone: trimmedPhone || undefined,
+                      reasoning: result.transcript || '',
+                      riskScore: result.riskScore,
+                    };
+
+                    const response = await fetch(`${apiBaseUrl}/api/records`, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(payload),
+                    });
+
+                    if (!response.ok) {
+                      let errorMessage = `Server error: ${response.status}`;
+                      try {
+                        const errorData = await response.json();
+                        if (errorData.error) {
+                          errorMessage = errorData.error.message || errorMessage;
+                        } else if (errorData.message) {
+                          errorMessage = errorData.message;
+                        }
+                      } catch (e) {
+                        // Ignore parse errors
+                      }
+                      throw new Error(errorMessage);
+                    }
+
+                    const responseData = await response.json();
+                    console.log('✅ Blacklist submitted successfully:', responseData);
+                    
+                    setBlacklistSuccess(true);
+                    setName('');
+                    setPhoneNumber('');
+                    trackEvent('submit', 'blacklist', 'blacklist_submitted', Math.round(result.riskScore * 100));
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                      setBlacklistSuccess(false);
+                    }, 5000);
+                  } catch (error) {
+                    console.error('❌ Error submitting blacklist:', error);
+                    setBlacklistError(error instanceof Error ? error.message : t('results.blacklist.error'));
+                    trackEvent('error', 'blacklist', 'blacklist_submit_failed', 0);
+                  } finally {
+                    setIsSubmittingBlacklist(false);
+                  }
+                }}
+                className="space-y-3"
+              >
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('results.blacklist.nameLabel')}
+                    <span className="text-gray-400 text-xs ml-1">({t('results.blacklist.optional')})</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      // Clear error when user types
+                      if (blacklistError && (blacklistError.includes('tên') || blacklistError.includes('name'))) {
+                        setBlacklistError('');
+                      }
+                    }}
+                    placeholder={t('results.blacklist.namePlaceholder')}
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all ${
+                      blacklistError && (blacklistError.includes('tên') || blacklistError.includes('name'))
+                        ? 'border-red-300 bg-red-50' 
+                        : 'border-gray-300'
+                    }`}
+                    disabled={isSubmittingBlacklist}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('results.blacklist.phoneLabel')}
+                    <span className="text-gray-400 text-xs ml-1">({t('results.blacklist.optional')})</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                      // Only allow numbers
+                      const value = e.target.value.replace(/\D/g, '');
+                      // Limit to 11 digits (allow 10-11)
+                      if (value.length <= 11) {
+                        setPhoneNumber(value);
+                        // Clear error when user types
+                        if (blacklistError && (blacklistError.includes('phone') || blacklistError.includes('số điện thoại'))) {
+                          setBlacklistError('');
+                        }
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      // Prevent non-numeric keys except backspace, delete, tab, arrow keys
+                      if (!/[0-9]/.test(e.key) && 
+                          !['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key) &&
+                          !(e.ctrlKey || e.metaKey)) {
+                        e.preventDefault();
+                      }
+                    }}
+                    placeholder={t('results.blacklist.phonePlaceholder')}
+                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all ${
+                      blacklistError && (blacklistError.includes('phone') || blacklistError.includes('số điện thoại'))
+                        ? 'border-red-300 bg-red-50' 
+                        : 'border-gray-300'
+                    }`}
+                    disabled={isSubmittingBlacklist}
+                    maxLength={11}
+                  />
+                  {phoneNumber && phoneNumber.length > 0 && phoneNumber.length !== 10 && phoneNumber.length !== 11 && (
+                    <p className="mt-1 text-xs text-amber-600">
+                      {t('results.blacklist.phoneHint')}
+                    </p>
+                  )}
+                </div>
+                
+                {blacklistError && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-sm text-red-700">{blacklistError}</p>
+                  </div>
+                )}
+                
+                <motion.button
+                  type="submit"
+                  disabled={isSubmittingBlacklist}
+                  whileHover={{ scale: isSubmittingBlacklist ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmittingBlacklist ? 1 : 0.98 }}
+                  className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-lg hover:from-gray-800 hover:to-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                >
+                  {isSubmittingBlacklist ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span>{t('results.blacklist.submitting')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      <span>{t('results.blacklist.button')}</span>
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            )}
+          </div>
+        </motion.div>
+      )}
 
       {/* Scam Warning Section */}
       {result.flagged && (
